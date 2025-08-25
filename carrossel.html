@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrossel de Imagens</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .slider-container {
+            position: relative;
+            overflow: hidden;
+            height: 500px;
+        }
+        .slider-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+        .slider-item.active {
+            opacity: 1;
+        }
+        .slider-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .slider-indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: rgba(156, 163, 175, 0.7);
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .slider-indicator.active {
+            background-color: rgba(107, 33, 168, 0.9);
+        }
+        .slider-control {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+        }
+        .slider-control.prev {
+            left: 15px;
+        }
+        .slider-control.next {
+            right: 15px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-6xl mx-auto my-10 bg-white rounded-lg shadow-lg overflow-hidden">
+        <div class="slider-container">
+            <!-- Slides serão inseridos aqui via JavaScript -->
+        </div>
+        
+        <button class="slider-control prev">&#10094;</button>
+        <button class="slider-control next">&#10095;</button>
+        
+        <div class="slider-indicators">
+            <!-- Indicadores serão inseridos aqui via JavaScript -->
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            // Dados dos slides - você pode adicionar/remover slides aqui
+            const slides = [
+                {
+                    image: "https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80",
+                    title: "Hello world",
+                    description: "Carousel with TailwindCSS and jQuery",
+                    buttonText: "Contact us"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1544144433-d50aff500b91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                    title: "Second Slide",
+                    description: "Beautiful landscapes around the world",
+                    buttonText: "Learn more"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
+                    title: "Mountain View",
+                    description: "Discover amazing mountain adventures",
+                    buttonText: "Explore"
+                },
+                {
+                    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1348&q=80",
+                    title: "Nature Beauty",
+                    description: "Experience the beauty of nature",
+                    buttonText: "See details"
+                }
+            ];
+
+            // Variáveis de controle
+            let currentSlide = 0;
+            let slideInterval;
+
+            // Inicializar o carrossel
+            function initSlider() {
+                const sliderContainer = $('.slider-container');
+                const indicatorsContainer = $('.slider-indicators');
+                
+                // Limpar conteúdo existente
+                sliderContainer.empty();
+                indicatorsContainer.empty();
+                
+                // Adicionar slides
+                slides.forEach((slide, index) => {
+                    const slideElement = `
+                        <div class="slider-item ${index === 0 ? 'active' : ''}">
+                            <div class="bg-cover bg-center h-full text-white flex items-center" style="background-image: url(${slide.image})">
+                                <div class="container mx-auto px-10">
+                                    <div class="md:w-1/2">
+                                        <p class="font-bold text-sm uppercase">Services</p>
+                                        <p class="text-3xl font-bold">${slide.title}</p>
+                                        <p class="text-2xl mb-10 leading-none">${slide.description}</p>
+                                        <a href="#" class="bg-purple-800 py-4 px-8 text-white font-bold uppercase text-xs rounded hover:bg-gray-200 hover:text-gray-800 transition-colors duration-300">${slide.buttonText}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                    sliderContainer.append(slideElement);
+                    
+                    // Adicionar indicadores
+                    const indicator = $(`<div class="slider-indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`);
+                    indicatorsContainer.append(indicator);
+                });
+                
+                // Iniciar transição automática
+                startSlideInterval();
+            }
+
+            // Iniciar intervalo para transição automática
+            function startSlideInterval() {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(() => {
+                    nextSlide();
+                }, 5000);
+            }
+
+            // Avançar para o próximo slide
+            function nextSlide() {
+                goToSlide((currentSlide + 1) % slides.length);
+            }
+
+            // Voltar para o slide anterior
+            function prevSlide() {
+                goToSlide((currentSlide - 1 + slides.length) % slides.length);
+            }
+
+            // Ir para um slide específico
+            function goToSlide(index) {
+                // Remover classe active do slide atual
+                $(`.slider-item`).removeClass('active');
+                $(`.slider-indicator`).removeClass('active');
+                
+                // Adicionar classe active ao novo slide
+                $(`.slider-item:eq(${index})`).addClass('active');
+                $(`.slider-indicator[data-index="${index}"]`).addClass('active');
+                
+                // Atualizar índice do slide atual
+                currentSlide = index;
+                
+                // Reiniciar intervalo
+                startSlideInterval();
+            }
+
+            // Event listeners para os controles
+            $('.slider-control.next').on('click', nextSlide);
+            $('.slider-control.prev').on('click', prevSlide);
+            
+            // Event listener para os indicadores
+            $(document).on('click', '.slider-indicator', function() {
+                const index = $(this).data('index');
+                goToSlide(index);
+            });
+
+            // Inicializar o slider
+            initSlider();
+        });
+    </script>
+</body>
+</html>

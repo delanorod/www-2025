@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto de Energia PUC-Rio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'puc-blue': '#003366',
+            'puc-light-blue': '#0066CC',
+            'puc-gold': '#FFD700',
+            'puc-gray': '#666666',
+            'puc-light-gray': '#F5F5F5'
+          },
+          fontFamily: {
+            'puc': ['Arial', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body class="font-puc bg-white">
+  <!-- Cabeçalho Padrão PUC-Rio -->
+  <header class="bg-white border-b border-gray-200">
+    <!-- Barra Superior PUC-Rio -->
+    <div class="bg-puc-blue text-white">
+      <div class="max-w-7xl mx-auto px-4 py-1">
+        <div class="flex justify-between items-center text-xs">
+          <div class="flex space-x-4">
+            <a href="https://www.puc-rio.br" class="hover:text-puc-gold transition-colors">Portal PUC-Rio</a>
+            <a href="https://www.puc-rio.br/biblioteca/" class="hover:text-puc-gold transition-colors">Biblioteca</a>
+            <a href="https://www.puc-rio.br/puconline/" class="hover:text-puc-gold transition-colors">PUC Online</a>
+            <a href="https://www.puc-rio.br/vestibular/" class="hover:text-puc-gold transition-colors">Vestibular</a>
+            <a href="https://www.puc-rio.br/international/" class="hover:text-puc-gold transition-colors">Internacional</a>
+          </div>
+          <div class="text-sm text-gray-300">
+            <a href="https://www.puc-rio.br" class="hover:text-puc-gold transition-colors">www.puc-rio.br</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Copyright -->
+    <div class="border-t border-gray-600 py-4">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-sm text-gray-400">
+          <p>&copy; 2025 Pontifícia Universidade Católica do Rio de Janeiro. Todos os direitos reservados.</p>
+          <div class="flex space-x-4">
+            <a href="#" class="hover:text-puc-gold transition-colors">Política de Privacidade</a>
+            <a href="#" class="hover:text-puc-gold transition-colors">Termos de Uso</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Styles for Google Sheets content -->
+  <style>
+    #materias-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .materia-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+
+    .materia-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .materia-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(45deg, #003366, #0066CC);
+    }
+
+    .materia-content {
+      padding: 1.5rem;
+    }
+
+    .materia-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #003366;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .materia-meta {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .materia-resumo {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .materia-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: #0066CC;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .materia-link:hover {
+      background: #003366;
+    }
+
+    .materia-link i {
+      margin-left: 0.5rem;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      #materias-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .materia-content {
+        padding: 1rem;
+      }
+
+      .materia-img {
+        height: 160px;
+      }
+
+      /* Mobile header adjustments */
+      .text-5xl {
+        font-size: 2.5rem;
+      }
+
+      .text-xl {
+        font-size: 1.125rem;
+      }
+    }
+
+    /* PUC Brand Guidelines */
+    .nav-link.active {
+      color: #0066CC;
+      font-weight: 600;
+    }
+
+    /* Hover effects for cards */
+    .feature-card:hover,
+    .course-card:hover,
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+  </style>
+
+  <script>
+    // Function to load articles from Google Sheets using JSONP
+    function loadMaterias() {
+      const sheetID = "160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU";
+      const sheetName = "materias";
+
+      // Show loading indicator
+      document.getElementById('loading-indicator').style.display = 'block';
+      document.getElementById('materias-container').style.display = 'none';
+      document.getElementById('error-message').classList.add('hidden');
+
+      // Try different approaches
+      tryLoadFromSheets(sheetID, sheetName);
+    }
+
+    function tryLoadFromSheets(sheetID, sheetName) {
+      // Method 1: Try with JSONP callback
+      const callbackName = 'gsheetsCallback' + Date.now();
+
+      window[callbackName] = function(data) {
+        processGoogleSheetsData(data);
+        delete window[callbackName];
+      };
+
+      const script = document.createElement('script');
+      script.src = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&callback=${callbackName}&sheet=${sheetName}`;
+
+      script.onerror = function() {
+        // Method 2: Try with fetch and manual parsing
+        tryFetchMethod(sheetID, sheetName);
+      };
+
+      document.head.appendChild(script);
+
+      // Clean up after timeout
+      setTimeout(() => {
+        if (document.head.contains(script)) {
+          document.head.removeChild(script);
+        }
+        if (window[callbackName]) {
+          delete window[callbackName];
+          tryFetchMethod(sheetID, sheetName);
+        }
+      }, 8000);
+    }
+
+    function tryFetchMethod(sheetID, sheetName) {
+      const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+      fetch(url)
+        .then(response => response.text())
+        .then(text => {
+          // Remove Google's JSONP wrapper
+          const jsonText = text.substring(47).slice(0, -2);
+          const data = JSON.parse(jsonText);
+          processGoogleSheetsData(data);
+        })
+        .catch(error => {
+          console.error('Fetch method failed:', error);
+          showSampleData(); // Fallback to sample data
+        });
+    }
+
+    function processGoogleSheetsData(data) {
+      try {
+        document.getElementById('loading-indicator').style.display = 'none';
+
+        if (!data.table || !data.table.rows) {
+          throw new Error('Estrutura de dados inválida');
+        }
+
+        const rows = data.table.rows
+          .map((row, index) => {
+            // Skip header row
+            if (index === 0) return null;
+
+            return {
+              data: (row.c && row.c[0] && row.c[0].v) ? row.c[0].v.toString() : "",
+              titulo: (row.c && row.c[1] && row.c[1].v) ? row.c[1].v.toString() : "",
+              veiculo: (row.c && row.c[2] && row.c[2].v) ? row.c[2].v.toString() : "",
+              resumo: (row.c && row.c[3] && row.c[3].v) ? row.c[3].v.toString() : "",
+              link: (row.c && row.c[4] && row.c[4].v) ? row.c[4].v.toString() : "",
+              imagem: (row.c && row.c[5] && row.c[5].v) ? row.c[5].v.toString() : ""
+            };
+          })
+          .filter(row => row && row.titulo && row.titulo.trim() !== "");
+
+        if (rows.length === 0) {
+          showSampleData();
+          return;
+        }
+
+        displayMaterias(rows);
+
+      } catch (error) {
+        console.error("Erro ao processar dados do Google Sheets:", error);
+        showSampleData();
+      }
+    }
+
+    function displayMaterias(rows) {
+      // Sort by date (DD/MM/YYYY format)
+      rows.sort((a, b) => {
+        try {
+          const parseDate = (dateStr) => {
+            if (!dateStr) return new Date(0);
+            const parts = dateStr.split("/");
+            if (parts.length === 3) {
+              return new Date(parts[2], parts[1] - 1, parts[0]);
+            }
+            return new Date(dateStr);
+          };
+
+          return parseDate(b.data) - parseDate(a.data);
+        } catch (e) {
+          return 0;
+        }
+      });
+
+      const html = rows.map(materia => {
+        const imageHTML = materia.imagem && materia.imagem.trim() !== ""
+          ? `<img class="materia-img" src="${materia.imagem}" alt="${materia.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+             <div class="materia-img" style="display:none;"></div>`
+          : `<div class="materia-img"></div>`;
+
+        return `
+          <article class="materia-card">
+            ${imageHTML}
+            <div class="materia-content">
+              <h3>${materia.titulo}</h3>
+              <p class="materia-meta">
+                <i class="fas fa-newspaper mr-2"></i>
+                ${materia.veiculo}${materia.data ? ' • ' + materia.data : ''}
+              </p>
+              <p class="materia-resumo">${materia.resumo}</p>
+              <a href="${materia.link}" target="_blank" rel="noopener noreferrer" class="materia-link">
+                Leia mais <i class="fas fa-external-link-alt"></i>
+              </a>
+            </div>
+          </article>
+        `;
+      }).join("");
+
+      document.getElementById("materias-container").innerHTML = html;
+      document.getElementById('materias-container').style.display = 'grid';
+    }
+
+    function showSampleData() {
+      console.log('Exibindo dados de exemplo');
+      document.getElementById('loading-indicator').style.display = 'none';
+
+      // Sample data as fallback
+      const sampleData = [
+        {
+          data: "10/08/2025",
+          titulo: "IEPUC participa de conferência internacional sobre energias renováveis",
+          veiculo: "Jornal do Brasil",
+          resumo: "Instituto apresenta pesquisas sobre eficiência energética e sustentabilidade em evento global.",
+          link: "#",
+          imagem: ""
+        },
+        {
+          data: "05/08/2025",
+          titulo: "Nova parceria com empresa do setor elétrico brasileiro",
+          veiculo: "Valor Econômico",
+          resumo: "Acordo visa desenvolvimento de tecnologias inovadoras para o mercado nacional de energia.",
+          link: "#",
+          imagem: ""
+        },
+        {
+          data: "01/08/2025",
+          titulo: "Pesquisador do IEPUC recebe prêmio de inovação",
+          veiculo: "O Globo",
+          resumo: "Reconhecimento internacional por desenvolvimento de soluções em energia limpa.",
+          link: "#",
+          imagem: ""
+        }
+      ];
+
+      displayMaterias(sampleData);
+    }
+
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+          // Close mobile menu if open
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Add animation classes
+    document.querySelectorAll('.feature-card, .course-card, .news-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(card);
+    });
+
+    // Initialize page
+    document.addEventListener('DOMContentLoaded', () => {
+      // Load articles from Google Sheets when page loads
+      loadMaterias();
+    });
+
+    // Active navigation link highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollY >= sectionTop - 200) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Back to top functionality
+    window.addEventListener('scroll', () => {
+      const scrollTop = document.documentElement.scrollTop;
+      if (scrollTop > 300) {
+        if (!document.getElementById('back-to-top')) {
+          const backToTop = document.createElement('button');
+          backToTop.id = 'back-to-top';
+          backToTop.innerHTML = '<i class="fas fa-chevron-up"></i>';
+          backToTop.className = 'fixed bottom-6 right-6 bg-puc-blue text-white p-3 rounded-full shadow-lg hover:bg-puc-light-blue transition-all duration-300 z-50';
+          backToTop.onclick = () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          };
+          document.body.appendChild(backToTop);
+        }
+      } else {
+        const backToTop = document.getElementById('back-to-top');
+        if (backToTop) {
+          backToTop.remove();
+        }
+      }
+    });
+  </script>
+</body>
+
+</html> class="hover:text-puc-gold transition-colors">PUC Online</a>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-xs">Siga-nos:</span>
+            <a href="https://www.facebook.com/PUCRio" target="_blank" class="hover:text-puc-gold transition-colors">
+              <i class="fab fa-facebook text-sm"></i>
+            </a>
+            <a href="https://www.instagram.com/pucrio_oficial/" target="_blank" class="hover:text-puc-gold transition-colors">
+              <i class="fab fa-instagram text-sm"></i>
+            </a>
+            <a href="https://www.youtube.com/user/pucrj" target="_blank" class="hover:text-puc-gold transition-colors">
+              <i class="fab fa-youtube text-sm"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/puc-rio/" target="_blank" class="hover:text-puc-gold transition-colors">
+              <i class="fab fa-linkedin text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cabeçalho Principal com Brasão PUC-Rio -->
+    <div class="bg-white">
+      <div class="max-w-7xl mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <!-- Brasão e Identificação PUC-Rio -->
+          <div class="flex items-center space-x-6">
+            <a href="https://www.puc-rio.br" class="flex items-center space-x-3">
+              <!-- Brasão PUC-Rio SVG -->
+              <div class="w-16 h-16">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <!-- Fundo do brasão -->
+                  <rect width="100" height="100" rx="10" fill="#003366"/>
+                  
+                  <!-- Tiara Papal (simplificada) -->
+                  <ellipse cx="50" cy="25" rx="20" ry="8" fill="#FFD700"/>
+                  <ellipse cx="50" cy="23" rx="18" ry="6" fill="#FFF"/>
+                  <ellipse cx="50" cy="21" rx="16" ry="4" fill="#FFD700"/>
+                  
+                  <!-- Cruz no topo -->
+                  <rect x="49" y="12" width="2" height="8" fill="#FFD700"/>
+                  <rect x="46" y="14" width="8" height="2" fill="#FFD700"/>
+                  
+                  <!-- Chaves cruzadas -->
+                  <g transform="translate(30,35)">
+                    <!-- Chave esquerda -->
+                    <ellipse cx="8" cy="15" rx="3" ry="3" fill="#FFD700" stroke="#FFF" stroke-width="1"/>
+                    <rect x="6" y="18" width="4" height="15" fill="#FFD700"/>
+                    <rect x="4" y="30" width="3" height="2" fill="#FFD700"/>
+                    <rect x="4" y="32" width="2" height="2" fill="#FFD700"/>
+                  </g>
+                  
+                  <g transform="translate(50,35)">
+                    <!-- Chave direita -->
+                    <ellipse cx="8" cy="15" rx="3" ry="3" fill="#FFD700" stroke="#FFF" stroke-width="1"/>
+                    <rect x="6" y="18" width="4" height="15" fill="#FFD700"/>
+                    <rect x="9" y="30" width="3" height="2" fill="#FFD700"/>
+                    <rect x="10" y="32" width="2" height="2" fill="#FFD700"/>
+                  </g>
+                  
+                  <!-- Escudo central -->
+                  <path d="M 35 55 L 65 55 L 65 75 Q 50 90 35 75 Z" fill="#FFF"/>
+                  
+                  <!-- Cruz dentro do escudo -->
+                  <rect x="49" y="60" width="2" height="12" fill="#003366"/>
+                  <rect x="44" y="65" width="12" height="2" fill="#003366"/>
+                  
+                  <!-- Texto PUC -->
+                  <text x="50" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="8" font-weight="bold" fill="#FFD700">PUC</text>
+                </svg>
+              </div>
+              <div class="text-puc-blue">
+                <h1 class="text-sm font-bold leading-tight">PONTIFÍCIA UNIVERSIDADE</h1>
+                <h2 class="text-sm font-bold leading-tight">CATÓLICA DO RIO DE JANEIRO</h2>
+              </div>
+            </a>
+            
+            <!-- Separador -->
+            <div class="h-12 w-px bg-gray-300"></div>
+            
+            <!-- Identificação do Instituto -->
+            <div class="text-puc-blue">
+              <h3 class="text-xl font-bold">Instituto de Energia</h3>
+              <p class="text-sm text-puc-gray">IEPUC</p>
+            </div>
+          </div>
+
+          <!-- Menu Mobile Button -->
+          <button id="mobile-menu-button" class="md:hidden text-puc-blue">
+            <i class="fas fa-bars text-2xl"></i>
+          </button>
+
+          <!-- Navegação Desktop -->
+          <nav class="hidden md:block">
+            <ul class="flex space-x-6">
+              <li><a href="#home" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Início</a></li>
+              <li class="relative group">
+                <a href="#cursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
+                  Cursos <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                </a>
+                <div class="absolute top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
+                  <a href="#mbe" class="block px-4 py-2 hover:bg-puc-light-gray">MBE Energia</a>
+                  <a href="#especializacao" class="block px-4 py-2 hover:bg-puc-light-gray">Especializações</a>
+                  <a href="#cursos-extensao" class="block px-4 py-2 hover:bg-puc-light-gray">Cursos de Extensão</a>
+                </div>
+              </li>
+              <li><a href="#pesquisa" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Pesquisa</a></li>
+              <li><a href="#sobre" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Sobre</a></li>
+              <li><a href="#contato" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Contato</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Menu Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-puc-light-gray border-t">
+      <nav class="px-4 py-4">
+        <ul class="space-y-3">
+          <li><a href="#home" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Início</a></li>
+          <li><a href="#cursos" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Cursos</a></li>
+          <li><a href="#pesquisa" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Pesquisa</a></li>
+          <li><a href="#sobre" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Sobre</a></li>
+          <li><a href="#contato" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Contato</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-r from-puc-blue to-puc-light-blue text-white py-24">
+      <div class="absolute inset-0 bg-black opacity-30"></div>
+      <div class="relative max-w-7xl mx-auto px-4 text-center">
+        <div class="animate-fade-in">
+          <h2 class="text-5xl font-bold mb-6">Excelência em Energia</h2>
+          <p class="text-xl mb-8 max-w-3xl mx-auto">Formando profissionais qualificados para os desafios energéticos do futuro através de ensino, pesquisa e inovação.</p>
+          <div class="space-x-4">
+            <button class="bg-puc-gold text-puc-blue px-8 py-3 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+              Conheça Nossos Cursos
+            </button>
+            <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-puc-blue transition-colors">
+              Saiba Mais
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-puc-light-gray">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-puc-blue mb-4">Por que escolher o IEPUC?</h2>
+          <p class="text-puc-gray max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card">
+            <div class="bg-puc-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-graduation-cap text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-puc-blue mb-4">Ensino de Excelência</h3>
+            <p class="text-puc-gray">Corpo docente altamente qualificado e metodologia pedagógica inovadora.</p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card">
+            <div class="bg-puc-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-flask text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-puc-blue mb-4">Pesquisa Aplicada</h3>
+            <p class="text-puc-gray">Laboratórios modernos e projetos de pesquisa com impacto real na sociedade.</p>
+          </div>
+
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card">
+            <div class="bg-puc-blue text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fas fa-handshake text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-puc-blue mb-4">Parcerias Estratégicas</h3>
+            <p class="text-puc-gray">Conexões com empresas líderes do setor energético nacional e internacional.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="cursos" class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-puc-blue mb-4">Nossos Cursos</h2>
+          <p class="text-puc-gray max-w-2xl mx-auto">Programas acadêmicos desenvolvidos para atender às demandas do mercado energético.</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-8">
+          <div class="bg-gradient-to-br from-puc-blue to-puc-light-blue rounded-xl text-white p-8 course-card">
+            <h3 class="text-2xl font-bold mb-4">MBE Energia</h3>
+            <p class="mb-6 text-gray-200">Master Business in Energy - Pós-graduação Lato Sensu voltada para capacitação de profissionais interessados na área de energia.</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center"><i class="fas fa-check-circle text-puc-gold mr-2"></i> 18 meses de duração</li>
+              <li class="flex items-center"><i class="fas fa-check-circle text-puc-gold mr-2"></i> Aulas aos sábados</li>
+              <li class="flex items-center"><i class="fas fa-check-circle text-puc-gold mr-2"></i> Professores especialistas</li>
+            </ul>
+            <button class="bg-puc-gold text-puc-blue px-6 py-2 rounded-lg font-semibold hover:bg-yellow-400 transition-colors">
+              Saiba Mais
+            </button>
+          </div>
+
+          <div class="space-y-6">
+            <div class="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <h4 class="text-xl font-bold text-puc-blue mb-2">Especializações</h4>
+              <p class="text-puc-gray mb-4">Cursos de especialização em áreas específicas do setor energético.</p>
+              <button class="text-puc-light-blue font-semibold hover:text-puc-blue transition-colors">
+                Ver cursos <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+
+            <div class="border border-gray-200 rounded-xl p-6 hover:shadow-lg transition-shadow">
+              <h4 class="text-xl font-bold text-puc-blue mb-2">Cursos de Extensão</h4>
+              <p class="text-puc-gray mb-4">Capacitação continuada para profissionais do mercado.</p>
+              <button class="text-puc-light-blue font-semibold hover:text-puc-blue transition-colors">
+                Ver cursos <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- IEPUC na Mídia Section -->
+    <section class="py-16 bg-puc-light-gray">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-puc-blue mb-4">IEPUC na Mídia</h2>
+          <p class="text-puc-gray">Acompanhe nossas aparições e contribuições na imprensa.</p>
+        </div>
+
+        <!-- Loading indicator -->
+        <div id="loading-indicator" class="text-center py-8">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-puc-blue"></div>
+          <p class="mt-2 text-puc-gray">Carregando matérias...</p>
+        </div>
+
+        <!-- Error message -->
+        <div id="error-message" class="hidden text-center py-8">
+          <p class="text-red-500">Erro ao carregar as matérias. Tente novamente mais tarde.</p>
+        </div>
+
+        <!-- Container for articles -->
+        <div id="materias-container" class="hidden"></div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="py-16 bg-white">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-12">
+          <h2 class="text-3xl font-bold text-puc-blue mb-4">Notícias e Eventos</h2>
+          <p class="text-puc-gray">Acompanhe as últimas novidades do Instituto de Energia.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow news-card">
+            <div class="h-48 bg-gradient-to-br from-puc-blue to-puc-light-blue flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-white text-4xl"></i>
+            </div>
+            <div class="p-6">
+              <span class="text-sm text-puc-light-blue font-semibold">12 AGO 2025</span>
+              <h3 class="text-xl font-bold text-puc-blue mt-2 mb-3">Nova Turma MBE Energia 2025</h3>
+              <p class="text-puc-gray mb-4">Inscrições abertas para a nova turma do Master Business in Energy com início em setembro.</p>
+              <button class="text-puc-light-blue font-semibold hover:text-puc-blue transition-colors">
+                Leia mais <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow news-card">
+            <div class="h-48 bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+              <i class="fas fa-leaf text-white text-4xl"></i>
+            </div>
+            <div class="p-6">
+              <span class="text-sm text-puc-light-blue font-semibold">10 AGO 2025</span>
+              <h3 class="text-xl font-bold text-puc-blue mt-2 mb-3">Seminário Energias Renováveis</h3>
+              <p class="text-puc-gray mb-4">Evento discute o futuro das energias renováveis no Brasil com especialistas do setor.</p>
+              <button class="text-puc-light-blue font-semibold hover:text-puc-blue transition-colors">
+                Leia mais <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </article>
+
+          <article class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow news-card">
+            <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-500 flex items-center justify-center">
+              <i class="fas fa-award text-white text-4xl"></i>
+            </div>
+            <div class="p-6">
+              <span class="text-sm text-puc-light-blue font-semibold">08 AGO 2025</span>
+              <h3 class="text-xl font-bold text-puc-blue mt-2 mb-3">Pesquisa em Destaque</h3>
+              <p class="text-puc-gray mb-4">Projeto do IEPUC sobre eficiência energética recebe reconhecimento internacional.</p>
+              <button class="text-puc-light-blue font-semibold hover:text-puc-blue transition-colors">
+                Leia mais <i class="fas fa-arrow-right ml-1"></i>
+              </button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Rodapé Padrão PUC-Rio -->
+  <footer class="bg-puc-blue text-white">
+    <!-- Seção Principal do Rodapé -->
+    <div class="py-12">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-5 gap-8">
+          <!-- Coluna do Instituto -->
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-3 mb-4">
+              <div class="w-12 h-12">
+                <svg viewBox="0 0 100 100" class="w-full h-full">
+                  <rect width="100" height="100" rx="10" fill="#FFD700"/>
+                  <ellipse cx="50" cy="25" rx="20" ry="8" fill="#003366"/>
+                  <rect x="49" y="12" width="2" height="8" fill="#003366"/>
+                  <rect x="46" y="14" width="8" height="2" fill="#003366"/>
+                  <text x="50" y="82" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#003366">PUC</text>
+                </svg>
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-puc-gold">Instituto de Energia</h3>
+                <p class="text-sm text-gray-300">PUC-Rio</p>
+              </div>
+            </div>
+            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
+              Formando líderes e promovendo pesquisa de excelência no setor energético nacional e internacional.
+            </p>
+            <div class="flex space-x-3">
+              <a href="https://www.facebook.com/PUCRio" target="_blank" class="hover:text-puc-gold transition-colors">
+                <i class="fab fa-facebook text-lg"></i>
+              </a>
+              <a href="https://www.instagram.com/pucrio_oficial/" target="_blank" class="hover:text-puc-gold transition-colors">
+                <i class="fab fa-instagram text-lg"></i>
+              </a>
+              <a href="https://www.youtube.com/user/pucrj" target="_blank" class="hover:text-puc-gold transition-colors">
+                <i class="fab fa-youtube text-lg"></i>
+              </a>
+              <a href="https://www.linkedin.com/school/puc-rio/" target="_blank" class="hover:text-puc-gold transition-colors">
+                <i class="fab fa-linkedin text-lg"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Cursos -->
+          <div>
+            <h4 class="font-semibold mb-4 text-puc-gold">Cursos</h4>
+            <ul class="space-y-2 text-gray-300 text-sm">
+              <li><a href="#mbe" class="hover:text-puc-gold transition-colors">MBE Energia</a></li>
+              <li><a href="#especializacao" class="hover:text-puc-gold transition-colors">Especializações</a></li>
+              <li><a href="#extensao" class="hover:text-puc-gold transition-colors">Cursos de Extensão</a></li>
+              <li><a href="#pesquisa" class="hover:text-puc-gold transition-colors">Pesquisa</a></li>
+            </ul>
+          </div>
+
+          <!-- Institucional -->
+          <div>
+            <h4 class="font-semibold mb-4 text-puc-gold">Institucional</h4>
+            <ul class="space-y-2 text-gray-300 text-sm">
+              <li><a href="#sobre" class="hover:text-puc-gold transition-colors">Sobre o Instituto</a></li>
+              <li><a href="#docentes" class="hover:text-puc-gold transition-colors">Corpo Docente</a></li>
+              <li><a href="#laboratorios" class="hover:text-puc-gold transition-colors">Laboratórios</a></li>
+              <li><a href="#parcerias" class="hover:text-puc-gold transition-colors">Parcerias</a></li>
+            </ul>
+          </div>
+
+          <!-- Contato -->
+          <div>
+            <h4 class="font-semibold mb-4 text-puc-gold">Contato</h4>
+            <div class="space-y-3 text-gray-300 text-sm">
+              <div class="flex items-start space-x-2">
+                <i class="fas fa-map-marker-alt mt-1 text-puc-gold"></i>
+                <div>
+                  <p>Rua Marquês de São Vicente, 225</p>
+                  <p>Gávea - Rio de Janeiro - RJ</p>
+                  <p>CEP: 22451-900</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-phone text-puc-gold"></i>
+                <p>(21) 3527-1001</p>
+              </div>
+              <div class="flex items-center space-x-2">
+                <i class="fas fa-envelope text-puc-gold"></i>
+                <p>iepuc@puc-rio.br</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Links PUC-Rio -->
+    <div class="border-t border-gray-600 py-6">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div class="flex flex-wrap gap-6 text-sm text-gray-300">
+            <a href="https://www.puc-rio.br" class="hover:text-puc-gold transition-colors">Portal PUC-Rio</a>
+            <a href="https://www.puc-rio.br/biblioteca/" class="hover:text-puc-gold transition-colors">Biblioteca</a>
+            <a href="https://www.puc-rio.br/puconline/"
