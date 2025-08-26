@@ -2,8 +2,9 @@
 Options +Includes
 
 # Configurar tipos de arquivo para SSI
-AddType text/html .shtml
-AddOutputFilter INCLUDES .shtml
+AddType text/html .html
+AddOutputFilter INCLUDES .html
+
 
 # Permitir includes em arquivos HTML também
 <FilesMatch "\.html$">
