@@ -1,280 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Instituto de Energia PUC-Rio</title>
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-
-
-  <link rel="stylesheet" href="src/styles.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'puc-blue': '#003366',
-            'puc-light-blue': '#0066CC',
-            'puc-gold': '#FFD700',
-            'puc-gray': '#666666',
-            'puc-light-gray': '#F5F5F5'
-          },
-          fontFamily: {
-            'puc': ['Arial', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-  
-  <style>
-    /* Grid de Matérias */
-    #materias-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
-    }
-
-    /* Cards de Matérias */
-    .materia-card {
-      background: #ffffff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid #e5e7eb;
-    }
-
-    .materia-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-    }
-
-    .materia-img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background: linear-gradient(45deg, #003366, #0066CC);
-    }
-
-    .materia-content {
-      padding: 1.5rem;
-    }
-
-    .materia-card h3 {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: #003366;
-      margin-bottom: 0.75rem;
-      line-height: 1.3;
-    }
-
-    .materia-meta {
-      font-size: 0.875rem;
-      color: #6b7280;
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-
-    .materia-resumo {
-      font-size: 1rem;
-      color: #374151;
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-
-    .materia-link {
-      display: inline-flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      background: #0066CC;
-      color: white;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.875rem;
-      transition: background-color 0.3s ease;
-    }
-
-    .materia-link:hover {
-      background: #003366;
-    }
-
-    .materia-link i {
-      margin-left: 0.5rem;
-    }
-
-    /* Animações */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .animate-fade-in {
-      animation: fadeInUp 1s ease-out;
-    }
-
-    /* Navegação Ativa */
-    .nav-link.active {
-      color: #0066CC;
-      font-weight: 600;
-    }
-
-    /* Hover Effects */
-    .feature-card:hover,
-    .course-card:hover,
-    .news-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* Responsividade */
-    @media (max-width: 768px) {
-      #materias-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .materia-content {
-        padding: 1rem;
-      }
-
-      .materia-img {
-        height: 160px;
-      }
-
-      .text-5xl {
-        font-size: 2.5rem;
-      }
-
-      .text-xl {
-        font-size: 1.125rem;
-      }
-    }
-  </style>
-</head>
-
-<body class="font-puc bg-white">
-  <!-- Cabeçalho Padrão PUC-Rio -->
-  <header class="bg-white border-b border-gray-200">
-    <!-- Barra Superior PUC-Rio -->
-    <div class="bg-puc-blue text-white">
-      <div class="max-w-7xl mx-auto px-4 py-1">
-        <div class="flex justify-between items-center text-xs">
-          <div class="flex space-x-4">
-            <a href="https://www.puc-rio.br" class="hover:text-puc-gold transition-colors">Portal PUC-Rio</a>
-            <a href="https://www.dbd.puc-rio.br/sitenovo/index.php#aviso" class="hover:text-puc-gold transition-colors">Biblioteca</a>
-            <a href="https://www.puc-rio.br/puconline/" class="hover:text-puc-gold transition-colors">PUC Online</a>
-            <a href="https://www.puc-rio.br/vestibular/" class="hover:text-puc-gold transition-colors">Vestibular</a>
-            
-          </div>
-          <div class="flex items-center space-x-2">
-            <span class="text-xs">Siga-nos:</span>
-            <a href="https://www.facebook.com/PUCRio" target="_blank" class="hover:text-puc-gold transition-colors">
-              <i class="fab fa-facebook text-sm"></i>
-            </a>
-            <a href="https://www.instagram.com/pucrio_oficial/" target="_blank" class="hover:text-puc-gold transition-colors">
-              <i class="fab fa-instagram text-sm"></i>
-            </a>
-            <a href="https://www.youtube.com/user/pucrj" target="_blank" class="hover:text-puc-gold transition-colors">
-              <i class="fab fa-youtube text-sm"></i>
-            </a>
-            <a href="https://www.linkedin.com/school/puc-rio/" target="_blank" class="hover:text-puc-gold transition-colors">
-              <i class="fab fa-linkedin text-sm"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Cabeçalho Principal com Brasão PUC-Rio -->
-    <div class="bg-white">
-      <div class="max-w-7xl mx-auto px-4 py-4">
-        <div class="flex items-center justify-between">
-          <!-- Brasão e Identificação PUC-Rio -->
-          <div class="flex items-center space-x-6">
-            <a href="https://www.puc-rio.br" class="flex items-center space-x-3">
-              <!-- Brasão PUC-Rio SVG -->
-               <div class="w-20 h-20">
-            <img src="_puc_rio-V_mono_abr_rgb_23-10-18.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-        </div>
-              <!-- <div class="text-puc-blue">
-                <h1 class="text-sm font-bold leading-tight">PONTIFÍCIA UNIVERSIDADE</h1>
-                <h2 class="text-sm font-bold leading-tight">CATÓLICA DO RIO DE JANEIRO</h2>
-              </div> -->
-            </a>
-            
-            <!-- Separador -->
-            <div class="h-12 w-px bg-gray-300"></div>
-            
-            <!-- Identificação do Instituto -->
-            <div class="text-puc-blue">
-              <h3 class="text-xl font-bold">Instituto de Energia</h3>
-              <p class="text-sm text-puc-gray">IEPUC</p>
-            </div>
-          </div>
-
-          <!-- Menu Mobile Button -->
-          <button id="mobile-menu-button" class="md:hidden text-puc-blue">
-            <i class="fas fa-bars text-2xl"></i>
-          </button>
-
-          <!-- Navegação Desktop -->
-          <nav class="hidden md:block">
-            <ul class="flex space-x-6">
-              <li><a href="#home" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Início</a></li>
-              <li><a href="#institucional" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Institucional</a></li>
-              <li class="relative group">
-                <a href="#pesquisa" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                    Pesquisa <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
-                <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
-                  <a href="#equipe" class="block px-4 py-2 hover:bg-puc-light-gray">Equipe</a>
-                  <a href="#linha_de_pesquisa" class="block px-4 py-2 hover:bg-puc-light-gray">Linhas de Pesquisa</a>
-                  <a href="#projetos" class="block px-4 py-2 hover:bg-puc-light-gray">Projetos</a>
-                </div>    
-              </li> 
-              <li class="relative group">
-                <a href="#cursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                  Cursos <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                </a>
-                <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
-                  <a href="#mbe" class="block px-4 py-2 hover:bg-puc-light-gray">MBE Energia</a>
-                  <a href="#especializacao" class="block px-4 py-2 hover:bg-puc-light-gray">Especializações</a>
-                  <a href="#cursos-extensao" class="block px-4 py-2 hover:bg-puc-light-gray">Cursos de Extensão</a>
-                </div>
-              </li>
-              <li><a href="#kpmg" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">KPMG-IEPUC</a></li>
-              <li><a href="#IEPUC na Mídia" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">IEPUC na Mídia</a></li>
-              <li><a href="#enercity" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">ENERCITY</a></li>
-            </ul>
-          </nav>
-        </div>
-      </div>
-    </div>
-
-    <!-- Menu Mobile -->
-    <div id="mobile-menu" class="hidden md:hidden bg-puc-light-gray border-t">
-      <nav class="px-4 py-4">
-        <ul class="space-y-3">
-          <li><a href="#home" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Início</a></li>
-          <li><a href="#cursos" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Cursos</a></li>
-          <li><a href="#pesquisa" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Pesquisa</a></li>
-          <li><a href="#sobre" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Sobre</a></li>
-          <li><a href="#contato" class="block text-puc-blue hover:text-puc-light-blue transition-colors">Contato</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <main>
+<!--#set var="titulo" value="Página Inicial" -->
+<!--#include file="includes/header.html" -->
     <!-- Hero Section -->
     <section id="home" class="relative bg-gradient-to-r from-puc-blue to-puc-light-blue text-white py-24">
       <div class="absolute inset-0 bg-black opacity-30"></div>
@@ -299,10 +25,10 @@
         <div class="slider-container">
             <!-- Slides serão inseridos aqui via JavaScript -->
         </div>
-        
+
         <button class="slider-control prev">&#10094;</button>
         <button class="slider-control next">&#10095;</button>
-        
+
         <div class="slider-indicators">
             <!-- Indicadores serão inseridos aqui via JavaScript -->
         </div>
@@ -465,82 +191,7 @@
         </div>
       </div>
     </section>
-  </main>
-
-  <!-- Rodapé Padrão PUC-Rio -->
-  <footer class="bg-puc-blue text-white">
-    <!-- Seção Principal do Rodapé -->
-    <div class="py-12">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="grid md:grid-cols-5 gap-8">
-          <!-- Coluna do Instituto -->
-          <div class="md:col-span-2">
-            <div class="flex items-center space-x-3 mb-4">
-              <div class="w-12 h-12">
-            <img src="_puc_rio-V_mono_abr_rgb_23-10-18.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-        </div>
-              <div>
-                <h3 class="text-lg font-bold text-puc-gold">Instituto de Energia</h3>
-                <p class="text-sm text-gray-300">PUC-Rio</p>
-              </div>
-            </div>
-            <p class="text-gray-300 text-sm mb-4 leading-relaxed">
-              Formando líderes e promovendo pesquisa de excelência no setor energético nacional e internacional.
-            </p>
-            <div class="flex space-x-3">
-              <a href="https://www.facebook.com/PUCRio" target="_blank" class="hover:text-puc-gold transition-colors">
-                <i class="fab fa-facebook text-lg"></i>
-              </a>
-              <a href="https://www.instagram.com/pucrio_oficial/" target="_blank" class="hover:text-puc-gold transition-colors">
-                <i class="fab fa-instagram text-lg"></i>
-              </a>
-              <a href="https://www.youtube.com/user/pucrj" target="_blank" class="hover:text-puc-gold transition-colors">
-                <i class="fab fa-youtube text-lg"></i>
-              </a>
-              <a href="https://www.linkedin.com/school/puc-rio/" target="_blank" class="hover:text-puc-gold transition-colors">
-                <i class="fab fa-linkedin text-lg"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Cursos -->
-          <div>
-            <h4 class="font-semibold mb-4 text-puc-gold">Cursos</h4>
-            <ul class="space-y-2 text-gray-300 text-sm">
-              <li><a href="#mbe" class="hover:text-puc-gold transition-colors">MBE Energia</a></li>
-              <li><a href="#especializacao" class="hover:text-puc-gold transition-colors">Especializações</a></li>
-              <li><a href="#extensao" class="hover:text-puc-gold transition-colors">Cursos de Extensão</a></li>
-              <li><a href="#pesquisa" class="hover:text-puc-gold transition-colors">Pesquisa</a></li>
-            </ul>
-          </div>
-
-          <!-- Institucional -->
-          <div>
-          <h4 class="font-semibold mb-4">Institucional</h4>
-          <ul class="space-y-2 text-gray-300">
-            <li><a href="#" class="hover:text-puc-gold transition-colors">Sobre o Instituto</a></li>
-            <li><a href="#" class="hover:text-puc-gold transition-colors">Pesquisa</a></li>
-            <li><a href="#" class="hover:text-puc-gold transition-colors">Corpo Docente</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="font-semibold mb-4">Contato</h4>
-          <div class="space-y-2 text-gray-300">
-            <p><i class="fas fa-map-marker-alt mr-2"></i> Rua Marquês de São Vicente, 225</p>
-            <p class="mr-2">Prédio Padre Laércio Dias de Moura S.J.
-4º andar, Gávea - Rio de Janeiro - RJ</p>
-            <p><i class="fas fa-phone mr-2"></i> (21) 3527-1858</p>
-            <p><i class="fas fa-envelope mr-2"></i> iepuc@puc-rio.br</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="border-t border-gray-600 mt-8 pt-8 text-center text-gray-400">
-        <p>&copy; 2025 Instituto de Energia PUC-Rio. Todos os direitos reservados.</p>
-      </div>
-    </div>
-  </footer>
+<!--#include file="includes/footer.html" -->
 
   <!-- Styles for Google Sheets content -->
   <style>
@@ -640,7 +291,7 @@
     // ==========================================
     // CÓDIGO DO CARROSSEL
     // ==========================================
-    
+
     // Dados dos slides - você pode adicionar/remover slides aqui
     const slides = [
         {
@@ -677,11 +328,11 @@
     function initSlider() {
         const sliderContainer = $('.slider-container');
         const indicatorsContainer = $('.slider-indicators');
-        
+
         // Limpar conteúdo existente
         sliderContainer.empty();
         indicatorsContainer.empty();
-        
+
         // Adicionar slides
         slides.forEach((slide, index) => {
             const slideElement = `
@@ -700,12 +351,12 @@
                 </div>
             `;
             sliderContainer.append(slideElement);
-            
+
             // Adicionar indicadores
             const indicator = $(`<div class="slider-indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`);
             indicatorsContainer.append(indicator);
         });
-        
+
         // Iniciar transição automática
         startSlideInterval();
     }
@@ -733,14 +384,14 @@
         // Remover classe active do slide atual
         $(`.slider-item`).removeClass('active');
         $(`.slider-indicator`).removeClass('active');
-        
+
         // Adicionar classe active ao novo slide
         $(`.slider-item:eq(${index})`).addClass('active');
         $(`.slider-indicator[data-index="${index}"]`).addClass('active');
-        
+
         // Atualizar índice do slide atual
         currentSlide = index;
-        
+
         // Reiniciar intervalo
         startSlideInterval();
     }
@@ -748,7 +399,7 @@
     // Event listeners para os controles do carrossel
     $('.slider-control.next').on('click', nextSlide);
     $('.slider-control.prev').on('click', prevSlide);
-    
+
     // Event listener para os indicadores
     $(document).on('click', '.slider-indicator', function() {
         const index = $(this).data('index');
@@ -761,7 +412,7 @@
     // ==========================================
     // CÓDIGO DO MENU MOBILE
     // ==========================================
-    
+
     $('#mobile-menu-button').on('click', function() {
         $('#mobile-menu').toggleClass('hidden');
     });
@@ -769,7 +420,7 @@
     // ==========================================
     // CÓDIGO DE NAVEGAÇÃO SUAVE
     // ==========================================
-    
+
     $('a[href^="#"]').on('click', function(e) {
         const target = $(this.getAttribute('href'));
         if (target.length) {
@@ -783,7 +434,7 @@
     // ==========================================
     // CÓDIGO PARA CARREGAR MATÉRIAS (Google Sheets)
     // ==========================================
-    
+
     const SHEET_ID = 'seu_sheet_id_aqui'; // Substitua pelo ID da sua planilha
     const API_KEY = 'sua_api_key_aqui'; // Substitua pela sua API key
     const RANGE = 'Sheet1!A:D'; // Ajuste conforme sua planilha
@@ -824,7 +475,7 @@
 
         // Esconder loading
         loadingIndicator.hide();
-        
+
         if (!materias || materias.length === 0) {
             errorMessage.show();
             return;
@@ -861,23 +512,23 @@
     // ==========================================
     // CÓDIGO DE NAVEGAÇÃO ATIVA
     // ==========================================
-    
+
     function updateActiveNav() {
         const sections = $('section[id]');
         const navLinks = $('.nav-link');
-        
+
         let currentSection = '';
-        
+
         sections.each(function() {
             const sectionTop = $(this).offset().top - 150;
             const sectionHeight = $(this).height();
             const scrollTop = $(window).scrollTop();
-            
+
             if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
                 currentSection = $(this).attr('id');
             }
         });
-        
+
         navLinks.removeClass('active');
         navLinks.filter(`[href="#${currentSection}"]`).addClass('active');
     }

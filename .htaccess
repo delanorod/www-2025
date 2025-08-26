@@ -1,0 +1,18 @@
+# Ativar Server Side Includes
+Options +Includes
+
+# Configurar tipos de arquivo para SSI
+AddType text/html .shtml
+AddOutputFilter INCLUDES .shtml
+
+# Permitir includes em arquivos HTML também
+<FilesMatch "\.html$">
+    Options +Includes
+    SetOutputFilter INCLUDES
+</FilesMatch>
+
+# Prevenir acesso ao .htaccess
+<Files .htaccess>
+    Order allow,deny
+    Deny from all
+</Files>
