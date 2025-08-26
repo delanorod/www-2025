@@ -79,8 +79,13 @@
 }
 
 /* textos de artigos */
-.texto-iepuc{
+#artigos{
   h2{
     color: dark blue;
   }
+
+}
+
+.H5{
+  font-semibold leading-snug tracking-normal text-slate-800 mx-auto my-6 w-full text-base max-w-sm lg:max-w-lg lg:text-xl
 }
