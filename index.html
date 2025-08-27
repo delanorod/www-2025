@@ -513,30 +513,30 @@
     // CÓDIGO DE NAVEGAÇÃO ATIVA
     // ==========================================
 
-    function updateActiveNav() {
-        const sections = $('section[id]');
-        const navLinks = $('.nav-link');
-
-        let currentSection = '';
-
-        sections.each(function() {
-            const sectionTop = $(this).offset().top - 150;
-            const sectionHeight = $(this).height();
-            const scrollTop = $(window).scrollTop();
-
-            if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-                currentSection = $(this).attr('id');
-            }
-        });
-
-        navLinks.removeClass('active');
-        navLinks.filter(`[href="#${currentSection}"]`).addClass('active');
-    }
-
-    $(window).on('scroll', updateActiveNav);
-    updateActiveNav();
-});
-  </script>
+//     function updateActiveNav() {
+//         const sections = $('section[id]');
+//         const navLinks = $('.nav-link');
+//
+//         let currentSection = '';
+//
+//         sections.each(function() {
+//             const sectionTop = $(this).offset().top - 150;
+//             const sectionHeight = $(this).height();
+//             const scrollTop = $(window).scrollTop();
+//
+//             if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
+//                 currentSection = $(this).attr('id');
+//             }
+//         });
+//
+//         navLinks.removeClass('active');
+//         navLinks.filter(`[href="#${currentSection}"]`).addClass('active');
+//     }
+//
+//     $(window).on('scroll', updateActiveNav);
+//     updateActiveNav();
+// });
+//   </script>
 
 </body>
 
