@@ -1,0 +1,44 @@
+<!-- Arquivo: /includes/voltar.shtml -->
+
+<div class="container mx-auto px-4 py-2 flex justify-end">
+
+<a
+  href="<!--#echo var='HTTP_REFERER' default='/' -->"
+  onclick="
+    if (window.history && history.length > 1) {
+      history.back();
+      return false;
+    }
+    if (document.referrer) {
+      location.href = document.referrer;
+      return false;
+    }
+    return true;
+  "
+>
+<button class="bg-puc-blue hover:bg-blue-800 text-white font-bold py-2 px-4 rounded">
+  <!-- ícone seta -->
+
+Voltar
+</button>
+</a>
+</div>
+
+<style>
+  .btn {
+    @apply font-bold py-2 px-4 rounded;
+  }
+  .btn-blue {
+    @apply bg-blue-500 text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-blue-700;
+  }
+</style>
+
+
+<noscript>
+  <div class="mt-2 text-sm text-gray-500">
+    Caso não volte automaticamente, use o link acima.
+  </div>
+</noscript>
