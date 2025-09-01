@@ -1,0 +1,120 @@
+<!--#set var="titulo" value="Página Inicial" -->
+<!--#include virtual="../includes/header.html" -->
+<link rel="stylesheet" href="../src/styles.css">
+
+<!-- Blog Content -->
+    <main class="container mx-auto px-4 py-8">
+        <!-- Page Title -->
+        <div class="mb-12 text-center">
+            <h2 class="text-3xl font-bold text-blue-900 mb-4">Matérias na Mídia</h2>
+            <p class="text-gray-600 max-w-3xl mx-auto">Confira as últimas aparições e artigos dos pesquisadores do Instituto de Energia da PUC-Rio na mídia nacional e internacional.</p>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="grid grid-cols-1 gap-8" id="blogue">
+            <!-- Post 1 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0 md:w-64">
+                        <img class="h-48 w-full object-contain bg-white md:h-full md:w-64"  src="imagens/iepuc-na-midia/iepuc-na-midia-bbc-news_04082025.jpg" alt="Matéria BBC News Brasil">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span class="mr-4">BBC News Brasil</span>
+                            <span><i class="far fa-calendar-alt mr-1"></i> 04.08.2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <a href="https://www.bbc.com/portuguese/articles/cj6y7d68xk3o" class="hover:text-blue-700 transition-colors">
+                                O que se sabe da descoberta no pré-sal anunciada por petroleira britânica como sua 'maior em 25 anos'
+                            </a>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            "Ainda há dúvidas sobre essas quantidades, mas mesmo assim deve ser uma quantidade realmente relevante", afirmou David Zylbersztajn, ex-diretor geral da Agência Nacional do Petróleo (ANP), professor no Instituto de Energia da PUC-Rio e sócio da DZ Negócios com Energia.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded">Petróleo & Gás</span>
+                            <a href="https://www.bbc.com/portuguese/articles/cj6y7d68xk3o" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                Ler matéria completa <i class="ml-1 fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 2 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0 md:w-64">
+                        <img class="h-48 w-full object-cover md:h-full md:w-64" src="https://www.estadao.com.br/economia/bp-anuncia-descoberta-campo-gas-petroleo-brasil-nprei/" alt="Matéria Estadão">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span class="mr-4">Estadão</span>
+                            <span><i class="far fa-calendar-alt mr-1"></i> 04.08.2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <a href="https://www.estadao.com.br/economia/bp-anuncia-descoberta-campo-gas-petroleo-brasil-nprei/" class="hover:text-blue-700 transition-colors">
+                                BP anuncia descoberta de reservatório de petróleo e gás no Brasil, a maior da empresa em 25 anos
+                            </a>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            Para Edmar Almeida, professor e pesquisador do Instituto de Energia da Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio), se a BP comprovar que a descoberta feita no campo Bumerangue é realmente significativa, poderá ser um "game changer" (divisor de águas) para a petroleira.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded">Petróleo & Gás</span>
+                            <a href="https://www.estadao.com.br/economia/bp-anuncia-descoberta-campo-gas-petroleo-brasil-nprei/" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                Ler matéria completa <i class="ml-1 fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Post 3 -->
+            <article class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:shadow-xl">
+                <div class="md:flex">
+                    <div class="md:flex-shrink-0 md:w-64">
+                        <img class="h-48 w-full object-cover md:h-full md:w-64" src="https://cbn.globo.com/programas/jornal-da-cbn/entrevista/2025/06/26/governo-aprova-aumento-de-etanol-nos-combustiveis-mistura-pode-afetar-motor-do-carro.ghtml" alt="Matéria CBN">
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center text-sm text-gray-500 mb-2">
+                            <span class="mr-4">CBN</span>
+                            <span><i class="far fa-calendar-alt mr-1"></i> 26.06.2025</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">
+                            <a href="https://cbn.globo.com/programas/jornal-da-cbn/entrevista/2025/06/26/governo-aprova-aumento-de-etanol-nos-combustiveis-mistura-pode-afetar-motor-do-carro.ghtml" class="hover:text-blue-700 transition-colors">
+                                Governo aprova aumento de etanol nos combustíveis; mistura pode afetar motor do carro?
+                            </a>
+                        </h3>
+                        <p class="text-gray-600 mb-4">
+                            O professor do Instituto de Energia da PUC Rio e ex-diretor-geral da ANP, David Zylbersztajn, em entrevista aos âncoras Mílton Jung e Nadedja Calado no Jornal da CBN, destaca que o Brasil é pioneiro em termos de utilização de combustíveis renováveis e esse aumento é muito bem-vindo.
+                        </p>
+                        <div class="flex items-center justify-between">
+                            <span class="bg-green-100 text-green-800 text-xs px-2.5 py-0.5 rounded">Biocombustíveis</span>
+                            <a href="https://cbn.globo.com/programas/jornal-da-cbn/entrevista/2025/06/26/governo-aprova-aumento-de-etanol-nos-combustiveis-mistura-pode-afetar-motor-do-carro.ghtml" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                                Ler matéria completa <i class="ml-1 fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Mais posts seriam adicionados aqui seguindo o mesmo padrão -->
+
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-12">
+            <button id="loadMore" class="bg-blue-700 hover:bg-blue-800 text-white font-medium py-3 px-8 rounded-lg transition-colors flex items-center mx-auto">
+                <i class="fas fa-plus-circle mr-2"></i> Carregar mais matérias
+            </button>
+        </div>
+    </main>
+
+
+<div class="container mx-auto px-4 py-2 flex justify-end">
+  <!--#include virtual="../includes/voltar.html" -->
+
+</div>
+<br>
+<!--#include virtual="../includes/footer.html" -->

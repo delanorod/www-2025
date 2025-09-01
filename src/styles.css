@@ -2,6 +2,11 @@ div {
    border-bottom:unset;
 }
 
+/* Blog - iepuc na midia */
+#blogue img {
+   width: 13.7rem;
+   height:12.5rem;
+}
 
 /* Estilo do slider - carrossel */
 .slider-container {
