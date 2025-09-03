@@ -291,7 +291,7 @@ createPostHTML(post) {
                            class="hover:text-blue-700 transition-colors"
                            target="_blank"
                            rel="noopener noreferrer">
-                            <!-- ${titulo} -->
+                            <!--${titulo}-->
                         </a>
                     </h3>
 
@@ -302,7 +302,7 @@ createPostHTML(post) {
 
                     <!-- Categoria e Link -->
                     <div class="flex items-center justify-between">
-                        ${categoryBadge}
+                        <!--${categoryBadge}-->
                         <a href="${url}"
                            class="text-blue-600 hover:text-blue-800 font-medium flex items-center"
                            target="_blank"
