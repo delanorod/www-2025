@@ -417,10 +417,10 @@ $(document).ready(function() {
     // Dados dos slides - você pode adicionar/remover slides aqui
     const slides = [
         {
-            image: "https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80",
-            title: "Instituto de Energia PUC-Rio",
-            description: "Excelência em pesquisa e ensino no setor energético",
-            buttonText: "Conheça Nossos Cursos"
+            image: "imagens/banner-iepuc-conectados-podcast-02.jpg",
+            title: "",
+            description: "",
+            buttonText: "Ouça o podcast"
         },
         {
             image: "https://images.unsplash.com/photo-1544144433-d50aff500b91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",

@@ -337,25 +337,25 @@ tailwind.config = {
 //             $("#sButton2").addClass("bg-blue-400");
 //             $("#sButton3").addClass("bg-blue-400");
 //         cont=1;
-        
+
 //         break;
 //         }
 //         case 1:
 //         {
-        
+
 //             $("#slider-3").fadeOut(400);
 //             $("#slider-2").fadeOut(400);
 //             $("#slider-1").delay(400).fadeIn(400);
 //             $("#sButton3").removeClass("bg-blue-400");
 //             $("#sButton2").removeClass("bg-blue-400");
 //             $("#sButton1").addClass("bg-blue-400");
-           
+
 //         cont=0;
-        
+
 //         break;
 //         }
-        
-        
+
+
 //         }},8000);
 
 // }
@@ -377,9 +377,9 @@ tailwind.config = {
 //     $("#sButton1").addClass("bg-blue-800");
 //     reinitLoop(4000);
 //     cont=0
-    
+
 //     }
-    
+
 //     function sliderButton2(){
 //     $("#slider-1").fadeOut(400);
 //     $("#slider-2").delay(400).fadeIn(400);
@@ -389,44 +389,44 @@ tailwind.config = {
 //     $("#sButton3").addClass("bg-blue-800");
 //     reinitLoop(4000);
 //     cont=1
-    
+
 //     }
 
 //     $(window).ready(function(){
 //         $("#slider-3").hide();
 //         $("#slider-2").hide();
 //         $("#sButton1").addClass("bg-blue-800");
-        
+
 
 //         loopSlider();
-     
-        
-    
-    
-    
-    
+
+
+
+
+
+
 //     });
 
-  
+
 //Novo script do carrossel
 $(document).ready(function() {
     // ==========================================
     // CÓDIGO DO CARROSSEL
     // ==========================================
-    
+
     // Dados dos slides - você pode adicionar/remover slides aqui
     const slides = [
         {
-            image: "https://images.unsplash.com/photo-1544427920-c49ccfb85579?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1422&q=80",
-            title: "Instituto de Energia PUC-Rio",
-            description: "Excelência em pesquisa e ensino no setor energético",
-            buttonText: "Conheça Nossos Cursos"
+          image: "imagens/banner-iepuc-conectados-podcast-02.jpg",
+          title: "",
+          description: "",
+          buttonText: "Ouça o podcast"
         },
         {
             image: "https://images.unsplash.com/photo-1544144433-d50aff500b91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
             title: "MBE Energia",
             description: "Master Business in Energy - Pós-graduação de excelência",
-            buttonText: "Saiba Mais"
+            buttonText: "Saiba Mais não"
         },
         {
             image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
@@ -450,11 +450,11 @@ $(document).ready(function() {
     function initSlider() {
         const sliderContainer = $('.slider-container');
         const indicatorsContainer = $('.slider-indicators');
-        
+
         // Limpar conteúdo existente
         sliderContainer.empty();
         indicatorsContainer.empty();
-        
+
         // Adicionar slides
         slides.forEach((slide, index) => {
             const slideElement = `
@@ -473,12 +473,12 @@ $(document).ready(function() {
                 </div>
             `;
             sliderContainer.append(slideElement);
-            
+
             // Adicionar indicadores
             const indicator = $(`<div class="slider-indicator ${index === 0 ? 'active' : ''}" data-index="${index}"></div>`);
             indicatorsContainer.append(indicator);
         });
-        
+
         // Iniciar transição automática
         startSlideInterval();
     }
@@ -506,14 +506,14 @@ $(document).ready(function() {
         // Remover classe active do slide atual
         $(`.slider-item`).removeClass('active');
         $(`.slider-indicator`).removeClass('active');
-        
+
         // Adicionar classe active ao novo slide
         $(`.slider-item:eq(${index})`).addClass('active');
         $(`.slider-indicator[data-index="${index}"]`).addClass('active');
-        
+
         // Atualizar índice do slide atual
         currentSlide = index;
-        
+
         // Reiniciar intervalo
         startSlideInterval();
     }
@@ -521,7 +521,7 @@ $(document).ready(function() {
     // Event listeners para os controles do carrossel
     $('.slider-control.next').on('click', nextSlide);
     $('.slider-control.prev').on('click', prevSlide);
-    
+
     // Event listener para os indicadores
     $(document).on('click', '.slider-indicator', function() {
         const index = $(this).data('index');
@@ -534,7 +534,7 @@ $(document).ready(function() {
     // ==========================================
     // CÓDIGO DO MENU MOBILE
     // ==========================================
-    
+
     $('#mobile-menu-button').on('click', function() {
         $('#mobile-menu').toggleClass('hidden');
     });
@@ -542,7 +542,7 @@ $(document).ready(function() {
     // ==========================================
     // CÓDIGO DE NAVEGAÇÃO SUAVE
     // ==========================================
-    
+
     $('a[href^="#"]').on('click', function(e) {
         const target = $(this.getAttribute('href'));
         if (target.length) {
@@ -556,7 +556,7 @@ $(document).ready(function() {
     // ==========================================
     // CÓDIGO PARA CARREGAR MATÉRIAS (Google Sheets)
     // ==========================================
-    
+
     const SHEET_ID = 'seu_sheet_id_aqui'; // Substitua pelo ID da sua planilha
     const API_KEY = 'sua_api_key_aqui'; // Substitua pela sua API key
     const RANGE = 'Sheet1!A:D'; // Ajuste conforme sua planilha
@@ -597,7 +597,7 @@ $(document).ready(function() {
 
         // Esconder loading
         loadingIndicator.hide();
-        
+
         if (!materias || materias.length === 0) {
             errorMessage.show();
             return;
@@ -634,23 +634,23 @@ $(document).ready(function() {
     // ==========================================
     // CÓDIGO DE NAVEGAÇÃO ATIVA
     // ==========================================
-    
+
     function updateActiveNav() {
         const sections = $('section[id]');
         const navLinks = $('.nav-link');
-        
+
         let currentSection = '';
-        
+
         sections.each(function() {
             const sectionTop = $(this).offset().top - 150;
             const sectionHeight = $(this).height();
             const scrollTop = $(window).scrollTop();
-            
+
             if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
                 currentSection = $(this).attr('id');
             }
         });
-        
+
         navLinks.removeClass('active');
         navLinks.filter(`[href="#${currentSection}"]`).addClass('active');
     }
