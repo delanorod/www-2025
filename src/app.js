@@ -417,29 +417,41 @@ $(document).ready(function() {
     // Dados dos slides - você pode adicionar/remover slides aqui
     const slides = [
         {
-          image: "imagens/banner-iepuc-conectados-podcast-02.jpg",
-          title: "",
-          description: "",
-          buttonText: "Ouça o podcast"
+          image: "imagens/slider/1.jpg",
+          title: "conectados podcast",
+          description: "O que define o preço do gás no Brasil e em Santa Catarina? Com Edmar de Almeida(IEPUC)",
+          buttonText: "Ouça o podcast",
+          slideUrl: "https://www.youtube.com/watch?v=PkRwGQOkOlY"
         },
         {
-            image: "https://images.unsplash.com/photo-1544144433-d50aff500b91?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            title: "MBE Energia",
-            description: "Master Business in Energy - Pós-graduação de excelência",
-            buttonText: "Saiba Mais não"
+            image: "imagens/slider/3.jpg",
+            title: "PUC Cast 10",
+            description: "G20: desenvolvimento Sustentável, entrevista com Edmar de Almeida (IEPUC)",
+            buttonText: "Ouça o podcast",
+            slideUrl: "https://www.youtube.com/watch?v=9srBK2i06Sw&t=352s"
         },
         {
-            image: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80",
-            title: "Pesquisa e Inovação",
-            description: "Projetos de pesquisa com impacto no setor energético",
-            buttonText: "Ver Projetos"
+            image: "imagens/slider/5.jpg",
+            title: "9th ELAEE",
+            description: "Energy Transition, Latin American Energy Markets and Development Paths",
+            buttonText: "Assista",
+            slideUrl: "https://www.youtube.com/playlist?list=PLmCee3fhT3CL1QuZH2vLP7e33Lybp0tqJ"
         },
         {
-            image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1348&q=80",
-            title: "Sustentabilidade",
-            description: "Energias renováveis e eficiência energética",
-            buttonText: "Explore"
+            image: "imagens/slider/4.jpg",
+            title: "ENERCITY 2024",
+            description: "Rio: Capital da Transição Energética em Cidades",
+            buttonText: "Assista",
+            slideUrl: "https://www.youtube.com/watch?v=nIi9z6mKsy0&feature=youtu.be"
+        },
+        {
+            image: "imagens/slider/6.jpg",
+            title: "Qual é o Gás Natural do Brasil?",
+            description: "por Eloi Fernández Y Fernández e Edmar Almeida",
+            buttonText: "Clique aqui",
+            slideUrl: "https://valor.globo.com/opiniao/coluna/qual-e-o-gas-natural-do-brasil.ghtml"
         }
+
     ];
 
     // Variáveis de controle do carrossel
@@ -466,7 +478,7 @@ $(document).ready(function() {
                                 <p class="font-bold text-sm uppercase text-yellow-400 mb-2">IEPUC</p>
                                 <h3 class="text-4xl font-bold mb-4">${slide.title}</h3>
                                 <p class="text-xl mb-8 leading-relaxed">${slide.description}</p>
-                                <a href="#" class="bg-blue-600 hover:bg-blue-700 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
+                                <a href=${slide.slideUrl} class="bg-blue-600 hover:bg-blue-700 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
                             </div>
                         </div>
                     </div>
