@@ -416,6 +416,14 @@ $(document).ready(function() {
 
     // Dados dos slides - você pode adicionar/remover slides aqui
     const slides = [
+      {
+        image: "imagens/slider/8.jpg",
+        title: "Hybrid Power Plants In The Context Of The Energy Transition",
+        description: "Artigo de autoria de Vinicius Santos Pereira, Edmar Luiz Fagundes Almeida, Marco Antonio Haikal Leite e Sergio Luiz Pinto Castiñeiras Filho",
+        buttonText: "Leia aqui",
+        slideUrl: "https://enerlac.olade.org/index.php/ENERLAC/article/view/297"
+      },
+
         {
           image: "imagens/slider/1.jpg",
           title: "conectados podcast",
