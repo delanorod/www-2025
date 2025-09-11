@@ -419,7 +419,7 @@ $(document).ready(function() {
       {
         image: "imagens/slider/8.jpg",
         title: "Hybrid Power Plants In The Context Of The Energy Transition",
-        description: "Artigo de autoria de Vinicius Santos Pereira, Edmar Luiz Fagundes Almeida, Marco Antonio Haikal Leite e Sergio Luiz Pinto Castiñeiras Filho",
+        description: "Artigo de autoria de Vinicius Santos Pereira, Edmar Luiz Fagundes Almeida, Marco Antonio Haikal Leite e Sergio Luiz Pinto Castiñeiras Filho" ,
         buttonText: "Leia aqui",
         slideUrl: "https://enerlac.olade.org/index.php/ENERLAC/article/view/297"
       },
@@ -431,13 +431,13 @@ $(document).ready(function() {
           buttonText: "Ouça o podcast",
           slideUrl: "https://www.youtube.com/watch?v=PkRwGQOkOlY"
         },
-        {
-            image: "imagens/slider/3.jpg",
-            title: "PUC Cast 10",
-            description: "G20: desenvolvimento Sustentável, entrevista com Edmar de Almeida (IEPUC)",
-            buttonText: "Ouça o podcast",
-            slideUrl: "https://www.youtube.com/watch?v=9srBK2i06Sw&t=352s"
-        },
+        // {
+        //     image: "imagens/slider/3.jpg",
+        //     title: "PUC Cast 10",
+        //     description: "G20: desenvolvimento Sustentável, entrevista com Edmar de Almeida (IEPUC)",
+        //     buttonText: "Ouça o podcast",
+        //     slideUrl: "https://www.youtube.com/watch?v=9srBK2i06Sw&t=352s"
+        // },
         {
             image: "imagens/slider/5.jpg",
             title: "9th ELAEE",
@@ -486,7 +486,7 @@ $(document).ready(function() {
                                 <p class="font-bold text-sm uppercase text-yellow-400 mb-2">IEPUC</p>
                                 <h3 class="text-4xl font-bold mb-4">${slide.title}</h3>
                                 <p class="text-xl mb-8 leading-relaxed">${slide.description}</p>
-                                <a href=${slide.slideUrl} class="bg-blue-600 hover:bg-blue-700 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
+                                <a target="_blank" href=${slide.slideUrl} class="bg-blue-600 hover:bg-blue-700 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
                             </div>
                         </div>
                     </div>
