@@ -310,9 +310,9 @@ tailwind.config = {
       theme: {
         extend: {
           colors: {
-            'puc-blue': '#003366',
-            'puc-light-blue': '#0066CC',
-            'puc-gold': '#FFD700',
+            'puc-blue': '#42929d',
+            'puc-light-blue': '#6ab7c2',
+            'puc-gold': '#d2ab00',
             'puc-gray': '#666666',
             'puc-light-gray': '#F5F5F5'
           },
@@ -486,7 +486,7 @@ $(document).ready(function() {
                                 <p class="font-bold text-sm uppercase text-yellow-400 mb-2">IEPUC</p>
                                 <h3 class="text-4xl font-bold mb-4">${slide.title}</h3>
                                 <p class="text-xl mb-8 leading-relaxed">${slide.description}</p>
-                                <a target="_blank" href=${slide.slideUrl} class="bg-blue-600 hover:bg-blue-700 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
+                                <a target="_blank" href=${slide.slideUrl} class="bg-blue-500 hover:bg-cyan-600 py-4 px-8 text-white font-bold uppercase text-sm rounded-lg transition-colors duration-300 inline-block">${slide.buttonText}</a>
                             </div>
                         </div>
                     </div>
