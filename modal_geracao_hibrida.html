@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Geração Híbrida - IEPUC</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <style>
+        :root {
+            --primary: #42929d;
+            --primary-light: #5ba3b2;
+            --accent: #D2AB00;
+            --accent-dark: #b8960d;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f3f4f6;
+        }
+
+        .demo-button {
+            background: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 16px;
+        }
+
+        .demo-button:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Modal Container */
+        .modal-container {
+            background: white;
+            border-radius: 16px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            transform: scale(0.9) translateY(20px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .modal-overlay.active .modal-container {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Modal Header */
+        .modal-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 32px;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .modal-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .modal-icon {
+            width: 64px;
+            height: 64px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .modal-subtitle {
+            font-size: 16px;
+            opacity: 0.9;
+            margin: 8px 0 0 0;
+        }
+
+        /* Close Button */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        /* Modal Content */
+        .modal-content {
+            padding: 40px;
+        }
+
+        .content-paragraph {
+            font-size: 18px;
+            line-height: 1.7;
+            color: #374151;
+            margin-bottom: 24px;
+            text-align: justify;
+        }
+
+        .content-paragraph:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+            border-left: 4px solid var(--primary);
+            padding: 20px;
+            margin: 24px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .highlight-text {
+            font-style: italic;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Call to Action */
+        .modal-cta {
+            background: #f9fafb;
+            padding: 32px;
+            margin: 32px -40px -40px -40px;
+            border-radius: 0 0 16px 16px;
+            text-align: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            color: white;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 0 8px;
+        }
+
+        .cta-button:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+        }
+
+        .cta-button.secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .modal-overlay {
+                padding: 10px;
+            }
+
+            .modal-header {
+                padding: 24px;
+            }
+
+            .modal-title {
+                font-size: 24px;
+            }
+
+            .modal-content {
+                padding: 24px;
+            }
+
+            .content-paragraph {
+                font-size: 16px;
+            }
+
+            .modal-cta {
+                padding: 24px;
+                margin: 24px -24px -24px -24px;
+            }
+
+            .cta-button {
+                display: block;
+                width: 100%;
+                margin: 8px 0;
+            }
+        }
+
+        /* Animation for content */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-overlay.active .content-paragraph {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .modal-overlay.active .content-paragraph:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .modal-overlay.active .content-paragraph:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+
+        .demo-container {
+            text-align: center;
+            margin: 50px 0;
+        }
+
+        .demo-title {
+            color: var(--primary);
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .demo-description {
+            color: #6b7280;
+            font-size: 18px;
+            margin-bottom: 32px;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">Modal Geração Híbrida de Energia</h1>
+        <p class="demo-description">Clique no botão abaixo para ver como o modal funcionará no site</p>
+        <button class="demo-button" onclick="openModal()">
+            <i class="fas fa-bolt"></i> Ver Geração Híbrida de Energia
+        </button>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal-overlay" id="modalGeracao">
+        <div class="modal-container">
+            <div class="modal-header">
+                <button class="modal-close" onclick="closeModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+                <div class="modal-icon">
+                    <i class="fas fa-water text-2xl"></i>
+                </div>
+                <h2 class="modal-title">Geração Híbrida de Energia</h2>
+                <p class="modal-subtitle">Inovação e sustentabilidade energética</p>
+            </div>
+            
+            <div class="modal-content">
+                <p class="content-paragraph">
+                    A geração híbrida de energia representa uma das mais promissoras fronteiras da transição energética global. 
+                    No IEPUC, desenvolvemos projetos de Pesquisa, Desenvolvimento e Inovação (PD&I) focados na integração 
+                    inteligente de múltiplas fontes renováveis, combinando tecnologias solares, eólicas, hidráulicas e de 
+                    armazenamento para criar sistemas energéticos mais resilientes, eficientes e sustentáveis.
+                </p>
+
+                <div class="highlight-box">
+                    <p class="highlight-text">
+                        "Nossa abordagem multidisciplinar permite otimizar a complementaridade entre diferentes fontes 
+                        energéticas, maximizando a disponibilidade e minimizando os custos operacionais."
+                    </p>
+                </div>
+
+                <p class="content-paragraph">
+                    Através de parcerias estratégicas com empresas do setor elétrico e instituições de pesquisa, 
+                    implementamos soluções inovadoras que abordam os desafios da intermitência energética. Nossos 
+                    projetos incluem modelagem avançada de sistemas híbridos, desenvolvimento de algoritmos de 
+                    otimização para despacho energético e estudos de viabilidade técnico-econômica para diferentes 
+                    configurações de usinas híbridas no contexto brasileiro.
+                </p>
+
+                <p class="content-paragraph">
+                    A prestação de serviços especializados em estratégias de hibridização posiciona o IEPUC como 
+                    referência nacional no desenvolvimento de soluções customizadas para o setor energético. 
+                    Oferecemos consultoria técnica, estudos de impacto, análise de recursos energéticos e 
+                    acompanhamento de projetos, contribuindo diretamente para o avanço da matriz energética brasileira 
+                    em direção a um futuro mais sustentável e tecnologicamente avançado.
+                </p>
+
+                <div class="modal-cta">
+                    <button class="cta-button">
+                        <i class="fas fa-envelope"></i> Entre em Contato
+                    </button>
+                    <button class="cta-button secondary">
+                        <i class="fas fa-file-pdf"></i> Baixar Portfólio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('modalGeracao');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalGeracao');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Fechar modal clicando fora
+        document.getElementById('modalGeracao').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Fechar modal com ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Prevenir scroll do body quando modal estiver aberto
+        window.addEventListener('load', function() {
+            const modal = document.getElementById('modalGeracao');
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.attributeName === 'class') {
+                        if (modal.classList.contains('active')) {
+                            document.body.style.overflow = 'hidden';
+                        } else {
+                            document.body.style.overflow = 'auto';
+                        }
+                    }
+                });
+            });
+            observer.observe(modal, { attributes: true });
+        });
+    </script>
+</body>
+</html>

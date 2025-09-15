@@ -276,3 +276,32 @@ h4.destaque {
 .bg-accent-light {
     background-color: rgba(210, 171, 0, 0.1);
 }
+
+/*Terra dos modais */
+ /* Custom gradients for the background effects */
+.bg-primary-gradient {
+    background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+}
+.bg-highlight-gradient {
+    background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+}
+/* Modal overlay backdrop blur effect */
+.modal-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+/* Smooth transitions for modal states */
+.modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+/* Animation delays for staggered content */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }

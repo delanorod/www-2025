@@ -678,3 +678,5 @@ $(document).ready(function() {
     $(window).on('scroll', updateActiveNav);
     updateActiveNav();
 });
+
+

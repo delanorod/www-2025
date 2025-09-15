@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEPUC - Modal Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <!-- jQuery carregado no head -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <style>
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+        }
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .modal-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .modal-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4" style="color: #42929d;">Principais Áreas de Atuação</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Card 1 - Geração Híbrida -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4" style="border-color: #42929d;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
+                        <i class="fas fa-water text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" style="color: #42929d;">
+                        Geração Híbrida de Energia
+                    </h3>
+                    <p class="text-gray-600 mb-6">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+                    <button data-modal="modalGHE" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
+                </div>
+
+                <!-- Card 2 - Transição Energética -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4" style="border-color: #D2AB00;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #D2AB00;">
+                        <i class="fas fa-flask text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Transição Energética</h3>
+                    <p class="text-gray-600 mb-6">Estudos e inovação voltados para descarbonização da economia e aumento da eficiência energética.</p>
+                    <button onclick="openModal('ModalTE')" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
+                </div>
+
+                <!-- Card 3 - Educação Continuada -->
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4" style="border-color: #42929d;">
+                    <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
+                        <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Educação Continuada em Energia</h3>
+                    <p class="text-gray-600 mb-6">Acreditamos na formação continuada como um importante instrumento de transformação.</p>
+                    <button id="ECE" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Geração Híbrida -->
+    <div id="modalGHE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <div class="absolute -top-1/2 -right-20 w-48 h-48 bg-white bg-opacity-10 rounded-full"></div>
+                
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-water text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Geração Híbrida de Energia</h2>
+                <p class="text-base sm:text-lg opacity-90">Inovação e sustentabilidade energética</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Neste eixo, destacamos a Usina Híbrida Piloto (350 kWh), projetada pelo IEPUC, com o financiamento da GALP, que está em fase final de construção na unidade PUC-Rio de Xerém (IMES). Essa Planta permite realizar experimentos de configurações híbridas de geração de energia para o atendimento de curvas de carga, considerando critérios operacionais, ambientais e econômicos.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    O portfólio energético de oferta e armazenamento comporta energia solar fotovoltaica, baterias, geração térmica a diesel, geração térmica a gás natural, eletrolisador e gerador de hidrogênio, cilindros de hidreto metálico para adsorção de hidrogênio e célula a combustível de hidrogênio.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    A partir da infraestrutura da UHP (Usina Híbrida Piloto IEPUC em Xerém), o IEPUC está investigando soluções que possam atender, inclusive, às necessidades na região da Amazônia, onde existe uma grande demanda para substituição da geração a diesel nos sistemas isolados.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Transição Energética -->
+    <div id="ModalTE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #D2AB00 0%, #e6c533 100%);">
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-flask text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Transição Energética</h2>
+                <p class="text-base sm:text-lg opacity-90">Rumo à descarbonização</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Nossos estudos e projetos de inovação são voltados para a descarbonização da economia e o aumento da eficiência energética. Trabalhamos em alinhamento aos compromissos globais, políticas nacionais e oportunidades de inovação e empreendedorismo.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Desenvolvemos pesquisas em energias renováveis, sistemas inteligentes de energia e tecnologias disruptivas que contribuem para a transição energética sustentável do Brasil e do mundo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Educação Continuada -->
+    <div id="ModalECE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Educação Continuada em Energia</h2>
+                <p class="text-base sm:text-lg opacity-90">Formação de excelência</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Acreditamos na formação continuada como um importante instrumento de transformação, representando um canal de transferência direta dos conhecimentos para a indústria de energia e reforçando a cooperação e parceria com o mercado e a sociedade.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Nossos programas educacionais são desenvolvidos para atender às demandas específicas do setor energético, oferecendo formação de alta qualidade e atualizada com as tendências do mercado.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script do Modal -->
+    <script>
+        $(document).ready(function() {
+            // Função para abrir modal
+            window.openModal = function(modalId) {
+                const modal = $('#' + modalId);
+                if (modal.length) {
+                    modal.removeClass('modal-hidden').addClass('modal-visible');
+                    modal.find('.transform').removeClass('scale-90').addClass('scale-100');
+                }
+            };
+
+            // Função para fechar modal
+            window.closeModal = function() {
+                const modal = $('.modal-visible');
+                modal.find('.transform').removeClass('scale-100').addClass('scale-90');
+                setTimeout(() => {
+                    modal.removeClass('modal-visible').addClass('modal-hidden');
+                }, 150);
+            };
+
+            // Abrir modal ao clicar em qualquer botão com [data-modal]
+            $(document).on('click', '[data-modal]', function(e) {
+                e.preventDefault();
+                const modalId = $(this).data('modal');
+                openModal(modalId);
+            });
+
+            // Abrir modal para botão ECE específico
+            $(document).on('click', '#ECE', function(e) {
+                e.preventDefault();
+                openModal('ModalECE');
+            });
+
+            // Fechar ao clicar no botão de fechar
+            $(document).on('click', '.close-btn', function(e) {
+                e.preventDefault();
+                closeModal();
+            });
+
+            // Fechar ao clicar no overlay (fundo escuro)
+            $(document).on('click', '.modal-backdrop', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // Fechar com tecla ESC
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape' || e.keyCode === 27) {
+                    closeModal();
+                }
+            });
+
+            // Prevenir que cliques dentro do modal o fechem
+            $(document).on('click', '.modal-backdrop .bg-white', function(e) {
+                e.stopPropagation();
+            });
+        });
+    </script>
+</body>
+</html>

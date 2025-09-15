@@ -1,6 +1,10 @@
 <!--#set var="titulo" value="Página Inicial" -->
 <!--#include file="includes/header.html" -->
 
+  <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+ <script src="src/modal.js"></script>
+
 <!-- Carrossel -->
 <section id="carousel" class="relative py-16 bg-white">
     <div class="max-w-lvw mx-auto my-10 bg-white rounded-lg shadow-lg overflow-hidden">
@@ -88,14 +92,18 @@ Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abor
 
         <div class="grid md:grid-cols-3 gap-8">
           <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
-            <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
-              <i class="fas fa-water text-2xl text-white"></i>
-            </div>
-            <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Geração Híbrida de Energia</h3>
-            <p class="text-gray-600">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração. 
-</p>
-          </div>
-
+  <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
+    <i class="fas fa-water text-2xl text-white"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-4 cursor-pointer hover:text-accent transition-colors" style="color: #42929d;" >
+    Geração Híbrida de Energia
+  </h3>
+  <p class="text-gray-600">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+  <button data-modal="modalGHE" class="mt-4 bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+    <i class="fas fa-info-circle mr-2"></i>
+    Saiba Mais
+  </button>
+</div>
           <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-accent">
             <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #D2AB00;">
               <i class="fas fa-flask text-2xl text-white"></i>
@@ -103,6 +111,10 @@ Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abor
             <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Transição Energética</h3>
             <p class="text-gray-600">Estudos e inovação voltados para descarbonização da economia e aumento da eficiência energética. Os projetos de pesquisa buscam alinhamento aos compromissos globais, políticas nacionais e oportunidades de inovação e empreendedorismo.
 </p>
+ <button onclick="openModal('ModalTE')" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
           </div>
 
           <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
@@ -112,6 +124,10 @@ Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abor
             <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Educação Continuada em Energia</h3>
             <p class="text-gray-600">Acreditamos na formação continuada como um importante instrumento de transformação, representando um canal de transferência direta dos conhecimentos para a indústria de energia e reforçando a cooperação e parceria com o mercado e a sociedade. 
 </p>
+<button id="ECE" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
           </div>
         </div>
       </div>
@@ -239,153 +255,132 @@ Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abor
       </div>
     </section>
 
+    <!-- Modal -->
+     <!-- Modal Geração Híbrida -->
+    <div id="modalGHE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <div class="absolute -top-1/2 -right-20 w-48 h-48 bg-white bg-opacity-10 rounded-full"></div>
+                
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-water text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Geração Híbrida de Energia</h2>
+                <p class="text-base sm:text-lg opacity-90">Inovação e sustentabilidade energética</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Neste eixo, destacamos a Usina Híbrida Piloto (350 kWh), projetada pelo IEPUC, com o financiamento da GALP, que está em fase final de construção na unidade PUC-Rio de Xerém (IMES). Essa Planta permite realizar experimentos de configurações híbridas de geração de energia para o atendimento de curvas de carga, considerando critérios operacionais, ambientais e econômicos.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    O portfólio energético de oferta e armazenamento comporta energia solar fotovoltaica, baterias, geração térmica a diesel, geração térmica a gás natural, eletrolisador e gerador de hidrogênio, cilindros de hidreto metálico para adsorção de hidrogênio e célula a combustível de hidrogênio.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    A partir da infraestrutura da UHP (Usina Híbrida Piloto IEPUC em Xerém), o IEPUC está investigando soluções que possam atender, inclusive, às necessidades na região da Amazônia, onde existe uma grande demanda para substituição da geração a diesel nos sistemas isolados.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Transição Energética -->
+    <div id="ModalTE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden" style="background: linear-gradient(135deg, #D2AB00 0%, #e6c533 100%);">
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-flask text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Transição Energética</h2>
+                <p class="text-base sm:text-lg opacity-90">Rumo à descarbonização</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Nossos estudos e projetos de inovação são voltados para a descarbonização da economia e o aumento da eficiência energética. Trabalhamos em alinhamento aos compromissos globais, políticas nacionais e oportunidades de inovação e empreendedorismo.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Desenvolvemos pesquisas em energias renováveis, sistemas inteligentes de energia e tecnologias disruptivas que contribuem para a transição energética sustentável do Brasil e do mundo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Educação Continuada -->
+    <div id="ModalECE" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Educação Continuada em Energia</h2>
+                <p class="text-base sm:text-lg opacity-90">Formação de excelência</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Acreditamos na formação continuada como um importante instrumento de transformação, representando um canal de transferência direta dos conhecimentos para a indústria de energia e reforçando a cooperação e parceria com o mercado e a sociedade.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Nossos programas educacionais são desenvolvidos para atender às demandas específicas do setor energético, oferecendo formação de alta qualidade e atualizada com as tendências do mercado.
+                </p>
+            </div>
+        </div>
+    </div>
+
 <!--#include file="includes/footer.html" -->
 
 <!-- Estilos atualizados para a nova paleta -->
-<style>
-    :root {
-        --primary: #42929d;
-        --primary-light: #5ba3b2;
-        --primary-dark: #366b75;
-        --accent: #D2AB00;
-        --accent-light: #e6c533;
-        --accent-dark: #b8960d;
-    }
-
-    .bg-primary { background-color: var(--primary); }
-    .bg-primary-light { background-color: var(--primary-light); }
-    .bg-accent { background-color: var(--accent); }
-    .bg-accent-light { background-color: var(--accent-light); }
-    .text-primary { color: var(--primary); }
-    .text-accent { color: var(--accent); }
-    .border-primary { border-color: var(--primary); }
-    .border-accent { border-color: var(--accent); }
-
-    /* Styles for Google Sheets content */
-    #materias-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 1.5rem;
-    }
-
-    .materia-card {
-        background: #ffffff;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #e5e7eb;
-        border-top: 4px solid var(--primary);
-    }
-
-    .materia-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 25px rgba(66, 146, 157, 0.2);
-    }
-
-    .materia-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-        background: linear-gradient(135deg, var(--primary), var(--primary-light));
-    }
-
-    .materia-content {
-        padding: 1.5rem;
-    }
-
-    .materia-card h3 {
-        font-size: 1.25rem;
-        font-weight: 700;
-        color: var(--primary);
-        margin-bottom: 0.75rem;
-        line-height: 1.3;
-    }
-
-    .materia-meta {
-        font-size: 0.875rem;
-        color: #6b7280;
-        margin-bottom: 1rem;
-        font-weight: 500;
-    }
-
-    .materia-resumo {
-        font-size: 1rem;
-        color: #374151;
-        margin-bottom: 1.5rem;
-        line-height: 1.6;
-    }
-
-    .materia-link {
-        display: inline-flex;
-        align-items: center;
-        padding: 0.5rem 1rem;
-        background: var(--accent);
-        color: white;
-        border-radius: 8px;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.875rem;
-        transition: background-color 0.3s ease;
-    }
-
-    .materia-link:hover {
-        background: var(--accent-dark);
-    }
-
-    .materia-link i {
-        margin-left: 0.5rem;
-    }
-
-    /* Animações */
-    @keyframes fade-in {
-        from {
+   <style>
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+        }
+        .bg-highlight-gradient {
+            background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+        }
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .modal-hidden {
             opacity: 0;
-            transform: translateY(20px);
+            visibility: hidden;
+            pointer-events: none;
         }
-        to {
+        .modal-visible {
             opacity: 1;
-            transform: translateY(0);
+            visibility: visible;
+            pointer-events: auto;
         }
-    }
-
-    .animate-fade-in {
-        animation: fade-in 1s ease-out;
-    }
-
-    /* Hover effects personalizados */
-    .feature-card:hover {
-        border-bottom-color: var(--accent);
-    }
-
-    .news-card:hover {
-        border-top-width: 6px;
-    }
-
-    /* Responsivo */
-    @media (max-width: 768px) {
-        #materias-container {
-            grid-template-columns: 1fr;
-            gap: 1rem;
-        }
-
-        .materia-content {
-            padding: 1rem;
-        }
-
-        .materia-img {
-            height: 160px;
-        }
-
-        .text-5xl {
-            font-size: 2.5rem;
-        }
-
-        .text-3xl {
-            font-size: 1.875rem;
-        }
-    }
-</style>
+    </style>
+    
 
 <script src="src/app.js"></script>
 <script>
@@ -481,7 +476,9 @@ Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abor
 
     loadMaterias();
 });
+
 </script>
+
 <script src="src/contador-stats.js"></script>
 </body>
 </html>

@@ -1,0 +1,350 @@
+<!-- CORREÇÕES NECESSÁRIAS NO SEU CÓDIGO -->
+
+<!-- 1. CORRIGIR O BOTÃO DE ABERTURA DO MODAL -->
+<!-- SUBSTITUA ESTA PARTE (linha aprox. 114-120): -->
+<div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
+  <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
+    <i class="fas fa-water text-2xl text-white"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-4 cursor-pointer hover:text-accent transition-colors" style="color: #42929d;" onclick="openModal()">
+    Geração Híbrida de Energia
+  </h3>
+  <p class="text-gray-600">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+  <button onclick="openModal()" class="mt-4 bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+    <i class="fas fa-info-circle mr-2"></i>
+    Saiba Mais
+  </button>
+</div>
+
+<!-- 2. ADICIONAR OS ESTILOS CSS NECESSÁRIOS PARA O MODAL -->
+<style>
+/* Custom gradients for the background effects */
+.bg-primary-gradient {
+    background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+}
+.bg-highlight-gradient {
+    background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+}
+/* Modal overlay backdrop blur effect */
+.modal-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+/* Smooth transitions for modal states */
+.modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+/* Animation delays for staggered content */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+</style>
+
+<!-- 3. ADICIONAR O JAVASCRIPT DO MODAL (antes do fechamento do </body>) -->
+<script>
+function openModal() {
+    console.log('Abrindo modal...'); // Debug
+    const modal = document.getElementById('modalGeracao');
+    const modalContainer = modal.querySelector('.bg-white');
+    
+    // Show modal
+    modal.classList.remove('modal-hidden');
+    modal.classList.add('modal-visible');
+    
+    // Animate modal container
+    setTimeout(() => {
+        modalContainer.classList.remove('scale-90');
+        modalContainer.classList.add('scale-100');
+    }, 10);
+    
+    // Prevent body scroll
+    document.body.classList.add('overflow-hidden');
+    
+    // Animate content with staggered delays
+    const animatedElements = modal.querySelectorAll('.animate-fade-in-up');
+    animatedElements.forEach((element, index) => {
+        element.style.animationDelay = `${index * 0.1}s`;
+    });
+}
+
+function closeModal() {
+    console.log('Fechando modal...'); // Debug
+    const modal = document.getElementById('modalGeracao');
+    const modalContainer = modal.querySelector('.bg-white');
+    
+    // Animate out
+    modalContainer.classList.remove('scale-100');
+    modalContainer.classList.add('scale-90');
+    
+    // Hide modal after animation
+    setTimeout(() => {
+        modal.classList.remove('modal-visible');
+        modal.classList.add('modal-hidden');
+    }, 300);
+    
+    // Restore body scroll
+    document.body.classList.remove('overflow-hidden');
+}
+
+// Close modal when clicking outside
+document.getElementById('modalGeracao').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeModal();
+    }
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const modal = document.getElementById('modalGeracao');
+        if (modal.classList.contains('modal-visible')) {
+            closeModal();
+        }
+    }
+});
+
+// Initialize modal state when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modalGeracao');
+    modal.classList.add('modal-hidden');
+    console.log('Modal inicializado como hidden'); // Debug
+});
+</script>
+
+<!-- VERSÃO COMPLETA E CORRIGIDA DO SEU ARQUIVO -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEPUC - Página Inicial</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#42929d',
+                        'primary-light': '#5ba3b2',
+                        'primary-dark': '#366b75',
+                        'accent': '#D2AB00',
+                        'accent-light': '#e6c533',
+                        'accent-dark': '#b8960d',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans">
+    
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-gradient-to-r from-primary to-primary-light text-white py-24">
+        <div class="absolute inset-0 bg-cyan-700 opacity-90"></div>
+        <div class="relative max-w-7xl mx-auto px-4 text-center">
+            <div class="animate-fade-in">
+                <h2 class="text-5xl font-bold mb-6">O IEPUC</h2>
+                <p class="text-xl mb-8 max-w-3xl mx-auto">É uma unidade complementar da PUC-Rio vinculada à Vice-Reitoria de Desenvolvimento e Inovação. Desde 2003 vem atuando em atendimento às demandas do Setor de energia numa abordagem transversal e interdisciplinar.</p>
+                <div class="space-x-4">
+                    <button class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-accent-dark transition-colors">
+                        Conheça Nossos Cursos
+                    </button>
+                    <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
+                        Saiba Mais
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-gray-100">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 text-primary">Principais Áreas de Atuação</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-water text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">Geração Híbrida de Energia</h3>
+                    <p class="text-gray-600 mb-4">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+                    <button onclick="openModal()" class="bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+                        <i class="fas fa-info-circle mr-2"></i>
+                        Saiba Mais
+                    </button>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-accent">
+                    <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-flask text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">Transição Energética</h3>
+                    <p class="text-gray-600">Estudos e inovação voltados para descarbonização da economia e aumento da eficiência energética.</p>
+                </div>
+
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
+                    <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-primary">Educação Continuada em Energia</h3>
+                    <p class="text-gray-600">Formação continuada como instrumento de transformação e transferência de conhecimentos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modalGeracao" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <div class="absolute -top-1/2 -right-20 w-48 h-48 bg-white bg-opacity-10 rounded-full"></div>
+                
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-water text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Geração Híbrida de Energia</h2>
+                <p class="text-base sm:text-lg opacity-90">Inovação e sustentabilidade energética</p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    A geração híbrida de energia representa uma das mais promissoras fronteiras da transição energética global. 
+                    No IEPUC, desenvolvemos projetos de Pesquisa, Desenvolvimento e Inovação (PD&I) focados na integração 
+                    inteligente de múltiplas fontes renováveis, combinando tecnologias solares, eólicas, hidráulicas e de 
+                    armazenamento para criar sistemas energéticos mais resilientes, eficientes e sustentáveis.
+                </p>
+
+                <div class="bg-highlight-gradient border-l-4 border-primary p-5 sm:p-6 rounded-r-lg my-6">
+                    <p class="text-primary font-semibold italic text-base sm:text-lg leading-relaxed">
+                        "Nossa abordagem multidisciplinar permite otimizar a complementaridade entre diferentes fontes 
+                        energéticas, maximizando a disponibilidade e minimizando os custos operacionais."
+                    </p>
+                </div>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                    Através de parcerias estratégicas com empresas do setor elétrico e instituições de pesquisa, 
+                    implementamos soluções inovadoras que abordam os desafios da intermitência energética. Nossos 
+                    projetos incluem modelagem avançada de sistemas híbridos, desenvolvimento de algoritmos de 
+                    otimização para despacho energético e estudos de viabilidade técnico-econômica para diferentes 
+                    configurações de usinas híbridas no contexto brasileiro.
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-0 text-justify">
+                    A prestação de serviços especializados em estratégias de hibridização posiciona o IEPUC como 
+                    referência nacional no desenvolvimento de soluções customizadas para o setor energético. 
+                    Oferecemos consultoria técnica, estudos de impacto, análise de recursos energéticos e 
+                    acompanhamento de projetos, contribuindo diretamente para o avanço da matriz energética brasileira 
+                    em direção a um futuro mais sustentável e tecnologicamente avançado.
+                </p>
+            </div>
+
+            <!-- Call to Action Footer -->
+            <div class="bg-gray-50 p-6 sm:p-8 rounded-b-2xl border-t border-gray-200 text-center">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <button class="w-full sm:w-auto bg-accent hover:bg-accent-dark text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Entre em Contato
+                    </button>
+                    <button class="w-full sm:w-auto bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
+                        <i class="fas fa-file-pdf mr-2"></i>
+                        Baixar Portfólio
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+        }
+        .bg-highlight-gradient {
+            background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+        }
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .modal-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .modal-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+    </style>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('modalGeracao');
+            const modalContainer = modal.querySelector('.bg-white');
+            
+            modal.classList.remove('modal-hidden');
+            modal.classList.add('modal-visible');
+            
+            setTimeout(() => {
+                modalContainer.classList.remove('scale-90');
+                modalContainer.classList.add('scale-100');
+            }, 10);
+            
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modalGeracao');
+            const modalContainer = modal.querySelector('.bg-white');
+            
+            modalContainer.classList.remove('scale-100');
+            modalContainer.classList.add('scale-90');
+            
+            setTimeout(() => {
+                modal.classList.remove('modal-visible');
+                modal.classList.add('modal-hidden');
+            }, 300);
+            
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        document.getElementById('modalGeracao').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const modal = document.getElementById('modalGeracao');
+                if (modal.classList.contains('modal-visible')) closeModal();
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('modalGeracao');
+            modal.classList.add('modal-hidden');
+        });
+    </script>
+
+</body>
+</html>
