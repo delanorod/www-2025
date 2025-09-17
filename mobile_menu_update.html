@@ -323,3 +323,57 @@
   </header>
   
   <main>
+    <div class="container mx-auto px-4 py-8">
+      <h1 class="text-3xl font-bold text-puc-blue mb-4">Menu Mobile Atualizado</h1>
+      <p class="text-lg text-gray-700 mb-6">O menu mobile agora inclui subitens expansíveis para as seções "Pesquisa" e "Cursos". Clique no botão hamburguer no topo da página (visível em telas pequenas) para testar a funcionalidade.</p>
+      
+      <div class="bg-blue-50 p-4 rounded-lg">
+        <h2 class="text-xl font-semibold text-puc-blue mb-2">Funcionalidades do Menu:</h2>
+        <ul class="list-disc list-inside text-gray-700 space-y-1">
+          <li>Menu mobile responsivo com animações suaves</li>
+          <li>Subitens expansíveis para "Pesquisa" (Equipe, Projetos)</li>
+          <li>Subitens expansíveis para "Cursos" (Pós Graduação, Outros cursos)</li>
+          <li>Ícones de seta que rotacionam ao expandir</li>
+          <li>Transições suaves com CSS</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Toggle do menu mobile principal
+      const mobileMenuButton = document.getElementById('mobile-menu-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+      });
+
+      // Toggle dos submenus mobile
+      const mobileMenuToggles = document.querySelectorAll('.mobile-menu-toggle');
+      
+      mobileMenuToggles.forEach(function(toggle) {
+        toggle.addEventListener('click', function() {
+          const targetId = toggle.getAttribute('data-target');
+          const submenu = document.getElementById(targetId);
+          const chevron = toggle.querySelector('.mobile-menu-chevron');
+          
+          // Toggle do submenu
+          submenu.classList.toggle('expanded');
+          
+          // Rotação do chevron
+          chevron.classList.toggle('rotated');
+        });
+      });
+
+      // Fechar menu ao clicar fora
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('#mobile-menu') && !event.target.closest('#mobile-menu-button')) {
+          mobileMenu.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>

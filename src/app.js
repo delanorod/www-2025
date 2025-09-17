@@ -431,13 +431,13 @@ $(document).ready(function() {
           buttonText: "Ouça o podcast",
           slideUrl: "https://www.youtube.com/watch?v=PkRwGQOkOlY"
         },
-        // {
-        //     image: "imagens/slider/3.jpg",
-        //     title: "PUC Cast 10",
-        //     description: "G20: desenvolvimento Sustentável, entrevista com Edmar de Almeida (IEPUC)",
-        //     buttonText: "Ouça o podcast",
-        //     slideUrl: "https://www.youtube.com/watch?v=9srBK2i06Sw&t=352s"
-        // },
+        {
+            image: "imagens/slider/9.jpg",
+            title: "Ensaio Energético",
+            description: "Uma plataforma de difusão de conhecimento no mundo da economia da energia",
+            buttonText: "Descubra",
+            slideUrl: "https://ensaioenergetico.com.br/"
+        },
         {
             image: "imagens/slider/5.jpg",
             title: "9th ELAEE",
