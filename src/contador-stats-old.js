@@ -2,12 +2,14 @@
 document.addEventListener('DOMContentLoaded', function() {
             const counters = document.querySelectorAll('.stat-number');
             const speed = 200; // Quanto menor, mais rápido
+            let animatedCounters = new Set(); //Pra evitar múltiplas animações
 
             // Função para iniciar a animação quando o elemento estiver visível
             function startCountingWhenVisible() {
                 counters.forEach(counter => {
                     const target = +counter.dataset.target;
                     const count = +counter.innerText;
+                 
 
                     // Se o elemento estiver visível na tela
                     if (isElementInViewport(counter)) {

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IEPUC - Contador Corrigido</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Roboto+Condensed:wght@400;700&display=swap');
+        
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+        }
+        
+        /* Seção do contador de estatísticas - CORRIGIDA */
+        .iepuc-stats-section {
+            background: linear-gradient(135deg, #2A629A 0%, #89d7d7 100%);
+            padding: 60px 0;
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+        
+        .iepuc-stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" patternUnits="userSpaceOnUse" width="100" height="100"><circle cx="25" cy="25" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="%23ffffff" opacity="0.1"/><circle cx="50" cy="10" r="0.5" fill="%23ffffff" opacity="0.15"/><circle cx="20" cy="80" r="0.8" fill="%23ffffff" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>') repeat;
+            pointer-events: none;
+        }
+        
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stats-title {
+            text-align: center;
+            color: white;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .stats-subtitle {
+            text-align: center;
+            color: rgba(255,255,255,0.9);
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.2em;
+            margin-bottom: 50px;
+            font-weight: 300;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #E07808, #2A629A);
+            transition: left 1s ease;
+        }
+        
+        .stat-item.animate {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .stat-item.animate::before {
+            left: 0;
+        }
+        
+        .stat-number {
+            font-family: 'Roboto', sans-serif;
+            font-size: 3.5em;
+            font-weight: 700;
+            color: #2A629A;
+            margin-bottom: 10px;
+            display: block;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+            min-height: 1.2em;
+        }
+        
+        .stat-label {
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1.3em;
+            color: #555;
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        
+        .stat-description {
+            font-family: 'Roboto', sans-serif;
+            font-size: 0.95em;
+            color: #777;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+        
+        .stat-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #E07808, #2A629A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+            transform: scale(0) rotate(-180deg);
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .stat-item.animate .stat-icon {
+            transform: scale(1) rotate(0deg);
+        }
+        
+        /* Animação de hover */
+        .stat-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .stat-item:hover .stat-icon {
+            transform: scale(1.15) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+        }
+        
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .stats-title {
+                font-size: 2em;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .stat-item {
+                padding: 30px 20px;
+            }
+            
+            .stat-number {
+                font-size: 2.8em;
+            }
+            
+            .stat-label {
+                font-size: 1.1em;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .iepuc-stats-section {
+                padding: 40px 0;
+            }
+            
+            .stat-number {
+                font-size: 2.5em;
+            }
+            
+            .stat-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 28px;
+            }
+        }
+        
+        /* Animação de pulso para números durante a contagem */
+        .counting {
+            animation: pulse 0.4s ease-in-out;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Animação adicional para os números */
+        .number-highlight {
+            color: #E07808 !important;
+            text-shadow: 2px 2px 4px rgba(224, 120, 8, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Teste do Contador IEPUC</h1>
+    <p>Role para baixo para ver a animação do contador:</p>
+    <div style="height: 100vh; background: #ddd; display: flex; align-items: center; justify-content: center;">
+        <p>Role para baixo...</p>
+    </div>
+
+    <!-- SEÇÃO DO CONTADOR - VERSÃO CORRIGIDA -->
+    <div class="iepuc-stats-section">
+        <div class="stats-container">
+            <h2 class="stats-title">Nossos Números</h2>
+            <p class="stats-subtitle">Mais de duas décadas formando profissionais qualificados no setor energético</p>
+            
+            <div class="stats-grid">
+                <div class="stat-item" data-delay="0">
+                    <div class="stat-icon">👥</div>
+                    <span class="stat-number" data-target="2500" data-show-plus="true">0</span>
+                    <div class="stat-label">Alunos Formados</div>
+                    <div class="stat-description">Profissionais capacitados desde 2003</div>
+                </div>
+                
+                <div class="stat-item" data-delay="200">
+                    <div class="stat-icon">📚</div>
+                    <span class="stat-number" data-target="150" data-show-plus="true">0</span>
+                    <div class="stat-label">Cursos Oferecidos</div>
+                    <div class="stat-description">Programas de capacitação e extensão</div>
+                </div>
+                
+                <div class="stat-item" data-delay="400">
+                    <div class="stat-icon">🎓</div>
+                    <span class="stat-number" data-target="450">0</span>
+                    <div class="stat-label">Formados no MBE</div>
+                    <div class="stat-description">Master in Business Energy</div>
+                </div>
+                
+                <div class="stat-item" data-delay="600">
+                    <div class="stat-icon">🏆</div>
+                    <span class="stat-number" data-target="1800" data-show-plus="true">0</span>
+                    <div class="stat-label">Cursos de Extensão</div>
+                    <div class="stat-description">Certificações especializadas</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 50vh; background: #eee; display: flex; align-items: center; justify-content: center;">
+        <p>Fim da página de teste</p>
+    </div>
+
+    <script>
+        // Função para animar os números com efeitos visuais
+        function animateCounter(element, target, duration = 2500) {
+            const start = parseInt(element.textContent) || 0;
+            const startTime = performance.now();
+            const hasPlus = element.dataset.showPlus === 'true';
+            
+            function updateNumber(currentTime) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Curva de ease-out para animação mais suave
+                const easedProgress = 1 - Math.pow(1 - progress, 3);
+                const current = Math.floor(start + (target - start) * easedProgress);
+                
+                // Formatação com ou sem o sinal +
+                const formattedNumber = current.toLocaleString('pt-BR');
+                element.textContent = hasPlus ? `${formattedNumber}+` : formattedNumber;
+                
+                // Adicionar classe de highlight durante a animação
+                if (progress < 1) {
+                    element.classList.add('counting', 'number-highlight');
+                    requestAnimationFrame(updateNumber);
+                } else {
+                    const finalNumber = target.toLocaleString('pt-BR');
+                    element.textContent = hasPlus ? `${finalNumber}+` : finalNumber;
+                    element.classList.remove('counting', 'number-highlight');
+                }
+            }
+            
+            requestAnimationFrame(updateNumber);
+        }
+        
+        // Função melhorada para detectar visibilidade
+        function isElementInViewport(el, threshold = 0.3) {
+            const rect = el.getBoundingClientRect();
+            const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+            const elementHeight = rect.bottom - rect.top;
+            
+            return (
+                rect.top < windowHeight - (elementHeight * threshold) &&
+                rect.bottom > elementHeight * threshold
+            );
+        }
+        
+        // Função principal de animação
+        function handleScrollAnimation() {
+            const statsSection = document.querySelector('.iepuc-stats-section');
+            
+            if (!statsSection) {
+                console.log('Seção de estatísticas não encontrada');
+                return;
+            }
+            
+            if (isElementInViewport(statsSection) && !statsSection.classList.contains('animated')) {
+                console.log('Iniciando animação do contador...');
+                statsSection.classList.add('animated');
+                
+                const statItems = document.querySelectorAll('.stat-item');
+                statItems.forEach((item, index) => {
+                    const delay = parseInt(item.dataset.delay) || (index * 200);
+                    
+                    setTimeout(() => {
+                        item.classList.add('animate');
+                        
+                        // Iniciar animação do número após a entrada do card
+                        setTimeout(() => {
+                            const numberElement = item.querySelector('.stat-number');
+                            const target = parseInt(numberElement.dataset.target);
+                            animateCounter(numberElement, target);
+                        }, 600);
+                    }, delay);
+                });
+            }
+        }
+        
+        // Event listeners
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(handleScrollAnimation, 10);
+        });
+        
+        window.addEventListener('resize', handleScrollAnimation);
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('DOM carregado, verificando animações...');
+            setTimeout(handleScrollAnimation, 200);
+            
+            // Adicionar efeitos de hover
+            document.querySelectorAll('.stat-item').forEach(item => {
+                item.addEventListener('mouseenter', () => {
+                    const icon = item.querySelector('.stat-icon');
+                    const number = item.querySelector('.stat-number');
+                    
+                    icon.style.transform = 'scale(1.2) rotate(15deg)';
+                    number.style.transform = 'scale(1.05)';
+                });
+                
+                item.addEventListener('mouseleave', () => {
+                    const icon = item.querySelector('.stat-icon');
+                    const number = item.querySelector('.stat-number');
+                    
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                    number.style.transform = 'scale(1)';
+                });
+            });
+        });
+        
+        // Debug: Verificar se os elementos existem
+        window.addEventListener('load', () => {
+            const statsSection = document.querySelector('.iepuc-stats-section');
+            const statItems = document.querySelectorAll('.stat-item');
+            
+            console.log('Elementos encontrados:');
+            console.log('Stats section:', statsSection);
+            console.log('Stat items:', statItems.length);
+        });
+    </script>
+</body>
+</html>
