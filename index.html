@@ -30,7 +30,7 @@
           <p class="text-xl mb-8 max-w-3xl mx-auto">É uma unidade complementar da PUC-Rio vinculada à Vice-Reitoria de Desenvolvimento e Inovação.
 Vem atuando em atendimento às demandas do Setor de energia numa abordagem transversal e  interdisciplinar.
 </p>
-          <div class="space-x-4">
+          <div class="space-x-4" id="cursos">
             <button class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-accent-dark transition-colors">
               Conheça Nossos Cursos
             </button>
@@ -44,72 +44,74 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
 
 <!-- Estatísticas -->
 <section class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Nossos Números</h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">Desde 2018 formando profissionais qualificados no setor energético</p>
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl md:text-4xl font-bold text-primary mb-4">Nossos Números</h2>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto">Desde 2018 formando profissionais qualificados no setor energético</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
+                <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-users"></i></div>
+                <span class="text-5xl font-bold block mb-2 stat-number" data-target="200" data-show-plus="true" style="color: #42929d;">0</span>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Alunos Formados no M.B.E. Energia</div>
+                <div class="text-gray-600">PG Lato Sensu</div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
-                    <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-users"></i></div>
-                    <span class="text-5xl font-bold block mb-2 stat-number" data-target="475" data-show-plus="true" style="color: #42929d;">0</span>
-                    <div class="text-xl font-semibold text-gray-800 mb-2">Alunos Formados</div>
-                    <div class="text-gray-600">Profissionais capacitados desde 2018</div>
-                </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
+                <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-book"></i></div>
+                <span class="text-5xl font-bold block mb-2 stat-number" data-target="350" data-show-plus="true" style="color: #D2AB00;">0</span>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Cursos de Extensão</div>
+                <div class="text-gray-600">Alunos formados nas trilhas de conhecimento.</div>
+                <button class="text-gray-600"><a href="#">Saiba +</a></button>
+            </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
-                    <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-book"></i></div>
-                    <span class="text-5xl font-bold block mb-2 stat-number" data-target="4" style="color: #D2AB00;">0</span>
-                    <div class="text-xl font-semibold text-gray-800 mb-2">Cursos Oferecidos</div>
-                    <div class="text-gray-600">Programas de capacitação e extensão</div>
-                </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
+                <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-briefcase"></i></div>
+                <span class="text-5xl font-bold block mb-2 stat-number" data-target="120" data-show-plus="true" style="color: #42929d;">0</span>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Cursos inCompany</div>
+                <div class="text-gray-600">Cerca de 120 técnicos e executivos participantes.</div>
+            </div>
 
-                <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
-                    <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-graduation-cap"></i></div>
-                    <span class="text-5xl font-bold block mb-2 stat-number" data-target="119" style="color: #42929d;">0</span>
-                    <div class="text-xl font-semibold text-gray-800 mb-2">Formados no MBE</div>
-                    <div class="text-gray-600">Master in Business Energy</div>
-                </div>
-
-                <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
-                    <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-trophy"></i></div>
-                    <span class="text-5xl font-bold block mb-2 stat-number" data-target="356" style="color: #D2AB00;">0</span>
-                    <div class="text-xl font-semibold text-gray-800 mb-2">Formados nos Cursos de Extensão</div>
-                    <div class="text-gray-600">Certificações especializadas</div>
-                </div>
+            <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
+                <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-graduation-cap"></i></div>
+                <span class="text-2xl font-bold block mb-2" style="color: #D2AB00;">Disciplina Transição Energética</span>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Graduação e pós-graduação</div>
+                <div class="text-gray-600"><a href="#">Leia a ementa da disciplina</a></div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Features Section -->
     <section class="py-16 bg-gray-100">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4" style="color: #42929d;">Principais Áreas de Atuação</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
-        </div>
+          <!-- <p class="text-gray-600 max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
+        </div> -->
 
         <div class="grid md:grid-cols-3 gap-8">
-          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary flex flex-col">
   <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
     <i class="fas fa-water text-2xl text-white"></i>
   </div>
   <h3 class="text-xl font-bold mb-4 cursor-pointer hover:text-accent transition-colors" style="color: #42929d;" >
     Geração Híbrida de Energia
   </h3>
-  <p class="text-gray-600">Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+  <p class="text-gray-600 flex-grow" >Desenvolvimento de Projetos de PD&I (Pesquisa, Desenvolvimento e Inovação) e prestação de serviços no incremento de estratégias de hibridização da geração.</p>
+  
   <button data-modal="modalGHE" class="mt-4 bg-primary hover:bg-primary-light text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1">
     <i class="fas fa-info-circle mr-2"></i>
     Saiba Mais
   </button>
 </div>
-          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-accent">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-accent flex flex-col">
             <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #D2AB00;">
               <i class="fas fa-flask text-2xl text-white"></i>
             </div>
             <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Transição Energética</h3>
-            <p class="text-gray-600">Estudos e inovação voltados para descarbonização da economia e aumento da eficiência energética. Os projetos de pesquisa buscam alinhamento aos compromissos globais, políticas nacionais e oportunidades de inovação e empreendedorismo.
+            <p class="text-gray-600 flex-grow">Estudos e inovação voltados para descarbonização da economia e aumento da eficiência energética. Os projetos de pesquisa buscam alinhamento aos compromissos globais, políticas nacionais e oportunidades de inovação e empreendedorismo.
 </p>
  <button onclick="openModal('ModalTE')" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
                         <i class="fas fa-info-circle mr-2"></i>
@@ -117,11 +119,13 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
                     </button>
           </div>
 
-          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary">
+          <div class="bg-white rounded-xl shadow-lg p-8 text-center hover:shadow-xl transition-shadow feature-card border-b-4 border-primary flex flex-col">
             <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style="background-color: #42929d;">
               <i class="fas fa-graduation-cap text-2xl text-white"></i>
             </div>
             <h3 class="text-xl font-bold mb-4" style="color: #42929d;">Educação Continuada em Energia</h3>
+            <p class="text-gray-600 max-w-2xl mx-auto flex-grow">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
+        
             <p class="text-gray-600">Acreditamos na formação continuada como um importante instrumento de transformação, representando um canal de transferência direta dos conhecimentos para a indústria de energia e reforçando a cooperação e parceria com o mercado e a sociedade. 
 </p>
 <button id="ECE" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
@@ -138,7 +142,8 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4" style="color: #42929d;">Nossos Cursos</h2>
-          <p class="text-gray-600 max-w-2xl mx-auto">Programas acadêmicos desenvolvidos para atender às demandas do mercado energético.</p>
+          <!-- <p class="text-gray-600 max-w-2xl mx-auto">Programas acadêmicos desenvolvidos para atender às demandas do mercado energético.</p> -->
+        <p class="text-gray-600 max-w-2xl mx-auto">Tradição acadêmica aliada à inovação tecnológica para formar líderes no setor energético.</p>
         </div>
 
         <div class="grid lg:grid-cols-2 gap-8">
@@ -151,23 +156,23 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
               <li class="flex items-center"><i class="fas fa-check-circle mr-2" style="color: #D2AB00;"></i> Professores especialistas</li>
             </ul>
             <button class="px-6 py-2 rounded-lg font-semibold transition-colors" style="background-color: #D2AB00; color: white;" onmouseover="this.style.backgroundColor='#b8960d'" onmouseout="this.style.backgroundColor='#D2AB00'">
-              Saiba Mais
+             <a target="_blank" href="https://ccec.puc-rio.br/site/folder?nCurso=mbe-energia&nInst=cce"> Saiba Mais </a>
             </button>
           </div>
 
           <div class="space-y-6">
             <div class="border rounded-xl p-6 hover:shadow-lg transition-shadow" style="border-color: #42929d;">
-              <h4 class="text-xl font-bold mb-2" style="color: #42929d;">Especializações</h4>
-              <p class="text-gray-600 mb-4">Cursos de especialização em áreas específicas do setor energético.</p>
+              <h4 class="text-xl font-bold mb-2" style="color: #42929d;">In Company</h4>
+              <p class="text-gray-600 mb-4">Cursos na sua empresa.</p>
               <button class="font-semibold transition-colors" style="color: #42929d;" onmouseover="this.style.color='#D2AB00'" onmouseout="this.style.color='#42929d'">
-                Ver cursos <i class="fas fa-arrow-right ml-1"></i>
+              <a href="mailto:iepuc@puc-rio.br"> Entre em contato </a><i class="fas fa-arrow-right ml-1"></i>
               </button>
             </div>
 
             <div class="border rounded-xl p-6 hover:shadow-lg transition-shadow" style="border-color: #D2AB00;">
               <h4 class="text-xl font-bold mb-2" style="color: #42929d;">Cursos de Extensão</h4>
               <p class="text-gray-600 mb-4">Capacitação continuada para profissionais do mercado.</p>
-              <button class="font-semibold transition-colors" style="color: #D2AB00;" onmouseover="this.style.color='#42929d'" onmouseout="this.style.color='#D2AB00'">
+              <button data-modal="modalCursosExtensao" class="font-semibold transition-colors" style="color: #D2AB00;" onmouseover="this.style.color='#42929d'" onmouseout="this.style.color='#D2AB00'">
                 Ver cursos <i class="fas fa-arrow-right ml-1"></i>
               </button>
             </div>
@@ -204,7 +209,7 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4" style="color: #42929d;">Notícias e Eventos</h2>
+          <h2 class="text-3xl font-bold mb-4" style="color: #42929d;" id="seminarios">Seminários e Eventos</h2>
           <p class="text-gray-600">Acompanhe as últimas novidades do Instituto de Energia.</p>
         </div>
 
@@ -358,6 +363,43 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
 
                 <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
                     Nossos programas educacionais são desenvolvidos para atender às demandas específicas do setor energético, oferecendo formação de alta qualidade e atualizada com as tendências do mercado.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Cursos Extensão -->
+    <div id="modalCursosExtensao" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+        <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+            
+            <!-- Modal Header -->
+            <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+                <button onclick="closeModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 w-10 h-10 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:rotate-90 close-btn">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+
+                <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+                    <i class="fas fa-graduation-cap text-2xl text-white"></i>
+                </div>
+
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Cursos de Extensão</h2>
+                <p class="text-base sm:text-lg opacity-90"></p>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8 lg:p-10">
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                <a href="https://ccec.puc-rio.br/site/folder?nCurso=comercializacao-e-precificacao-de-petroleo-e-combustiveis&nInst=cce"> Comercialização e Precificação de Petróleo e Combustíveis </a>
+                  
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                 <a href="https://ccec.puc-rio.br/site/Folder?nCurso=economia-e-regulacao-da-mudanca-climatica&nInst=CCE">Economia e Regulação da Mudança Climática</a>
+                </p>
+
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                 <a href="https://ccec.puc-rio.br/site/folder?nCurso=comercializacao-e-precificacao-do-gas-natural-no-mercado-internacional-e-nacional&nInst=cce">Comercialização e Precificação do Gás Natural no Mercado Internacional e Nacional
+</a>
                 </p>
             </div>
         </div>
