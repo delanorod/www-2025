@@ -32,7 +32,7 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
 </p>
           <div class="space-x-4" id="cursos">
             <button class="bg-accent text-white px-8 py-3 rounded-lg font-semibold hover:bg-accent-dark transition-colors">
-              Conheça Nossos Cursos
+             <a href="#nossosCursos"> Conheça Nossos Cursos</a>
             </button>
             <button class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary transition-colors">
              <a href="institucional.html"> Saiba Mais</a>
@@ -77,7 +77,11 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
                 <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-graduation-cap"></i></div>
                 <span class="text-2xl font-bold block mb-2" style="color: #D2AB00;">Disciplina Transição Energética</span>
                 <div class="text-xl font-semibold text-gray-800 mb-2">Graduação e pós-graduação</div>
-                <div class="text-gray-600"><a href="#">Leia a ementa da disciplina</a></div>
+                <div class="text-gray-600"><a href="#ModalEmenta">Leia a ementa da disciplina</a></div>
+                <button onclick="openModal('ModalEmenta')" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
+                        <svg class="svg-inline--fa fa-circle-info mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-info" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"></path></svg><!-- <i class="fas fa-info-circle mr-2"></i> Font Awesome fontawesome.com -->
+                        Leia
+                    </button>
             </div>
         </div>
     </div>
@@ -139,7 +143,7 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
     </section>
 
     <!-- Courses Section -->
-    <section id="cursos" class="py-16 bg-white">
+    <section id="nossosCursos" class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
           <h2 class="text-3xl font-bold mb-4" style="color: #42929d;">Nossos Cursos</h2>
@@ -239,7 +243,7 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
               <h3 class="text-xl font-bold mt-2 mb-3" style="color: #42929d;">MBE Energia</h3>
               <p class="text-gray-600 mb-4"> Conheça o programa da pós-graduação M.B.E. Energia: uma parceria da PUC-Rio com a UniBP, com a coordenação acadêmica do Instituto de Energia – IEPUC. </p>
               <button class="font-semibold transition-colors" style="color: #42929d;" onmouseover="this.style.color='#D2AB00'" onmouseout="this.style.color='#42929d'">
-                Leia mais <i class="fas fa-arrow-right ml-1"></i>
+              <a href="https://www.youtube.com/watch?v=oVPxXTXS9o0" target="_blank" rel="noopener noreferrer">Leia mais</a> <i class="fas fa-arrow-right ml-1"></i>
               </button>
             </div>
           </article>
@@ -250,10 +254,10 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
             </div>
             <div class="p-6">
               <span class="text-sm font-semibold" style="color: #42929d;"></span>
-              <h3 class="text-xl font-bold mt-2 mb-3" style="color: #42929d;">Ensaio Energético</h3>
-              <p class="text-gray-600 mb-4">Uma plataforma de difusão de conhecimento no mundo da economia da energia.</p>
+              <h3 class="text-xl font-bold mt-2 mb-3" style="color: #42929d;">Finanças Climáticas</h3>
+              <p class="text-gray-600 mb-4">Evento ocorrido em 14 de março de 2024 na PUC-Rio e organizado pelo IEPUC em colaboração com a KPMG e a IE University (Madrid). </p>
               <button class="font-semibold transition-colors" style="color: #D2AB00;" onmouseover="this.style.color='#42929d'" onmouseout="this.style.color='#D2AB00'">
-                Leia mais <i class="fas fa-arrow-right ml-1"></i>
+               <a href="https://www.youtube.com/watch?v=VS9MDdUUI1A" target="_blank" rel="noopener noreferrer"> Assista </a><i class="fas fa-arrow-right ml-1"></i>
               </button>
             </div>
           </article>
@@ -407,8 +411,8 @@ Oportunidades" </a>
         </div>
     </div>
 
-    <!-- Modal KPMG -->
-    <div id="modalKPMG" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+    <!-- Modal Graduação -->
+    <div id="ModalEmenta" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
         <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
             
             <!-- Modal Header -->
@@ -421,47 +425,29 @@ Oportunidades" </a>
                     <i class="fas fa-graduation-cap text-2xl text-white"></i>
                 </div>
 
-                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Núcleo KPMG/IEPUC de Transição Energética</h2>
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Ementa de Disciplina  </h2> 
+                <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">MEC2013 | TOP ESP DE ENGENHARIA MECANICA</h2>
                 <p class="text-base sm:text-lg opacity-90"></p>
             </div>
 
             <!-- Modal Content -->
-            <div class="p-6 sm:p-8 lg:p-10">
-              <p class="text-gray-800 md:font-bold pt-6">Quem somos</p>
                 <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-                O Instituto de Energia da PUC-Rio e a KPMG se uniram para empreender esforços para a Transição Energética e Descarbonização, através da criação do Núcleo KPMG/IEPUC de Transição Energética. O Núcleo tem como objetivos:
+                Disciplina de conteúdo variável. </p> 
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                Em 2024.1-TRANSIÇÃO ENERGÉTICA. </p>
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                Os sistemas de energia em todo o mundo estão passando por enormes transformações. Energia eólica e solar, hidrogênio, além de novos padrões de uso e mecanismos de mercado, são fatores que podem contribuir para a descarbonização do setor energético e garantir uma oferta de energia segura e acessível camadas da população mundial que hoje não tem restrições de acesso à fontes de energia modernas. 
                 </p>
-<ul class="list-disc pl-6 ">
-       <li class="pl-2 text-idente-[-1rem] list-inside">Promover o conhecimento sobre a transição dos sistemas e mercados energéticos para um contexto de baixo carbono, através de estudos e eventos focados na análise das políticas energéticas, das estratégias empresariais, e das inovações tecnológicas voltadas para a aceleração da transição energética.</li>
-       <li class="pl-2 text-idente-[-1rem] list-inside">Contribuir e influenciar o debate público acerca das melhores estratégias públicas e privadas para transição energética.</li>
-       <li class="pl-2 text-idente-[-1rem] list-inside">Promover a integração da Universidade com a Sociedade.</li>
-       </ul>
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                Esta disciplina, de caráter interdisciplinar, busca justamente apresentar e debater as de transformações em curso no setor energético internacional e nacional, impulsionada pelas políticas de combate às mudanças climáticas e pelo processo de inovações tecnológicas nos diferentes segmentos da indústria energética. O objetivo do curso é fornecer um conjunto de elementos conceituais, teóricos e empíricos que permita analisar as transformações das estruturas de mercado no setor de energia, a partir das mudanças nas políticas energéticas, da evolução dos mercados de energia e das evoluções tecnológicas observadas nessas indústrias.
+                </p>
+               <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                Pré-requisitos : Nenhum pre-requisito encontrado para MEC2013
+                
+                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
+                Co-requisitos: Nenhum co-requisito encontrado para MEC2013
 
-       <p class="text-gray-800 md:font-bold">
-        O Núcleo desenvolve atividades em três eixos principais
-      </p>
-                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-                Ensino e Capacitação
-                <ul class="list-disc pl-6 ">
-            <li class="pl-2 text-idente-[-1rem] list-inside">Formação de especialistas em energia com foco em transição e descarbonização do setor de energia e da indústria.</li>
-            <li class="pl-2 text-idente-[-1rem] list-inside">Formação de líderes corporativos e formuladores de políticas públicas em temas correlatos com a transição energética</li>
-        </ul>
-                </p>
-
-                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-                Pesquisa
-<ul class="list-disc pl-6 ">
-            <li class="pl-2 text-idente-[-1rem] list-inside">Produção de conhecimento e evidência empírica sobre as políticas energéticas, as estratégias empresariais, e as inovações tecnológicas voltadas para a aceleração da transição energética.</li>
-         </ul>
-                </p>
-
-                <p class="text-lg leading-relaxed text-gray-700 mb-6 text-justify">
-                Pesquisa
-                <ul class="list-disc pl-6 ">
-            <li class="pl-2 text-idente-[-1rem] list-inside">Promoção da agenda da aceleração da transição energética e dos resultados da pesquisa do Núcleo
-</li>
-         </ul>
-                </p>
+               </p>
             </div>
         </div>
     </div>
