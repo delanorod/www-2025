@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipe - IEPUC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .titulo-destaque {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cargo-destaque {
+            color: #0891b2;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-align: left;
+        }
+
+        .flex-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border-left: 4px solid #06b6d4;
+        }
+
+        .flex-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            border-left-color: #0891b2;
+        }
+
+        .flex-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e0f2fe;
+            transition: border-color 0.3s ease;
+        }
+
+        .flex-container:hover img {
+            border-color: #06b6d4;
+        }
+
+        .info strong {
+            color: #111827;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info span {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .info a {
+            color: #0891b2;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            background-color: #f0f9ff;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .info a:hover {
+            background-color: #0891b2;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .flex-container img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<section class="bg-white">
+  <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
+    <div class="mb-8 lg:mb-16">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-cyan-600 titulo-destaque">Equipe</h2>
+      <p class="font-light text-gray-500 sm:text-xl">
+        O Instituto de Energia da PUC-Rio reúne uma equipe de professores e pesquisadores com vasta experiência, que desenvolvem estudos em torno dos temas relacionados com a evolução tecnológica, organizacional, regulatória e institucional das indústrias de energia.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <h2 class="cargo-destaque">EQUIPE VINCULADA:</h2>
+      
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_eloi.jpg" alt="Eloi Fernández y Fernández"> 
+        <div class="info">
+          <p><strong>Eloi Fernández y Fernández</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/5715849783613973">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_edmar_almeida.gif" alt="Edmar Luiz Fagundes de Almeida"> 
+        <div class="info">
+          <p><strong>Edmar Luiz Fagundes de Almeida</strong></p>
+          <span>Doutor em Economia</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4102448005988261">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_sergio.gif" alt="Sérgio Leal Braga"> 
+        <div class="info">
+          <p><strong>Sérgio Leal Braga</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4168538689240017">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_haikal.jpg" alt="Marco Antonio Haikal Leite"> 
+        <div class="info">
+          <p><strong>Marco Antonio Haikal Leite</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2179583647932765">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_sergio_filho.jpg" alt="Sérgio Luiz Pinto Castineiras Filho"> 
+        <div class="info">
+          <p><strong>Sérgio Luiz Pinto Castineiras Filho</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4835831620487300">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_luiz_fernando.jpg" alt="Luis Fernando Mendonça Frutuoso"> 
+        <div class="info">
+          <p><strong>Luis Fernando Mendonça Frutuoso</strong></p>
+          <span>M.B.A. PDG-EXEC</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/0271319098973421">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_marcia_borges.jpg" alt="Marcia Christina Borges Fernandes"> 
+        <div class="info">
+          <p><strong>Marcia Christina Borges Fernandes</strong></p>
+          <span>Mestre em Design Estratégico</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/9820659288766697">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_andre_dias.jpg" alt="André de Oliveira Dias"> 
+        <div class="info">
+          <p><strong>André de Oliveira Dias</strong></p>
+          <span>MBA em Eng. Energética</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2506243485474390">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_valdir_santos.jpg" alt="Valdir José Rodrigues dos Santos"> 
+        <div class="info">
+          <p><strong>Valdir José Rodrigues dos Santos</strong></p>
+          <span>Graduado em Eng. Elétrica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2517758231642276">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_alessandro.jpg" alt="Alessandro Lanzillotta"> 
+        <div class="info">
+          <p><strong>Alessandro Lanzillotta</strong></p>
+          <span>Graduado em Eng. Elétrica (Automação)</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4308428155474410">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_zeluiz2.jpg" alt="José Luiz O. de Faria"> 
+        <div class="info">
+          <p><strong>José Luiz O. de Faria</strong></p>
+          <span>Técnico em Automação</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/6912818110207169">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_helaine_costa.jpg" alt="Helaine Costa Sales"> 
+        <div class="info">
+          <p><strong>Helaine Costa Sales</strong></p>
+          <span>Mestranda em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/8428640061478158">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_vinicius_santos.jpg" alt="Vinicius dos Santos Pereira"> 
+        <div class="info">
+          <p><strong>Vinicius dos Santos Pereira</strong></p>
+          <span>Mestrando em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/5082440557395393">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_delano_rodrigues2.jpg" alt="Delano José Rodrigues"> 
+        <div class="info">
+          <p><strong>Delano José Rodrigues</strong></p>
+          <span>Técnico em Processamento de Dados</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/9580185915785519">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_janaina02.jpg" alt="Janaína Tavares Braga"> 
+        <div class="info">
+          <p><strong>Janaína Tavares Braga</strong></p>
+          <span>Graduada em Geografia</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/8113450838974315">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_amelie.jpg" alt="Amelie Oliva Eliane Bitouzet"> 
+        <div class="info">
+          <p><strong>Amelie Oliva Eliane Bitouzet</strong></p>
+          <span>Graduanda em Eng. Ambiental</span><br>
+          <span><a target="_blank" href="#">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_tatiana.jpg" alt="Tatiana Vecchi Silva Weber"> 
+        <div class="info">
+          <p><strong>Tatiana Vecchi Silva Weber</strong></p>
+          <span>Graduanda em Comunicação Social</span><br>
+          <span><a target="_blank" href="#">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="text-left mt-12 p-6 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+        <p class="text-gray-700 font-medium">
+          Além da equipe vinculada, o IEPUC desenvolve estudos em colaboração com parceiros internos e externos.
+        </p>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 flex justify-end">
+      <button class="bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+        Voltar
+      </button>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
