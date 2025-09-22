@@ -117,31 +117,7 @@
         }
       });
 
-    //   const html = rows.map(materia => {
-    //     const imageHTML = materia.imagem && materia.imagem.trim() !== ""
-    //       ? `<img class="materia-img" src="${materia.imagem}" alt="${materia.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-    //          <div class="materia-img" style="display:none;"></div>`
-    //       : `<div class="materia-img"></div>`;
-
-    //     return `
-    //       <article class="materia-card">
-    //         ${imageHTML}
-    //         <div class="materia-content">
-    //           <h3>${materia.titulo}</h3>
-    //           <p class="materia-meta">
-    //             <i class="fas fa-newspaper mr-2"></i>
-    //             ${materia.veiculo}${materia.data ? ' • ' + materia.data : ''}
-    //           </p>
-    //           <p class="materia-resumo">${materia.resumo}</p>
-    //           <a href="${materia.link}" target="_blank" rel="noopener noreferrer" class="materia-link">
-    //             Leia mais <i class="fas fa-external-link-alt"></i>
-    //           </a>
-    //         </div>
-    //       </article>
-    //     `;
-    //   }).join("");
-
-
+   
     // Função para formatar a data vinda do Google Sheets (Date(YYYY,MM,DD))
 const formatDate = (dateStr) => {
   const match = /Date\((\d+),(\d+),(\d+)\)/.exec(dateStr);
@@ -222,28 +198,7 @@ const html = rows.map(materia => {
       displayMaterias(sampleData);
     }
 
-    // // Mobile menu toggle
-    // const mobileMenuButton = document.getElementById('mobile-menu-button');
-    // const mobileMenu = document.getElementById('mobile-menu');
-
-    // mobileMenuButton.addEventListener('click', () => {
-    //   mobileMenu.classList.toggle('hidden');
-    // });
-
-    // // Smooth scrolling for navigation links
-    // document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    //   anchor.addEventListener('click', function(e) {
-    //     e.preventDefault();
-    //     const target = document.querySelector(this.getAttribute('href'));
-    //     if (target) {
-    //       target.scrollIntoView({
-    //         behavior: 'smooth',
-    //         block: 'start'
-    //       });
-    //     }
-    //   });
-    // });
-
+   
      document.addEventListener('DOMContentLoaded', function() {
       // Toggle do menu mobile principal
       const mobileMenuButton = document.getElementById('mobile-menu-button');
@@ -357,89 +312,6 @@ tailwind.config = {
       }
     };
 
-//Script do carousel - TailwindCSS
-// var cont=0;
-// function loopSlider(){
-//   var xx= setInterval(function(){
-//         switch(cont)
-//         {
-//         case 0:{
-//             $("#slider-1").fadeOut(400);
-//             $("#slider-2").delay(400).fadeIn(400);
-//             $("#slider-3").delay(400).fadeIn(400);
-//             $("#sButton1").removeClass("bg-blue-400");
-//             $("#sButton2").addClass("bg-blue-400");
-//             $("#sButton3").addClass("bg-blue-400");
-//         cont=1;
-
-//         break;
-//         }
-//         case 1:
-//         {
-
-//             $("#slider-3").fadeOut(400);
-//             $("#slider-2").fadeOut(400);
-//             $("#slider-1").delay(400).fadeIn(400);
-//             $("#sButton3").removeClass("bg-blue-400");
-//             $("#sButton2").removeClass("bg-blue-400");
-//             $("#sButton1").addClass("bg-blue-400");
-
-//         cont=0;
-
-//         break;
-//         }
-
-
-//         }},8000);
-
-// }
-
-// function reinitLoop(time){
-// clearInterval(xx);
-// setTimeout(loopSlider(),time);
-// }
-
-
-
-// function sliderButton1(){
-
-//     $("#slider-3").fadeOut(400);
-//      $("#slider-2").fadeOut(400);
-//     $("#slider-1").delay(400).fadeIn(400);
-//     $("#sButton3").removeClass("bg-blue-800");
-//     $("#sButton2").removeClass("bg-blue-800");
-//     $("#sButton1").addClass("bg-blue-800");
-//     reinitLoop(4000);
-//     cont=0
-
-//     }
-
-//     function sliderButton2(){
-//     $("#slider-1").fadeOut(400);
-//     $("#slider-2").delay(400).fadeIn(400);
-//     $("#slider-3").delay(400).fadeIn(400);
-//     $("#sButton1").removeClass("bg-blue-800");
-//     $("#sButton2").addClass("bg-blue-800");
-//     $("#sButton3").addClass("bg-blue-800");
-//     reinitLoop(4000);
-//     cont=1
-
-//     }
-
-//     $(window).ready(function(){
-//         $("#slider-3").hide();
-//         $("#slider-2").hide();
-//         $("#sButton1").addClass("bg-blue-800");
-
-
-//         loopSlider();
-
-
-
-
-
-
-//     });
 
 
 //Novo script do carrossel
@@ -449,7 +321,20 @@ $(document).ready(function() {
     // ==========================================
 
     // Dados dos slides - você pode adicionar/remover slides aqui
+    /**
+     * The JavaScript code initializes a carousel slider with multiple slides containing images,
+     * titles, descriptions, and buttons linking to various resources.
+     */
     const slides = [
+
+       {
+        image: "imagens/slider/10.jpg",
+        title: "HyO BRASIL DO GÁS: PROMESSAS, PARADOXOS E POTENCIAL",
+        description: "PODCAST ILUMINISTAS COM  Edmar Almeida, economista, doutor pela Universidade de Grenoble (França), e professor do Instituto de Energia da PUC-Rio" ,
+        buttonText: "Assista aqui",
+        slideUrl: "https://www.youtube.com/watch?si=sQCMozE2DvY-pyAi&v=30duTa-cEPA&feature=youtu.be"
+      },
+
       {
         image: "imagens/slider/8.jpg",
         title: "Hybrid Power Plants In The Context Of The Energy Transition",
