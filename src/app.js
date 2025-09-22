@@ -329,8 +329,8 @@ $(document).ready(function() {
 
        {
         image: "imagens/slider/10.jpg",
-        title: "HyO BRASIL DO GÁS: PROMESSAS, PARADOXOS E POTENCIAL",
-        description: "PODCAST ILUMINISTAS COM  Edmar Almeida, economista, doutor pela Universidade de Grenoble (França), e professor do Instituto de Energia da PUC-Rio" ,
+        title: "O BRASIL DO GÁS: PROMESSAS, PARADOXOS E POTENCIAL",
+        description: "Podcast Iluministas com Edmar Almeida, economista, doutor pela Universidade de Grenoble (França), e professor do Instituto de Energia da PUC-Rio" ,
         buttonText: "Assista aqui",
         slideUrl: "https://www.youtube.com/watch?si=sQCMozE2DvY-pyAi&v=30duTa-cEPA&feature=youtu.be"
       },
