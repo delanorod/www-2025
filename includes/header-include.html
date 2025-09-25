@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><!--#echo var="titulo" --> - IEPUC</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+    
+    <!-- jQuery (if needed) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        :root {
+            --primary: #42929d;
+            --primary-light: #5ba3b2;
+            --accent: #D2AB00;
+            --accent-dark: #b8960d;
+            --puc-blue: #003366;
+            --puc-light-blue: #0066cc;
+            --puc-gold: #D2AB00;
+            --puc-black: #333333;
+            --puc-gray: #666666;
+            --puc-light-gray: #f8f9fa;
+        }
+        
+        .bg-primary { background-color: var(--primary); }
+        .bg-primary-light { background-color: var(--primary-light); }
+        .bg-accent { background-color: var(--accent); }
+        .bg-accent-dark { background-color: var(--accent-dark); }
+        .text-primary { color: var(--primary); }
+        .text-accent { color: var(--accent); }
+        .border-primary { border-color: var(--primary); }
+        .border-accent { border-color: var(--accent); }
+        
+        /* PUC Color Classes */
+        .bg-puc-blue { background-color: var(--puc-blue); }
+        .bg-puc-light-blue { background-color: var(--puc-light-blue); }
+        .bg-puc-gold { background-color: var(--puc-gold); }
+        .bg-puc-light-gray { background-color: var(--puc-light-gray); }
+        .text-puc-blue { color: var(--puc-blue); }
+        .text-puc-light-blue { color: var(--puc-light-blue); }
+        .text-puc-gold { color: var(--puc-gold); }
+        .text-puc-black { color: var(--puc-black); }
+        .text-puc-gray { color: var(--puc-gray); }
+        .font-puc { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .feature-card {
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .course-card {
+            transition: all 0.3s ease;
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card {
+            transition: all 0.3s ease;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .artigo-estilo {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .titulo-destaque {
+            color: var(--primary);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        
+        .titulo-destaque::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        /* Modal Styles */
+        .modal-backdrop {
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        
+        .modal-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        .modal-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+        
+        .bg-primary-gradient {
+            background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+        }
+        
+        .bg-highlight-gradient {
+            background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+        }
+        
+        /* Typography improvements */
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+            text-align: justify;
+        }
+        
+        .indent-8 {
+            text-indent: 2rem;
+        }
+        
+        /* List styling */
+        ul.list-decimal {
+            padding-left: 1.5rem;
+        }
+        
+        ul.list-decimal li {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .artigo-estilo {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .titulo-destaque {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Navigation Styles */
+        .nav-link {
+            text-decoration: none;
+            display: inline-block;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            border-bottom-color: var(--puc-light-blue);
+        }
+        
+        /* Mobile Menu Styles */
+        .mobile-submenu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .mobile-submenu.active {
+            max-height: 200px;
+        }
+        
+        .mobile-menu-chevron {
+            transition: transform 0.3s ease;
+        }
+        
+        .mobile-menu-chevron.rotated {
+            transform: rotate(180deg);
+        }
+        
+        /* Dropdown hover styles for desktop */
+        .group:hover .group-hover\:opacity-100 {
+            opacity: 1;
+        }
+        
+        .group:hover .group-hover\:visible {
+            visibility: visible;
+        }
+    </style>
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#42929d',
+                        'primary-light': '#5ba3b2',
+                        accent: '#D2AB00',
+                        'accent-dark': '#b8960d',
+                        'puc-blue': '#003366',
+                        'puc-light-blue': '#0066cc',
+                        'puc-gold': '#D2AB00',
+                        'puc-black': '#333333',
+                        'puc-gray': '#666666',
+                        'puc-light-gray': '#f8f9fa',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation Header -->
+    <header class="bg-white shadow-lg sticky top-0 z-40">
+        <nav class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #42929d;">
+                        <i class="fas fa-bolt text-white text-xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold" style="color: #42929d;">IEPUC</h1>
+                        <p class="text-sm text-gray-600">Instituto de Energia PUC-Rio</p>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="text-gray-700 hover:text-primary transition-colors">Início</a>
+                    <a href="institucional.html" class="text-gray-700 hover:text-primary transition-colors">Institucional</a>
+                    <a href="index.html#nossosCursos" class="text-gray-700 hover:text-primary transition-colors">Cursos</a>
+                    <a href="index.html#seminarios" class="text-gray-700 hover:text-primary transition-colors">Eventos</a>
+                    <a href="mailto:iepuc@puc-rio.br" class="bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold transition-colors">
+                        Contato
+                    </a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-button" class="md:hidden text-gray-700 hover:text-primary">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden border-t border-gray-200 py-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-700 hover:text-primary transition-colors">Início</a>
+                    <a href="institucional.html" class="text-gray-700 hover:text-primary transition-colors">Institucional</a>
+                    <a href="index.html#nossosCursos" class="text-gray-700 hover:text-primary transition-colors">Cursos</a>
+                    <a href="index.html#seminarios" class="text-gray-700 hover:text-primary transition-colors">Eventos</a>
+                    <a href="mailto:iepuc@puc-rio.br" class="bg-primary hover:bg-primary-light text-white px-4 py-2 rounded-lg font-semibold transition-colors text-center">
+                        Contato
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <!-- Main Content Area -->
+    <main>

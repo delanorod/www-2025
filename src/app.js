@@ -451,3 +451,4 @@ function showSampleData() {
 
 // Inicia o carregamento quando a página está pronta
 document.addEventListener('DOMContentLoaded', loadMaterias);
+

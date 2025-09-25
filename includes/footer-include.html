@@ -1,0 +1,151 @@
+</main>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-8">
+                <!-- Logo and Description -->
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-4 mb-4">
+                        <div class="w-12 h-12 rounded-full flex items-center justify-center" style="background-color: #42929d;">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">IEPUC</h3>
+                            <p class="text-sm text-gray-400">Instituto de Energia PUC-Rio</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">
+                        Unidade complementar da PUC-Rio dedicada à pesquisa, desenvolvimento e inovação 
+                        no setor energético, promovendo a transição energética sustentável.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-accent transition-colors">
+                            <i class="fab fa-linkedin text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-accent transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                        <a href="mailto:iepuc@puc-rio.br" class="text-gray-400 hover:text-accent transition-colors">
+                            <i class="fas fa-envelope text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4" style="color: #D2AB00;">Links Rápidos</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-gray-300 hover:text-white transition-colors">Início</a></li>
+                        <li><a href="institucional.html" class="text-gray-300 hover:text-white transition-colors">Institucional</a></li>
+                        <li><a href="index.html#nossosCursos" class="text-gray-300 hover:text-white transition-colors">Cursos</a></li>
+                        <li><a href="index.html#seminarios" class="text-gray-300 hover:text-white transition-colors">Eventos</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="text-lg font-semibold mb-4" style="color: #D2AB00;">Contato</h4>
+                    <div class="space-y-2 text-gray-300">
+                        <p><i class="fas fa-envelope mr-2"></i> iepuc@puc-rio.br</p>
+                        <p><i class="fas fa-map-marker-alt mr-2"></i> PUC-Rio, Rio de Janeiro</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 IEPUC - Instituto de Energia PUC-Rio. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal JavaScript -->
+    <script>
+        // Modal functionality
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('modal-hidden');
+                modal.classList.add('modal-visible');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+        
+        function closeModal(modalId = null) {
+            if (modalId) {
+                const modal = document.getElementById(modalId);
+                if (modal) {
+                    modal.classList.remove('modal-visible');
+                    modal.classList.add('modal-hidden');
+                }
+            } else {
+                // Close all modals
+                const modals = document.querySelectorAll('.modal-backdrop');
+                modals.forEach(modal => {
+                    modal.classList.remove('modal-visible');
+                    modal.classList.add('modal-hidden');
+                });
+            }
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('modal-backdrop')) {
+                closeModal();
+            }
+        });
+        
+        // Close modal with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+            
+            // Mobile submenu toggles
+            const mobileMenuToggles = document.querySelectorAll('.mobile-menu-toggle');
+            mobileMenuToggles.forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const target = this.getAttribute('data-target');
+                    const submenu = document.getElementById(target);
+                    const chevron = this.querySelector('.mobile-menu-chevron');
+                    
+                    if (submenu && chevron) {
+                        submenu.classList.toggle('active');
+                        chevron.classList.toggle('rotated');
+                    }
+                });
+            });
+            
+            // Modal button handlers
+            const modalButtons = document.querySelectorAll('[data-modal]');
+            modalButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const modalId = this.getAttribute('data-modal');
+                    openModal(modalId);
+                });
+            });
+            
+            // ECE button handler
+            const eceButton = document.getElementById('ECE');
+            if (eceButton) {
+                eceButton.addEventListener('click', function() {
+                    openModal('ModalECE');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
