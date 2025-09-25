@@ -50,40 +50,39 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
             <p class="text-lg text-gray-600 max-w-2xl mx-auto">Desde 2018 formando profissionais qualificados no setor energético</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
                 <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-users"></i></div>
                 <span class="text-5xl font-bold block mb-2 stat-number" data-target="200" data-show-plus="true" style="color: #42929d;">0</span>
                 <div class="text-xl font-semibold text-gray-800 mb-2">Alunos Formados no M.B.E. Energia</div>
-                <div class="text-gray-600">PG Lato Sensu</div>
+                <div class=" font-semibold text-gray-600">Pós Graduação Lato Sensu</div>
             </div>
 
             <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
                 <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-book"></i></div>
                 <span class="text-5xl font-bold block mb-2 stat-number" data-target="350" data-show-plus="true" style="color: #D2AB00;">0</span>
-                <div class="text-xl font-semibold text-gray-800 mb-2">Cursos de Extensão</div>
-                <div class="text-gray-600">Alunos formados nas trilhas de conhecimento.</div>
-                <button class="text-gray-600"><a href="#">Saiba +</a></button>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Alunos formados nos Cursos de Capacitação e Extensão</div>
+                <div class="text-gray-600"></div>
+                <button onclick="openModal('ModalTrilha')" class="text-gray-600"><a href="#ModalTrilha"></a></button>
+                
             </div>
 
             <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-primary">
                 <div class="text-4xl mb-4" style="color: #42929d;"><i class="fas fa-briefcase"></i></div>
                 <span class="text-5xl font-bold block mb-2 stat-number" data-target="120" data-show-plus="true" style="color: #42929d;">0</span>
-                <div class="text-xl font-semibold text-gray-800 mb-2">Cursos inCompany</div>
-                <div class="text-gray-600">Cerca de 120 técnicos e executivos participantes.</div>
+                <div class="text-xl font-semibold text-gray-800 mb-2">Técnicos e executivos participantes nos Cursos In Company</div>
+                <div class="text-gray-600"></div>
             </div>
 
-            <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
+            <!-- <div class="bg-white rounded-xl shadow-lg p-6 text-center transition-transform duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-accent">
                 <div class="text-4xl mb-4" style="color: #D2AB00;"><i class="fas fa-graduation-cap"></i></div>
                 <span class="text-2xl font-bold block mb-2" style="color: #D2AB00;">Disciplina Transição Energética</span>
                 <div class="text-xl font-semibold text-gray-800 mb-2">Graduação e pós-graduação</div>
-                <div class="text-gray-600"><a href="#ModalEmenta">Leia a ementa da disciplina</a></div>
-                <button onclick="openModal('ModalEmenta')" class="mt-4 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-300 transform hover:-translate-y-1" style="background-color: #42929d;">
-                        <svg class="svg-inline--fa fa-circle-info mr-2" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="circle-info" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" data-fa-i2svg=""><path fill="currentColor" d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 128c17.67 0 32 14.33 32 32c0 17.67-14.33 32-32 32S224 177.7 224 160C224 142.3 238.3 128 256 128zM296 384h-80C202.8 384 192 373.3 192 360s10.75-24 24-24h16v-64H224c-13.25 0-24-10.75-24-24S210.8 224 224 224h32c13.25 0 24 10.75 24 24v88h16c13.25 0 24 10.75 24 24S309.3 384 296 384z"></path></svg><!-- <i class="fas fa-info-circle mr-2"></i> Font Awesome fontawesome.com -->
-                        Leia
-                    </button>
-            </div>
+                <div onclick="openModal('ModalEmenta')" class="text-gray-600"><a href="#ModalEmenta">Leia a ementa da disciplina</a></div>
+                
+            </div> -->
         </div>
+        
     </div>
 </section>
 
@@ -165,7 +164,21 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
             </button>
           </div>
 
-          <div class="space-y-6">
+          <div class="grid lg:grid-cols-1 gap-8">
+          <div class="rounded-xl text-white p-8 course-card" style="background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);">
+            <h3 class="text-2xl font-bold mb-4">Extensão e Capacitação</h3>
+            <p class="mb-6 text-gray-100">Capacitação continuada para profissionais do mercado.</p>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-center" ><i class="fas fa-check-circle mr-2" style="color: #D2AB00;"></i> <a class="transition-colors hover:text-yellow-300" href="https://ccec.puc-rio.br/site/folder?nCurso=comercializacao-e-precificacao-do-gas-natural-no-mercado-internacional-e-nacional&nInst=cce" target="_blank" rel="noopener noreferrer"> Comercialização e Precificação do Gás Natural no Mercado Internacional e Nacional</a></li>
+              <li class="flex items-center"><i class="fas fa-check-circle mr-2" style="color: #D2AB00;"></i> <a class="transition-colors hover:text-yellow-300" href="https://ccec.puc-rio.br/site/Folder?nCurso=economia-e-regulacao-da-mudanca-climatica&nInst=CCE" target="_blank" rel="noopener noreferrer"> Economia e Regulação da Mudança Climática</a></li>
+              <li class="flex items-center"><i class="fas fa-check-circle mr-2" style="color: #D2AB00;"></i> <a class="transition-colors hover:text-yellow-300" href="https://ccec.puc-rio.br/site/folder?nCurso=comercializacao-e-precificacao-de-petroleo-e-combustiveis&nInst=cce" target="_blank" rel="noopener noreferrer"> Comercialização e Precificação de Petróleo e Combustíveis</a></li>
+              <li class="flex items-center"><i class="fas fa-check-circle mr-2" style="color: #D2AB00;"></i> <a class="transition-colors hover:text-yellow-300" target="_blank" href="https://ccec.puc-rio.br/site/Folder?nCurso=economia-e-regulacao-do-biometano-no-brasil&nInst=CCE"> Economia e Regulação em Biometano no Brasil</a></li>
+
+            </ul>
+            
+          </div> 
+
+          <!-- <div class="space-y-6">
             <div class="border rounded-xl p-6 hover:shadow-lg transition-shadow" style="border-color: #42929d;">
               <h4 class="text-xl font-bold mb-2" style="color: #42929d;">In Company</h4>
               <p class="text-gray-600 mb-4">Cursos na sua empresa.</p>
@@ -181,8 +194,9 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
                 Ver cursos <i class="fas fa-arrow-right ml-1"></i>
               </button>
             </div>
-          </div>
+          </div> -->
         </div>
+        
       </div>
     </section>
 
@@ -214,7 +228,7 @@ Vem atuando em atendimento às demandas do Setor de energia numa abordagem trans
     <section class="py-16 bg-white">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
-          <h2 class="text-3xl font-bold mb-4" style="color: #42929d;" id="seminarios">Seminários e Eventos</h2>
+          <h2 class="text-3xl font-bold mb-4" style="color: #42929d;" id="seminarios">Eventos</h2>
           <p class="text-gray-600">Acompanhe as últimas novidades do Instituto de Energia.</p>
         </div>
 
@@ -452,6 +466,68 @@ Oportunidades" </a>
         </div>
     </div>
 
+    <!-- Modal Trilhas -->
+<!-- Modal Trilhas -->
+<div id="ModalTrilha" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 md:p-8 modal-backdrop bg-black bg-opacity-70 transition-all duration-300 modal-hidden">
+  <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto shadow-2xl transition-all duration-300 transform scale-90">
+    
+    <!-- Cabeçalho -->
+    <div class="bg-primary-gradient text-white p-6 sm:p-8 rounded-t-2xl relative overflow-hidden">
+      <button onclick="closeModal('ModalTrilha')" 
+              class="absolute top-4 right-4 sm:top-6 sm:right-6 bg-white bg-opacity-20 hover:bg-opacity-30 
+                     w-10 h-10 rounded-full flex items-center justify-center text-white transition-all 
+                     duration-300 transform hover:rotate-90 close-btn">
+        <i class="fas fa-times text-lg"></i>
+      </button>
+
+      <div class="w-16 h-16 bg-white bg-opacity-20 rounded-full flex items-center justify-center mb-4">
+        <i class="fas fa-book text-2xl text-white"></i>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-bold mb-2 leading-tight">Trilha de Conhecimento</h2>
+      <p class="text-base sm:text-lg opacity-90">Um percurso de aprendizado em energia e gestão</p>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="p-6 sm:p-8 lg:p-10">
+      <!-- Timeline -->
+      <div class="space-y-6">
+        <div class="flex items-start">
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">1</div>
+          <p class="ml-4 text-gray-700"><strong>Fundamentos</strong> – Bases em energia, mercado e regulação.</p>
+        </div>
+        <div class="flex items-start">
+          <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-bold">2</div>
+          <p class="ml-4 text-gray-700"><strong>Tecnologias</strong> – Fontes renováveis, sistemas elétricos e inovações.</p>
+        </div>
+        <div class="flex items-start">
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white font-bold">3</div>
+          <p class="ml-4 text-gray-700"><strong>Gestão & Estratégia</strong> – Modelos de negócios, regulação e cases.</p>
+        </div>
+        <div class="flex items-start">
+          <div class="w-8 h-8 rounded-full bg-accent flex items-center justify-center text-white font-bold">4</div>
+          <p class="ml-4 text-gray-700"><strong>Aplicação Prática</strong> – Projetos, análises e simulações.</p>
+        </div>
+      </div>
+
+      <!-- Ações -->
+      <div class="mt-10 flex justify-between items-center">
+        <button onclick="closeModal('ModalTrilha')" 
+                class="px-5 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-100 transition">
+          Fechar
+        </button>
+        <a href="ensino/trilhas.html" 
+           class="px-6 py-2 rounded-lg text-white font-semibold shadow-md transition hover:shadow-lg" 
+           style="background-color:#42929d;">
+          Ver trilha completa →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
 <!--#include file="includes/footer.html" -->
 
 <!-- Estilos atualizados para a nova paleta -->
@@ -573,7 +649,7 @@ Oportunidades" </a>
 
     loadMaterias();
 });
-
+//Linhas acima comentadas para teste do script gs_loader
 </script>
 
 <script src="src/contador-stats.js"></script>

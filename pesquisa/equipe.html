@@ -1,291 +1,297 @@
 <!--#set var="titulo" value="Página Inicial" -->
 <!--#include virtual="../includes/header.html" -->
 <link rel="stylesheet" href="../src/styles.css">
+<style>
+  .titulo-destaque {
+            background: linear-gradient(135deg, #0891b2 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .cargo-destaque {
+            color: #0891b2;
+            font-size: 2rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-align: left;
+        }
 
+        .flex-container {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+           
+        }
+
+        .flex-container:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+           
+        }
+
+        .flex-container img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #e0f2fe;
+            transition: border-color 0.3s ease;
+        }
+
+        .flex-container:hover img {
+            border-color: #06b6d4;
+        }
+
+        .info strong {
+            color: #111827;
+            font-size: 1.25rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .info span {
+            color: #6b7280;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .info a {
+            color: #0891b2;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            background-color: #f0f9ff;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin-top: 0.5rem;
+        }
+
+        .info a:hover {
+            background-color: #0891b2;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .flex-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .flex-container img {
+                width: 100px;
+                height: 100px;
+            }
+        }
+</style>
+
+<body class="bg-gray-50">
+<div class="container mx-auto px-4">
+  <article class="artigo-estilo">
+     <div class="mb-8 mt-8"> 
+    <div class="mb-8 lg:mb-16">
+    
+     <p class="font-light text-gray-800 sm:text-base">
+        O Instituto de Energia da PUC-Rio reúne uma equipe de professores e pesquisadores com vasta experiência, que desenvolvem estudos em torno dos temas relacionados com a evolução tecnológica, organizacional, regulatória e institucional das indústrias de energia.
+      </p>
+    </div>
+
+    <div class="max-w-4xl mx-auto">
+      <h2 class="cargo-destaque">Equipe vinculada:</h2>
+      
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_eloi.jpg" alt="Eloi Fernández y Fernández"> 
+        <div class="info">
+          <p><strong>Eloi Fernández y Fernández</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/5715849783613973">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_edmar_almeida.gif" alt="Edmar Luiz Fagundes de Almeida"> 
+        <div class="info">
+          <p><strong>Edmar Luiz Fagundes de Almeida</strong></p>
+          <span>Doutor em Economia</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4102448005988261">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_davidz.jpg" alt="David Zylbersztajn"> 
+        <div class="info">
+          <p><strong>David Zylbersztajn</strong></p>
+          <span>Doutor em Economia da Energia</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/7190224569505702">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_sergio.gif" alt="Sérgio Leal Braga"> 
+        <div class="info">
+          <p><strong>Sérgio Leal Braga</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4168538689240017">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_haikal.jpg" alt="Marco Antonio Haikal Leite"> 
+        <div class="info">
+          <p><strong>Marco Antonio Haikal Leite</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2179583647932765">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_sergio_filho.jpg" alt="Sérgio Luiz Pinto Castineiras Filho"> 
+        <div class="info">
+          <p><strong>Sérgio Luiz Pinto Castineiras Filho</strong></p>
+          <span>Doutor em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4835831620487300">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_luiz_fernando.jpg" alt="Luis Fernando Mendonça Frutuoso"> 
+        <div class="info">
+          <p><strong>Luis Fernando Mendonça Frutuoso</strong></p>
+          <span>M.B.A. PDG-EXEC</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/0271319098973421">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_marcia_borges.jpg" alt="Marcia Christina Borges Fernandes"> 
+        <div class="info">
+          <p><strong>Marcia Christina Borges Fernandes</strong></p>
+          <span>Mestre em Design Estratégico</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/9820659288766697">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_andre_dias.jpg" alt="André de Oliveira Dias"> 
+        <div class="info">
+          <p><strong>André de Oliveira Dias</strong></p>
+          <span>MBA em Eng. Energética</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2506243485474390">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_valdir.jpg" alt="Valdir José Rodrigues dos Santos"> 
+        <div class="info">
+          <p><strong>Valdir José Rodrigues dos Santos</strong></p>
+          <span>Graduado em Eng. Elétrica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/2517758231642276">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_alessandro.jpg" alt="Alessandro Lanzillotta"> 
+        <div class="info">
+          <p><strong>Alessandro Lanzillotta</strong></p>
+          <span>Graduado em Eng. Elétrica (Automação)</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/4308428155474410">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_zeluiz2.jpg" alt="José Luiz O. de Faria"> 
+        <div class="info">
+          <p><strong>José Luiz O. de Faria</strong></p>
+          <span>Técnico em Automação</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/6912818110207169">CV Lattes +</a></span>
+        </div>
+      </div>
+
+       <div class="flex-container">
+        <img src="imagens/iepuc_equipe_delano_rodrigues2.jpg" alt="Delano José Rodrigues"> 
+        <div class="info">
+          <p><strong>Delano José Rodrigues</strong></p>
+          <span>Técnico em Processamento de Dados</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/9580185915785519">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_janaina02.jpg" alt="Janaína Tavares Braga"> 
+        <div class="info">
+          <p><strong>Janaína Tavares Braga</strong></p>
+          <span>Graduada em Geografia</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/8113450838974315">CV Lattes +</a></span>
+        </div>
+      </div>
+
+    <h2 class="cargo-destaque">Bolsistas:</h2>
+
+     <div class="flex-container">
+        <img src="imagens/iepuc_equipe_amelie.jpg" alt="Amelie Oliva Eliane Bitouzet"> 
+        <div class="info">
+          <p><strong>Amelie Oliva Eliane Bitouzet</strong></p>
+          <span>Graduanda em Eng. Ambiental</span><br>
+          <span><a target="_blank" href="#">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_helaine_costa.jpg" alt="Helaine Costa Sales"> 
+        <div class="info">
+          <p><strong>Helaine Costa Sales</strong></p>
+          <span>Mestranda em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/8428640061478158">CV Lattes +</a></span>
+        </div>
+      </div>
+
+<div class="flex-container">
+        <img src="imagens/iepuc_equipe_tatiana.jpg" alt="Tatiana Vecchi Silva Weber"> 
+        <div class="info">
+          <p><strong>Tatiana Vecchi Silva Weber</strong></p>
+          <span>Graduanda em Comunicação Social</span><br>
+          <span><a target="_blank" href="#">CV Lattes +</a></span>
+        </div>
+      </div>
+
+      <div class="flex-container">
+        <img src="imagens/iepuc_equipe_vinicius_santos.jpg" alt="Vinicius dos Santos Pereira"> 
+        <div class="info">
+          <p><strong>Vinicius dos Santos Pereira</strong></p>
+          <span>Mestrando em Eng. Mecânica</span><br>
+          <span><a target="_blank" href="http://lattes.cnpq.br/5082440557395393">CV Lattes +</a></span>
+        </div>
+      </div>
+
+    
+
+      <div class="text-left mt-12 p-6 bg-cyan-50 rounded-lg border-l-4 border-cyan-500">
+        <p class="text-gray-700 font-medium">
+          Além da equipe vinculada, o IEPUC desenvolve estudos em colaboração com parceiros internos e externos.
+        </p>
+      </div>
+    </div>
+
+     </div>
+  </article>
+</div>
 <section class="bg-white">
-  <div class="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-6">
-    <div class="mx-auto mb-8 max-w-screen-sm lg:mb-16">
-      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-cyan-600 titulo-destaque">Equipe</h2>
-      <p class="font-light text-gray-500 sm:text-xl dark:text-gray-400"></p>
-    </div>
-
-
-
-    <!-- DIRETOR (Destaque acima) -->
-    <div class="text-center text-gray-500 dark:text-gray-400 mb-12">
-      <img class="mx-auto mb-4 w-48 h-48 rounded-full" src="imagens/iepuc_equipe_eloi_fernadez.png" alt="Eloi Fernandez">
-      <h3 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 ">
-        <a href="http://lattes.cnpq.br/5715849783613973" class="hover:underline">Eloi Fernandez y Fernandez</a>
-      </h3>
-      <p class="text-xl text-gray-600  mb-4">Diretor do IEPUC</p>
-      <ul class="flex justify-center mt-4 space-x-4">
-        <li>
-          <a target="_blank" href="http://lattes.cnpq.br/5715849783613973" class="text-[#39569c] hover:text-gray-900 text-sm bg-gray-100  px-4 py-2 rounded-lg">
-            Currículo Lattes +
-          </a>
-        </li>
-      </ul>
-    </div>
-
-    <h3 class="cargo-destaque">Docentes</h3>
-    <br>
-    <!-- EQUIPE (Grid normal abaixo) -->
-    <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-
-      <!-- Membros da equipe (mantenha os outros 7 aqui) -->
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_sergio.gif" alt="Sérgio Leal Braga">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Sérgio Leal Braga</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4781805A1" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <!-- Repita os outros 6 membros da equipe aqui -->
-      <!-- <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_reinaldo_castro.gif" alt="Reinaldo Castro">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Reinaldo Castro Souza</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4787037T6" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_rodrigo_calili.gif" alt="Rodrigo Flora Calili">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Rodrigo Flora Calili</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4759578T5" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-    -->
-      <!-- Adicione os outros 4 membros restantes -->
-      <!-- <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_florian.gif" alt="Florian Alain Yannick Pradelle">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Florian Alain Yannick Pradelle</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4657710A7" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div> -->
  
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_edmar_almeida.gif" alt="Edmar Luiz Fagundes de Almeida">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Edmar Luiz Fagundes de Almeida</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4797457H4" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_luiz_fernando.jpg" alt="Luis Fernando Mendonça Frutuoso">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Luis F. Mendonça Frutuoso</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2745564H5" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_carlos_bastian.jpg" alt="Carlos de Lamare Bastian Pinto">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Carlos de Lamare Bastian Pinto</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4278298H8" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div> -->
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_haikal.jpg" alt="Marco Antonio Haikal Leite">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Marco Antonio Haikal Leite</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4518465T2" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-
-      <!-- <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_sergio_filho.jpg" alt="Sérgio Luiz Pinto Castineiras Filho">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Sérgio Luiz Pinto Castineiras Filho</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K8130828U9" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div> -->
-
-    </div>
-
-
-    <h3 class="cargo-destaque">Corpo Técnico</h3>
-    <br>
-    <!-- CORPO TÉCNICO (Grid normal abaixo) -->
-    <div class="grid gap-8 lg:gap-16 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
-
-      <!-- Membros da equipe (mantenha os outros 7 aqui) -->
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_marcia_borges.jpg" alt="Marcia Christina Borges Fernandes">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Marcia Christina Borges Fernandes</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4327532U1" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_valdir_santos.jpg" alt="Valdir José Rodrigues dos Santos">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Valdir José Rodrigues dos Santos</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2809472Z0" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_andre_dias.jpg" alt="André de Oliveira Dias">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">André de Oliveira Dias</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K2809883A9" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_janaina_dias.jpg" alt="Janaína Tavares Braga">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Janaína Tavares Braga</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K4250259P6" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_delano_rodrigues.jpg" alt="Delano Rodrigues">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Delano Rodrigues</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K1156668A1" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-          <!-- ... outros ícones ... -->
-        </ul>
-      </div>
-
-      <div class="text-center text-gray-500 dark:text-gray-400">
-        <img class="mx-auto mb-4 w-36 h-36 rounded-full" src="imagens/iepuc_equipe_sergio_filho.jpg" alt="Sérgio Luiz Pinto Castineiras Filho">
-        <h3 class="mb-1 text-2xl font-bold tracking-tight text-gray-900 ">
-          <a href="#">Sérgio Luiz Pinto Castineiras Filho</a>
-        </h3>
-        <p></p>
-        <ul class="flex justify-center mt-4 space-x-4">
-          <li>
-            <a target="_blank" href="https://buscatextual.cnpq.br/buscatextual/visualizacv.do?metodo=apresentar&id=K8130828U9" class="text-[#39569c] hover:text-gray-900 dark:hover:text-white">
-            Currículo Lattes +
-            </a>
-          </li>
-        </ul>
-      </div>
-
-
-    </div>
-    <br>
-    <br>
-      <h3 class="cargo-destaque">Não Vinculados</h3>
-  </div>
-
-  
-
-  
 </section>
+
+</body>
+
+
 
 <div class="container mx-auto px-4 py-2 flex justify-end">
 <!--#include virtual="../includes/voltar.html" -->

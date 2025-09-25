@@ -57,8 +57,21 @@ $(document).ready(function() {
       description: "Energy Transition, Latin American Energy Markets and Development Paths",
       buttonText: "Assista",
       slideUrl: "https://www.youtube.com/playlist?list=PLmCee3fhT3CL1QuZH2vLP7e33Lybp0tqJ"
+    },
+    {
+      image: "imagens/slider/4.jpg",
+      title: "ENERCITY 2024",
+      description: "Rio: Capital da Transição Energética em Cidades",
+      buttonText: "Assista",
+      slideUrl: "https://www.youtube.com/watch?v=nIi9z6mKsy0&feature=youtu.be"
+    },
+    {
+      image: "imagens/slider/6.jpg",
+      title: "Qual é o Gás Natural do Brasil?",
+      description: "por Eloi Fernández Y Fernández e Edmar Almeida",
+      buttonText: "Clique aqui",
+      slideUrl: "https://valor.globo.com/opiniao/coluna/qual-e-o-gas-natural-do-brasil.ghtml"
     }
-    
   ];
 
   // Variáveis de controle do carrossel
@@ -192,7 +205,210 @@ $(document).ready(function() {
     }
   });
 
+  // ==========================================
+  // CÓDIGO PARA CARREGAR MATÉRIAS (Google Sheets) - index.html
+  // ==========================================
 
+  // Função para carregar artigos do Google Sheets usando JSONP
+  function loadMaterias() {
+    const sheetID = "160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU";
+    const sheetName = "materias";
+
+    // Mostrar indicador de carregamento
+    $('#loading-indicator').show();
+    $('#materias-container').hide();
+    $('#error-message').addClass('hidden');
+
+    // Tentar diferentes abordagens
+    tryLoadFromSheets(sheetID, sheetName);
+  }
+
+  function tryLoadFromSheets(sheetID, sheetName) {
+    // Método 1: Tentar com callback JSONP
+    const callbackName = 'gsheetsCallback' + Date.now();
+
+    window[callbackName] = function(data) {
+      processGoogleSheetsData(data);
+      delete window[callbackName];
+    };
+
+    const script = document.createElement('script');
+    script.src = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&callback=${callbackName}&sheet=${sheetName}`;
+
+    script.onerror = function() {
+      // Método 2: Tentar com fetch e parsing manual
+      tryFetchMethod(sheetID, sheetName);
+    };
+
+    document.head.appendChild(script);
+
+    // Limpeza após timeout
+    setTimeout(() => {
+      if (document.head.contains(script)) {
+        document.head.removeChild(script);
+      }
+      if (window[callbackName]) {
+        delete window[callbackName];
+        tryFetchMethod(sheetID, sheetName);
+      }
+    }, 8000);
+  }
+
+  function tryFetchMethod(sheetID, sheetName) {
+    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+
+    fetch(url)
+      .then(response => response.text())
+      .then(text => {
+        // Remover wrapper JSONP do Google
+        const jsonText = text.substring(47).slice(0, -2);
+        const data = JSON.parse(jsonText);
+        processGoogleSheetsData(data);
+      })
+      .catch(error => {
+        console.error('Método fetch falhou:', error);
+        showSampleData(); // Fallback para dados de exemplo
+      });
+  }
+
+  function processGoogleSheetsData(data) {
+    try {
+      $('#loading-indicator').hide();
+
+      if (!data.table || !data.table.rows) {
+        throw new Error('Estrutura de dados inválida');
+      }
+
+      const rows = data.table.rows
+        .map((row, index) => {
+          // Pular linha de cabeçalho
+          if (index === 0) return null;
+
+          return {
+            data: (row.c && row.c[0] && row.c[0].v) ? row.c[0].v.toString() : "",
+            titulo: (row.c && row.c[1] && row.c[1].v) ? row.c[1].v.toString() : "",
+            veiculo: (row.c && row.c[2] && row.c[2].v) ? row.c[2].v.toString() : "",
+            resumo: (row.c && row.c[3] && row.c[3].v) ? row.c[3].v.toString() : "",
+            link: (row.c && row.c[4] && row.c[4].v) ? row.c[4].v.toString() : "",
+            imagem: (row.c && row.c[5] && row.c[5].v) ? row.c[5].v.toString() : ""
+          };
+        })
+        .filter(row => row && row.titulo && row.titulo.trim() !== "");
+
+      if (rows.length === 0) {
+        showSampleData();
+        return;
+      }
+
+      displayMaterias(rows);
+
+    } catch (error) {
+      console.error("Erro ao processar dados do Google Sheets:", error);
+      showSampleData();
+    }
+  }
+
+  function displayMaterias(rows) {
+    // Ordenar por data (formato DD/MM/YYYY)
+    rows.sort((a, b) => {
+      try {
+        const parseDate = (dateStr) => {
+          if (!dateStr) return new Date(0);
+          const parts = dateStr.split("/");
+          if (parts.length === 3) {
+            return new Date(parts[2], parts[1] - 1, parts[0]);
+          }
+          return new Date(dateStr);
+        };
+
+        return parseDate(b.data) - parseDate(a.data);
+      } catch (e) {
+        return 0;
+      }
+    });
+
+    // Função para formatar a data vinda do Google Sheets (Date(YYYY,MM,DD))
+    const formatDate = (dateStr) => {
+      const match = /Date\((\d+),(\d+),(\d+)\)/.exec(dateStr);
+      if (match) {
+        const year = parseInt(match[1]);
+        const month = parseInt(match[2]); // zero-based
+        const day = parseInt(match[3]);
+        const d = new Date(year, month, day);
+
+        return d.toLocaleDateString("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "numeric"
+        });
+      }
+      return dateStr; // se não for Date(...), devolve como está
+    };
+
+    const html = rows.map((materia, index) => {
+      const imageHTML = materia.imagem && materia.imagem.trim() !== ""
+        ? `<img class="materia-img" src="${materia.imagem}" alt="${materia.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+           <div class="materia-img" style="display:none;"></div>`
+        : `<div class="materia-img"></div>`;
+
+      return `
+        <article class="materia-card animate-fade-in" style="animation-delay: ${index * 0.1}s">
+          ${imageHTML}
+          <div class="materia-content">
+            <h3>${materia.titulo}</h3>
+            <p class="materia-meta">
+              <i class="fas fa-newspaper mr-2"></i>
+              ${materia.veiculo}${materia.data ? ' • ' + formatDate(materia.data) : ''}
+            </p>
+            <p class="materia-resumo">${materia.resumo}</p>
+            <a href="${materia.link}" target="_blank" rel="noopener noreferrer" class="materia-link">
+              Leia mais <i class="fas fa-external-link-alt"></i>
+            </a>
+          </div>
+        </article>`;
+    }).join("");
+
+    $("#materias-container").html(html);
+    $('#materias-container').show();
+  }
+
+  function showSampleData() {
+    console.log('Exibindo dados de exemplo');
+    $('#loading-indicator').hide();
+
+    // Dados de exemplo como fallback
+    const sampleData = [
+      {
+        data: "10/08/2025",
+        titulo: "IEPUC participa de conferência internacional sobre energias renováveis",
+        veiculo: "Jornal do Brasil",
+        resumo: "Instituto apresenta pesquisas sobre eficiência energética e sustentabilidade em evento global.",
+        link: "#",
+        imagem: ""
+      },
+      {
+        data: "05/08/2025",
+        titulo: "Nova parceria com empresa do setor elétrico brasileiro",
+        veiculo: "Valor Econômico",
+        resumo: "Acordo visa desenvolvimento de tecnologias inovadoras para o mercado nacional de energia.",
+        link: "#",
+        imagem: ""
+      },
+      {
+        data: "01/08/2025",
+        titulo: "Pesquisador do IEPUC recebe prêmio de inovação",
+        veiculo: "O Globo",
+        resumo: "Reconhecimento internacional por desenvolvimento de soluções em energia limpa.",
+        link: "#",
+        imagem: ""
+      }
+    ];
+
+    displayMaterias(sampleData);
+  }
+
+  // Carregar matérias ao inicializar a página
+  loadMaterias();
 
   // ==========================================
   // CÓDIGO DE NAVEGAÇÃO ATIVA
@@ -269,185 +485,3 @@ $(document).ready(function() {
     }, 300);
   }
 });
-
-
-// Função principal para carregar artigos
-function loadMaterias() {
-    const sheetID = "160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU";
-    const sheetName = "materias";
-    const container = document.getElementById('materias-container');
-    const loadingIndicator = document.getElementById('loading-indicator');
-    const errorMessage = document.getElementById('error-message');
-
-    // Mostra o indicador de carregamento e esconde o conteúdo anterior
-    loadingIndicator.style.display = 'block';
-    container.style.display = 'none';
-    errorMessage.classList.add('hidden');
-
-    // Chama a função para buscar os dados usando fetch
-    fetchGoogleSheetsData(sheetID, sheetName);
-}
-
-// Função para buscar dados da planilha usando a API v4 e fetch
-async function fetchGoogleSheetsData(sheetID, sheetName) {
-    const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=${sheetName}`;
-
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error(`Erro na rede: ${response.statusText}`);
-        }
-        
-        const text = await response.text();
-        
-        // Remove o wrapper JSONP 'google.visualization.Query.setResponse'
-        const jsonText = text.substring(47, text.length - 2);
-        const data = JSON.parse(jsonText);
-        
-        processAndDisplayData(data);
-    } catch (error) {
-        console.error('Falha ao carregar dados do Google Sheets:', error);
-        showSampleData();
-    }
-}
-
-// Processa e exibe os dados
-function processAndDisplayData(data) {
-    const loadingIndicator = document.getElementById('loading-indicator');
-    loadingIndicator.style.display = 'none';
-
-    try {
-        if (!data.table || !data.table.rows) {
-            throw new Error('Estrutura de dados inválida');
-        }
-
-        // Mapeia os dados da API para um array de objetos mais amigável
-        const rows = data.table.rows
-            .map(row => {
-                const c = row.c;
-                // Pular linhas sem título (assumindo que o título é a 2ª coluna)
-                if (!c || !c[1] || !c[1].v) return null;
-                
-                return {
-                    data: c[0]?.v ?? null,
-                    titulo: c[1]?.v ?? '',
-                    veiculo: c[2]?.v ?? '',
-                    resumo: c[3]?.v ?? '',
-                    link: c[4]?.v ?? '',
-                    imagem: c[5]?.v ?? ''
-                };
-            })
-            .filter(Boolean); // Remove os valores nulos
-
-        if (rows.length === 0) {
-            showSampleData();
-            return;
-        }
-
-        displayMaterias(rows);
-    } catch (error) {
-        console.error("Erro ao processar dados do Google Sheets:", error);
-        showSampleData();
-    }
-}
-
-// Formata e exibe os dados na página (sem alterações significativas, exceto a lógica de data)
-function displayMaterias(rows) {
-    // Função para formatar a data vinda do Google Sheets (Date(YYYY,MM,DD))
-    const formatDate = (dateStr) => {
-        if (typeof dateStr === 'string' && dateStr.startsWith('Date(')) {
-            const match = /Date\((\d+),(\d+),(\d+)\)/.exec(dateStr);
-            if (match) {
-                const year = parseInt(match[1]);
-                const month = parseInt(match[2]); // zero-based
-                const day = parseInt(match[3]);
-                const d = new Date(year, month, day);
-                return d.toLocaleDateString("pt-BR", {
-                    day: "2-digit",
-                    month: "2-digit",
-                    year: "numeric"
-                });
-            }
-        } else if (dateStr instanceof Date) {
-            return dateStr.toLocaleDateString("pt-BR", {
-                day: "2-digit",
-                month: "2-digit",
-                year: "numeric"
-            });
-        }
-        return dateStr;
-    };
-    
-    // Sort by date (DD/MM/YYYY or Date(YYYY,MM,DD) format)
-    rows.sort((a, b) => {
-        try {
-            const parseDate = (dateVal) => {
-                if (!dateVal) return new Date(0);
-                if (typeof dateVal === 'string' && dateVal.startsWith('Date(')) {
-                    const match = /Date\((\d+),(\d+),(\d+)\)/.exec(dateVal);
-                    if (match) {
-                         // Note: month is 0-indexed in JS Date object
-                        return new Date(match[1], parseInt(match[2]), match[3]); 
-                    }
-                } else if (typeof dateVal === 'string') {
-                    const parts = dateVal.split("/");
-                    if (parts.length === 3) {
-                         // Note: month is 0-indexed in JS Date object
-                        return new Date(parts[2], parts[1] - 1, parts[0]); 
-                    }
-                }
-                return new Date(0); // Return a valid date for sorting
-            };
-            return parseDate(b.data) - parseDate(a.data);
-        } catch (e) {
-            console.error("Erro ao ordenar datas:", e);
-            return 0;
-        }
-    });
-    
-    const limitedRows = rows.slice(0, 3);
-
-    const html = limitedRows.map(materia => {
-        const imageHTML = materia.imagem && materia.imagem.trim() !== ""
-            ? `<img class="materia-img" src="${materia.imagem}" alt="${materia.titulo}" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="materia-img fallback-img" style="display:none;"></div>`
-            : `<div class="materia-img fallback-img"></div>`;
-
-        return `
-            <article class="materia-card">
-                ${imageHTML}
-                <div class="materia-content">
-                    <h3>${materia.titulo}</h3>
-                    <p class="materia-meta">
-                        <i class="fas fa-newspaper mr-2"></i>
-                        ${materia.veiculo} • ${formatDate(materia.data)}
-                    </p>
-                    <p class="materia-resumo">${materia.resumo}</p>
-                    <a href="${materia.link}" target="_blank" rel="noopener noreferrer" class="materia-link">
-                        Leia mais <i class="fas fa-external-link-alt"></i>
-                    </a>
-                </div>
-            </article>`;
-    }).join("");
-
-    const container = document.getElementById("materias-container");
-    container.innerHTML = html;
-    container.style.display = 'grid';
-}
-
-function showSampleData() {
-    console.log('Exibindo dados de exemplo');
-    document.getElementById('loading-indicator').style.display = 'none';
-
-    // Sample data as fallback
-    const sampleData = [
-        { data: "10/08/2025", titulo: "IEPUC participa de conferência internacional sobre energias renováveis", veiculo: "Jornal do Brasil", resumo: "Instituto apresenta pesquisas sobre eficiência energética e sustentabilidade em evento global.", link: "#", imagem: "" },
-        { data: "05/08/2025", titulo: "Nova parceria com empresa do setor elétrico brasileiro", veiculo: "Valor Econômico", resumo: "Acordo visa desenvolvimento de tecnologias inovadoras para o mercado nacional de energia.", link: "#", imagem: "" },
-        { data: "01/08/2025", titulo: "Pesquisador do IEPUC recebe prêmio de inovação", veiculo: "O Globo", resumo: "Reconhecimento internacional por desenvolvimento de soluções em energia limpa.", link: "#", imagem: "" }
-    ];
-
-    displayMaterias(sampleData);
-}
-
-// Inicia o carregamento quando a página está pronta
-document.addEventListener('DOMContentLoaded', loadMaterias);

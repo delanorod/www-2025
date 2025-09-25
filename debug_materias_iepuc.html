@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug - Matérias IEPUC</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .debug-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        .success { background-color: #d4edda; border-color: #c3e6cb; }
+        .error { background-color: #f8d7da; border-color: #f5c6cb; }
+        .info { background-color: #d1ecf1; border-color: #bee5eb; }
+        .warning { background-color: #fff3cd; border-color: #ffeaa7; }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            max-height: 300px;
+        }
+        
+        .materia-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        
+        button {
+            background: #42929d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background: #336b74;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold text-center mb-8">Debug - Carregamento de Matérias IEPUC</h1>
+        
+        <!-- Controles de Teste -->
+        <div class="debug-section info">
+            <h3 class="text-xl font-bold mb-4">🔧 Controles de Teste</h3>
+            <button onclick="testSheetAccess()">Testar Acesso à Planilha</button>
+            <button onclick="testOriginalMethod()">Método Original (app.js)</button>
+            <button onclick="testNewMethod()">Novo Método (gs_loader.js)</button>
+            <button onclick="testCSVMethod()">Método CSV</button>
+            <button onclick="clearResults()">Limpar Resultados</button>
+        </div>
+        
+        <!-- Área de Debug -->
+        <div id="debug-output"></div>
+        
+        <!-- Indicadores de Status -->
+        <div id="loading" class="debug-section warning hidden">
+            <p>🔄 Carregando matérias...</p>
+        </div>
+        
+        <div id="error" class="debug-section error hidden">
+            <p>❌ Erro ao carregar matérias. Verifique o console para mais detalhes.</p>
+        </div>
+        
+        <!-- Container das Matérias -->
+        <div class="debug-section">
+            <h3 class="text-xl font-bold mb-4">📰 Matérias Carregadas</h3>
+            <div id="materias-container"></div>
+            <div id="blogue"></div>
+        </div>
+        
+        <!-- Botão Carregar Mais -->
+        <div id="loadMoreContainer" class="text-center hidden">
+            <button id="loadMore">Carregar Mais</button>
+        </div>
+    </div>
+
+    <script>
+        // Variáveis globais para debug
+        let debugOutput = document.getElementById('debug-output');
+        let currentLoader = null;
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type === 'error' ? 'error' : type === 'success' ? 'success' : type === 'warning' ? 'warning' : 'info';
+            
+            const logDiv = document.createElement('div');
+            logDiv.className = `debug-section ${className}`;
+            logDiv.innerHTML = `<strong>[${timestamp}]</strong> ${message}`;
+            
+            debugOutput.appendChild(logDiv);
+            debugOutput.scrollTop = debugOutput.scrollHeight;
+        }
+        
+        function clearResults() {
+            debugOutput.innerHTML = '';
+            document.getElementById('materias-container').innerHTML = '';
+            document.getElementById('blogue').innerHTML = '';
+            document.getElementById('error').classList.add('hidden');
+            document.getElementById('loading').classList.add('hidden');
+            document.getElementById('loadMoreContainer').classList.add('hidden');
+        }
+        
+        // Teste 1: Verificar acesso às planilhas
+        async function testSheetAccess() {
+            log('🔍 Testando acesso às planilhas...', 'info');
+            
+            const sheets = [
+                {
+                    name: 'Planilha Original (app.js)',
+                    id: '160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU',
+                    sheet: 'materias'
+                },
+                {
+                    name: 'Planilha Nova (gs_loader.js)',
+                    id: '1KtKF2EMfuzPlr3p6g5fc0x5bZ43DYSR3W9XB6PSyPCk',
+                    sheet: 'materias_iepuc_completo'
+                }
+            ];
+            
+            for (const sheetInfo of sheets) {
+                const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetInfo.id}/gviz/tq?tqx=out:csv&sheet=${sheetInfo.sheet}`;
+                
+                try {
+                    log(`Testando ${sheetInfo.name}...`);
+                    const response = await fetch(csvUrl);
+                    
+                    if (response.ok) {
+                        const data = await response.text();
+                        log(`✅ ${sheetInfo.name}: Acessível (${data.length} caracteres)`, 'success');
+                        log(`<pre>${data.substring(0, 200)}...</pre>`);
+                    } else {
+                        log(`❌ ${sheetInfo.name}: HTTP ${response.status} - ${response.statusText}`, 'error');
+                    }
+                } catch (error) {
+                    log(`❌ ${sheetInfo.name}: ${error.message}`, 'error');
+                }
+            }
+        }
+        
+        // Teste 2: Método original do app.js (corrigido)
+        function testOriginalMethod() {
+            log('🧪 Testando método original (app.js)...', 'info');
+            document.getElementById('loading').classList.remove('hidden');
+            
+            const sheetID = "160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU";
+            const sheetName = "materias";
+            
+            // Método JSONP melhorado
+            const callbackName = 'gsheetsCallback' + Date.now();
+            
+            window[callbackName] = function(data) {
+                try {
+                    log('✅ Callback JSONP executado', 'success');
+                    document.getElementById('loading').classList.add('hidden');
+                    
+                    if (!data.table || !data.table.rows) {
+                        throw new Error('Estrutura de dados inválida');
+                    }
+                    
+                    log(`📊 Dados recebidos: ${data.table.rows.length} linhas`);
+                    
+                    // Verificar se a primeira linha contém dados ou cabeçalhos
+                    let startIndex = 0;
+                    const firstRow = data.table.rows[0];
+                    if (firstRow && firstRow.c) {
+                        const firstCell = firstRow.c[0]?.v?.toString() || '';
+                        // Se a primeira célula parece ser um cabeçalho, pular
+                        if (firstCell.toLowerCase().includes('data') || 
+                            firstCell.toLowerCase().includes('titulo') ||
+                            firstCell.toLowerCase().includes('date')) {
+                            startIndex = 1;
+                            log('🔍 Detectado: Primeira linha são cabeçalhos (pulando)');
+                        } else {
+                            log('🔍 Detectado: Primeira linha contém dados');
+                        }
+                    }
+                    
+                    const rows = data.table.rows
+                        .slice(startIndex) // Usar índice dinâmico
+                        .map((row, index) => {
+                            return {
+                                data: (row.c && row.c[0] && row.c[0].v) ? row.c[0].v.toString() : "",
+                                titulo: (row.c && row.c[1] && row.c[1].v) ? row.c[1].v.toString() : "",
+                                veiculo: (row.c && row.c[2] && row.c[2].v) ? row.c[2].v.toString() : "",
+                                resumo: (row.c && row.c[3] && row.c[3].v) ? row.c[3].v.toString() : "",
+                                link: (row.c && row.c[4] && row.c[4].v) ? row.c[4].v.toString() : "",
+                                imagem: (row.c && row.c[5] && row.c[5].v) ? row.c[5].v.toString() : ""
+                            };
+                        })
+                        .filter(row => row && row.titulo && row.titulo.trim() !== "");
+                    
+                    log(`📰 Matérias válidas encontradas: ${rows.length}`, 'success');
+                    
+                    if (rows.length > 0) {
+                        displayMateriasOriginal(rows);
+                    } else {
+                        log('⚠️ Nenhuma matéria encontrada', 'warning');
+                    }
+                    
+                } catch (error) {
+                    log(`❌ Erro no processamento: ${error.message}`, 'error');
+                    document.getElementById('error').classList.remove('hidden');
+                } finally {
+                    delete window[callbackName];
+                }
+            };
+            
+            const script = document.createElement('script');
+            script.src = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&callback=${callbackName}&sheet=${sheetName}`;
+            
+            script.onerror = function() {
+                log('❌ Erro na requisição JSONP', 'error');
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+                delete window[callbackName];
+            };
+            
+            document.head.appendChild(script);
+            
+            // Timeout de segurança
+            setTimeout(() => {
+                if (window[callbackName]) {
+                    log('⏰ Timeout na requisição JSONP', 'warning');
+                    delete window[callbackName];
+                    if (document.head.contains(script)) {
+                        document.head.removeChild(script);
+                    }
+                }
+            }, 10000);
+        }
+        
+        // Teste 3: Novo método do gs_loader.js
+        async function testNewMethod() {
+            log('🧪 Testando novo método (gs_loader.js)...', 'info');
+            document.getElementById('loading').classList.remove('hidden');
+            
+            try {
+                const sheetId = '1KtKF2EMfuzPlr3p6g5fc0x5bZ43DYSR3W9XB6PSyPCk';
+                const sheetName = 'materias_iepuc_completo';
+                const csvUrl = `https://docs.google.com/spreadsheets/d/${sheetId}/gviz/tq?tqx=out:csv&sheet=${sheetName}`;
+                
+                log(`Fazendo requisição para: ${csvUrl}`);
+                
+                const response = await fetch(csvUrl);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                
+                const csvText = await response.text();
+                log('✅ CSV carregado com sucesso', 'success');
+                log(`📊 Tamanho dos dados: ${csvText.length} caracteres`);
+                
+                // Parse CSV
+                const lines = csvText.split('\n');
+                const headers = parseCSVLine(lines[0]);
+                log(`📋 Cabeçalhos: ${headers.join(', ')}`);
+                
+                const data = [];
+                
+                // Verificar se a primeira linha contém dados ou cabeçalhos
+                let startIndex = 1; // Por padrão, pula a primeira linha
+                
+                // Se os cabeçalhos parecem ser dados (contém números, URLs, etc.), começar do índice 0
+                const firstLine = parseCSVLine(lines[0]);
+                const hasDataInFirstLine = firstLine.some(cell => 
+                    cell.includes('http') || 
+                    cell.match(/\d{2}\/\d{2}\/\d{4}/) || 
+                    cell.length > 50
+                );
+                
+                if (hasDataInFirstLine) {
+                    log('🔍 Detectado: Primeira linha contém dados, não cabeçalhos');
+                    startIndex = 0;
+                    // Usar cabeçalhos genéricos
+                    const genericHeaders = ['data', 'titulo', 'veiculo', 'resumo', 'url', 'categoria', 'imagem'];
+                    for (let i = 0; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+                        
+                        const values = parseCSVLine(line);
+                        if (values.length >= 3) { // Pelo menos data, título, veículo
+                            const row = {};
+                            genericHeaders.forEach((header, index) => {
+                                row[header] = values[index] || '';
+                            });
+                            data.push(row);
+                        }
+                    }
+                } else {
+                    log('🔍 Detectado: Primeira linha são cabeçalhos');
+                    // Processo original
+                    for (let i = 1; i < lines.length; i++) {
+                        const line = lines[i].trim();
+                        if (!line) continue;
+                        
+                        const values = parseCSVLine(line);
+                        if (values.length >= headers.length) {
+                            const row = {};
+                            headers.forEach((header, index) => {
+                                const cleanHeader = header.toLowerCase().trim();
+                                row[cleanHeader] = values[index] || '';
+                            });
+                            data.push(row);
+                        }
+                    }
+                }
+                
+                log(`📰 Linhas processadas: ${data.length}`, 'success');
+                document.getElementById('loading').classList.add('hidden');
+                
+                if (data.length > 0) {
+                    displayMateriasNew(data);
+                } else {
+                    log('⚠️ Nenhuma matéria encontrada', 'warning');
+                }
+                
+            } catch (error) {
+                log(`❌ Erro: ${error.message}`, 'error');
+                document.getElementById('loading').classList.add('hidden');
+                document.getElementById('error').classList.remove('hidden');
+            }
+        }
+        
+        // Teste 4: Método CSV simples
+        async function testCSVMethod() {
+            log('🧪 Testando método CSV simples...', 'info');
+            document.getElementById('loading').classList.remove('hidden');
+            
+            const sheets = [
+                { id: '160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU', name: 'materias' },
+                { id: '160ARd8yznqu0xcCTh3yXmxtotix9OmPVZfGDdy2uOpU', name: 'page' },
+                { id: '1KtKF2EMfuzPlr3p6g5fc0x5bZ43DYSR3W9XB6PSyPCk', name: 'materias_iepuc_completo' }
+            ];
+            
+            for (const sheet of sheets) {
+                try {
+                    const csvUrl = `https://docs.google.com/spreadsheets/d/${sheet.id}/gviz/tq?tqx=out:csv&sheet=${sheet.name}`;
+                    log(`Testando ${sheet.id}/${sheet.name}...`);
+                    
+                    const response = await fetch(csvUrl);
+                    if (response.ok) {
+                        const data = await response.text();
+                        log(`✅ Sucesso com ${sheet.name}: ${data.length} caracteres`, 'success');
+                        log(`<pre>${data.substring(0, 300)}...</pre>`);
+                        break;
+                    }
+                } catch (error) {
+                    log(`❌ Falha com ${sheet.name}: ${error.message}`, 'error');
+                }
+            }
+            
+            document.getElementById('loading').classList.add('hidden');
+        }
+        
+        // Função auxiliar para parse CSV
+        function parseCSVLine(line) {
+            const result = [];
+            let current = '';
+            let inQuotes = false;
+            
+            for (let i = 0; i < line.length; i++) {
+                const char = line[i];
+                const nextChar = line[i + 1];
+                
+                if (char === '"') {
+                    if (inQuotes && nextChar === '"') {
+                        current += '"';
+                        i++;
+                    } else {
+                        inQuotes = !inQuotes;
+                    }
+                } else if (char === ',' && !inQuotes) {
+                    result.push(current);
+                    current = '';
+                } else {
+                    current += char;
+                }
+            }
+            
+            result.push(current);
+            return result;
+        }
+        
+        // Função para exibir matérias (método original)
+        function displayMateriasOriginal(rows) {
+            const container = document.getElementById('materias-container');
+            
+            const html = rows.slice(0, 5).map((materia, index) => `
+                <div class="materia-card">
+                    <h3 class="text-lg font-bold mb-2">${materia.titulo || 'Sem título'}</h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                        ${materia.veiculo || 'Fonte não informada'} • ${materia.data || 'Data não informada'}
+                    </p>
+                    <p class="text-gray-700 mb-3">${materia.resumo || 'Sem resumo'}</p>
+                    ${materia.link ? `<a href="${materia.link}" target="_blank" class="text-blue-600 hover:underline">Leia mais →</a>` : ''}
+                </div>
+            `).join('');
+            
+            container.innerHTML = html;
+            log(`✅ Exibidas ${Math.min(rows.length, 5)} matérias (método original)`, 'success');
+        }
+        
+        // Função para exibir matérias (método novo)
+        function displayMateriasNew(data) {
+            const container = document.getElementById('blogue');
+            
+            const validData = data.filter(item => item.titulo && item.titulo.trim() !== '');
+            
+            const html = validData.slice(0, 5).map((item, index) => `
+                <div class="materia-card">
+                    <h3 class="text-lg font-bold mb-2">${item.titulo || 'Sem título'}</h3>
+                    <p class="text-sm text-gray-600 mb-2">
+                        ${item.veiculo || 'Fonte não informada'} • ${item.data || 'Data não informada'}
+                    </p>
+                    <p class="text-gray-700 mb-3">${item.resumo || 'Sem resumo'}</p>
+                    ${item.url ? `<a href="${item.url}" target="_blank" class="text-blue-600 hover:underline">Leia mais →</a>` : ''}
+                </div>
+            `).join('');
+            
+            container.innerHTML = html;
+            log(`✅ Exibidas ${Math.min(validData.length, 5)} matérias (método novo)`, 'success');
+        }
+        
+        // Inicialização
+        document.addEventListener('DOMContentLoaded', function() {
+            log('🚀 Página carregada, pronta para testes', 'info');
+            log('💡 Clique nos botões acima para testar os diferentes métodos', 'info');
+        });
+    </script>
+</body>
+</html>

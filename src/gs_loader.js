@@ -17,7 +17,7 @@ constructor(sheetId, sheetName = 'Sheet1') {
     // Configurações básicas
     this.sheetId = sheetId;
     this.sheetName = sheetName;
-    this.postsPerPage = 6; // Quantas matérias mostrar por vez
+    this.postsPerPage = 3; // Quantas matérias mostrar por vez
     this.currentPage = 0;  // Página atual (começando do 0)
     this.allPosts = [];    // Array para armazenar todas as matérias
 
