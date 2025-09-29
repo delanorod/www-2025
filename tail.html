@@ -6,33 +6,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instituto de Energia PUC-Rio</title>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+    
+ <link rel="stylesheet" href="./src/output.css">
+  
+ 
 
 
+ 
+</head>
+
+<body class="font-puc bg-white">
+  <!-- Cabeçalho Padrão PUC-Rio -->
+  <!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto de Energia PUC-Rio</title>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  
+  <!-- Tailwind CSS Local -->
   <link rel="stylesheet" href="src/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'puc-blue': '#42929d',
-            'puc-light-blue': '#0066CC',
-            'puc-gold': '#FFD700',
-            'puc-gray': '#666666',
-            'puc-light-gray': '#F5F5F5'
-          },
-          fontFamily: {
-            'puc': ['Arial', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
+    /* Cores personalizadas PUC */
+    .bg-puc-blue { background-color: #42929d; }
+    .text-puc-blue { color: #42929d; }
+    .border-puc-blue { border-color: #42929d; }
+    
+    .bg-puc-light-blue { background-color: #0066CC; }
+    .text-puc-light-blue { color: #0066CC; }
+    .border-puc-light-blue { border-color: #0066CC; }
+    
+    .bg-puc-gold { background-color: #FFD700; }
+    .text-puc-gold { color: #FFD700; }
+    .border-puc-gold { border-color: #FFD700; }
+    
+    .bg-puc-gray { background-color: #666666; }
+    .text-puc-gray { color: #666666; }
+    .border-puc-gray { border-color: #666666; }
+    
+    .bg-puc-light-gray { background-color: #F5F5F5; }
+    .text-puc-light-gray { color: #F5F5F5; }
+    .border-puc-light-gray { border-color: #F5F5F5; }
+    
+    .font-puc { font-family: Arial, sans-serif; }
+    
+    /* Hover states */
+    .hover\:text-puc-gold:hover { color: #FFD700; }
+    .hover\:text-puc-light-blue:hover { color: #0066CC; }
+    .hover\:text-puc-blue:hover { color: #42929d; }
+    .hover\:bg-puc-light-gray:hover { background-color: #F5F5F5; }
+
     /* Grid de Matérias */
     #materias-container {
       display: grid;
@@ -199,7 +226,6 @@
             <a href="https://www.dbd.puc-rio.br/sitenovo/index.php#aviso" class="hover:text-puc-gold transition-colors">Biblioteca</a>
             <a href="https://www.puc-rio.br/puconline/" class="hover:text-puc-gold transition-colors">PUC Online</a>
             <a href="https://www.puc-rio.br/vestibular/" class="hover:text-puc-gold transition-colors">Vestibular</a>
-
           </div>
           <div class="flex items-center space-x-2">
             <span class="text-xs">Siga-nos:</span>
@@ -228,9 +254,9 @@
           <div class="flex items-center space-x-6">
             <a href="https://www.puc-rio.br" class="flex items-center space-x-3">
               <!-- Brasão PUC-Rio SVG -->
-               <div class="w-20 h-20">
-            <img src="https://www.puc-rio.br/imagens/brasao_preto_vertical.svg" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-        </div>
+              <div class="w-20 h-20">
+                <img src="https://www.puc-rio.br/imagens/brasao_preto_vertical.svg" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
+              </div>
             </a>
 
             <!-- Separador -->
@@ -239,8 +265,8 @@
             <!-- Identificação do Instituto -->
             <div class="text-puc-black">
               <div class="w-16 h-16">
-           <img src="https://www.iepuc.puc-rio.br/imagens/LogoIEPUC-PB.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-       </div>
+                <img src="https://www.iepuc.puc-rio.br/imagens/LogoIEPUC-PB.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
+              </div>
               <h3 class="text-xl font-bold">Instituto de Energia</h3>
             </div>
           </div>
@@ -257,23 +283,13 @@
               <li><a href="/institucional.html" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Institucional</a></li>
               <li class="relative group">
                 <a href="#pesquisa" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                    Pesquisa <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                  Pesquisa <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
                 <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
                   <a href="/pesquisa/equipe.html" class="block px-4 py-2 hover:bg-puc-light-gray">Equipe</a>
                   <a href="/pesquisa/projetos.html" class="block px-4 py-2 hover:bg-puc-light-gray">Projetos</a>
                 </div>
               </li>
               <li><a href="/index.html#nossosCursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Cursos</a></li>
-
-              <!-- <li class="relative group">
-                <a href="#cursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                  Cursos <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                </a>
-                <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
-                  <a href="/ensino/pos_graduacao.html" class="block px-4 py-2 hover:bg-puc-light-gray">Pós Graduação</a>
-                  <a href="/ensino/outros_cursos.html" class="block px-4 py-2 hover:bg-puc-light-gray">Outros cursos</a>
-                </div>
-              </li> -->
               <li><a href="/iepucnamidia/iepucnamidia.html" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">IEPUC na Mídia</a></li>
               <li><a href="/index.html#seminarios" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Seminários</a></li>
             </ul>
@@ -303,28 +319,100 @@
             </div>
           </li>
           
-          <!-- Item Cursos com Submenu -->
-          <!-- <li class="mobile-menu-item">
-            <button class="w-full flex items-center justify-between text-puc-blue hover:text-puc-light-blue transition-colors font-medium mobile-menu-toggle" data-target="cursos-submenu">
-              Cursos
-              <i class="fas fa-chevron-down text-xs mobile-menu-chevron"></i>
-            </button>
-            <div id="cursos-submenu" class="mobile-submenu">
-              <div class="ml-4 mt-2 space-y-2">
-                <a href="/ensino/pos_graduacao.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Pós Graduação</a>
-                <a href="/ensino/outros_cursos.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Outros cursos</a>
-              </div>
-            </div>
-          </li> -->
           <li><a href="#nossosCursos" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Cursos</a></li>
-
           <li><a href="/iepucnamidia/iepucnamidia.html" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">IEPUC na Mídia</a></li>
           <li><a href="#seminarios" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Seminários</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  <div class="gtranslate_wrapper"></div>
-<script>window.gtranslateSettings = {"default_language":"pt","native_language_names":true,"detect_browser_language":true,"languages":["pt","en"],"wrapper_selector":".gtranslate_wrapper","flag_size":24,"horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
+  
   <main>
+  
+  
+    <h1 class="text-3xl font-bold underline">    Hello world!  </h1>
+    <h1 class="text-puc-blue font-puc">Meu Título </h1> 
+
+
+    </main>
+
+<!-- Rodapé Padrão PUC-Rio -->
+<footer class="bg-puc-blue text-white">
+  <!-- Seção Principal do Rodapé -->
+  <div class="py-12">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid md:grid-cols-5 gap-8">
+        <!-- Coluna do Instituto -->
+        <div class="md:col-span-2">
+          <div class="flex items-center space-x-3 mb-4">
+            <div class="w-12 h-12">
+          <img src="https://www.puc-rio.br/imagens/brasao_offwhite_vertical.svg" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
+      </div>
+            <div>
+              <h3 class="text-lg font-bold text-puc-white">Instituto de Energia</h3>
+              <p class="text-sm text-white">PUC-Rio</p>
+            </div>
+          </div>
+          <p class="text-white text-sm mb-4 leading-relaxed">
+            Formando líderes e promovendo pesquisa de excelência no setor energético nacional e internacional.
+          </p>
+          <div class="flex space-x-3">
+            <a href="https://www.facebook.com/PUCRio" target="_blank" class="hover:text-puc-white transition-colors">
+              <i class="fab fa-facebook text-lg"></i>
+            </a>
+            <a href="https://www.instagram.com/institutodeenergiaiepuc/" target="_blank" class="hover:text-puc-white transition-colors">
+              <i class="fab fa-instagram text-lg"></i>
+            </a>
+            <a href="https://www.youtube.com/@iepuc-rio" target="_blank" class="hover:text-puc-white transition-colors">
+              <i class="fab fa-youtube text-lg"></i>
+            </a>
+            <a href="https://www.linkedin.com/school/puc-rio/" target="_blank" class="hover:text-puc-white transition-colors">
+              <i class="fab fa-linkedin text-lg"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Cursos -->
+        <div>
+          <h4 class="font-semibold mb-4 text-puc-white">Cursos</h4>
+          <ul class="space-y-2 text-white text-sm">
+            <li><a href="#mbe" class="hover:text-puc-white transition-colors">MBE Energia</a></li>
+            <li><a href="#especializacao" class="hover:text-puc-white transition-colors">Especializações</a></li>
+            <li><a href="#extensao" class="hover:text-puc-white transition-colors">Cursos de Extensão</a></li>
+            <li><a href="#pesquisa" class="hover:text-puc-white transition-colors">Pesquisa</a></li>
+          </ul>
+        </div>
+
+        <!-- Institucional -->
+        <div>
+        <h4 class="font-semibold mb-4 text-puc-white">Institucional</h4>
+        <ul class="space-y-2 text-white">
+          <li><a href="#" class="hover:text-puc-white transition-colors">Sobre o Instituto</a></li>
+          <li><a href="#" class="hover:text-puc-white transition-colors">Pesquisa</a></li>
+          <li><a href="#" class="hover:text-puc-white transition-colors">Corpo Docente</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-semibold mb-4 text-puc-white">Contato</h4>
+        <div class="space-y-2 text-white">
+          <p><i class="fas fa-map-marker-alt mr-2"></i> Rua Marquês de São Vicente, 225</p>
+          <p class="mr-2">Prédio Padre Laércio Dias de Moura S.J.
+4º andar, Gávea - Rio de Janeiro - RJ</p>
+          <p><i class="fas fa-phone mr-2"></i> (21) 3527-1858</p>
+          <p><i class="fas fa-envelope mr-2"></i> iepuc@puc-rio.br</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-600 mt-8 pt-8 text-center text-black-600">
+      <p>&copy; 2025 Instituto de Energia PUC-Rio. Todos os direitos reservados.</p>
+    </div>
+  </div>
+
+</footer>
+<iframe src="http://www.puc-rio.br/includes/puc_rodape.html" scrolling="no" name="rodape" class="puc-oficial"
+title="Rodapé PUC-Rio - endereço e copyright"></iframe>
+</body>
+
+    

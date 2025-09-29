@@ -1,0 +1,19 @@
+const mysql = require('mysql');
+
+// Configuração do banco
+const connection = mysql.createConnection({
+  host: 'www.iepuc.puc-rio.br/dbadm/',
+  user: 'iepuc_01',
+  password: 'mcT6LtTLArk1ICrMU',
+  database: 'db_iepuc'
+});
+
+// Testar conexão
+connection.connect(err => {
+  if (err) {
+    console.error('❌ Erro na conexão: ' + err.stack);
+    return;
+  }
+  console.log('✅ Conectado como id ' + connection.threadId);
+  connection.end();
+});

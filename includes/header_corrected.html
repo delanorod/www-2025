@@ -6,33 +6,211 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Instituto de Energia PUC-Rio</title>
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind CSS Local -->
+  <link rel="stylesheet" href="/src/output.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
+  <style>
+    /* Grid de Matérias */
+    #materias-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
 
+    /* Cards de Matérias */
+    .materia-card {
+      background: #ffffff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid #e5e7eb;
+    }
+
+    .materia-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .materia-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: linear-gradient(45deg, #003366, #0066CC);
+    }
+
+    .materia-content {
+      padding: 1.5rem;
+    }
+
+    .materia-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #428f9d;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+
+    .materia-meta {
+      font-size: 0.875rem;
+      color: #6b7280;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .materia-resumo {
+      font-size: 1rem;
+      color: #374151;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .materia-link {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.5rem 1rem;
+      background: #42929d;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.875rem;
+      transition: background-color 0.3s ease;
+    }
+
+    .materia-link:hover {
+      background: #003366;
+    }
+
+    .materia-link i {
+      margin-left: 0.5rem;
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeInUp 1s ease-out;
+    }
+
+    /* Navegação Ativa */
+    .nav-link.active {
+      color: #0066CC;
+      font-weight: 600;
+    }
+
+    /* Hover Effects */
+    .feature-card:hover,
+    .course-card:hover,
+    .news-card:hover {
+      transform: translateY(-5px);
+    }
+
+    /* Mobile Menu Styles */
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .mobile-submenu.expanded {
+      max-height: 200px;
+    }
+
+    .mobile-menu-item {
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-chevron {
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-chevron.rotated {
+      transform: rotate(180deg);
+    }
+
+    /* Responsividade */
+    @media (max-width: 768px) {
+      #materias-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .materia-content {
+        padding: 1rem;
+      }
+
+      .materia-img {
+        height: 160px;
+      }
+
+      .text-5xl {
+        font-size: 2.5rem;
+      }
+
+      .text-xl {
+        font-size: 1.125rem;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-puc bg-white">
+  <!-- Cabeçalho Padrão PUC-Rio -->
+  <!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instituto de Energia PUC-Rio</title>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+  
+  <!-- Tailwind CSS Local -->
   <link rel="stylesheet" href="src/styles.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            'puc-blue': '#42929d',
-            'puc-light-blue': '#0066CC',
-            'puc-gold': '#FFD700',
-            'puc-gray': '#666666',
-            'puc-light-gray': '#F5F5F5'
-          },
-          fontFamily: {
-            'puc': ['Arial', 'sans-serif']
-          }
-        }
-      }
-    }
-  </script>
-
   <style>
+    /* Cores personalizadas PUC */
+    .bg-puc-blue { background-color: #42929d; }
+    .text-puc-blue { color: #42929d; }
+    .border-puc-blue { border-color: #42929d; }
+    
+    .bg-puc-light-blue { background-color: #0066CC; }
+    .text-puc-light-blue { color: #0066CC; }
+    .border-puc-light-blue { border-color: #0066CC; }
+    
+    .bg-puc-gold { background-color: #FFD700; }
+    .text-puc-gold { color: #FFD700; }
+    .border-puc-gold { border-color: #FFD700; }
+    
+    .bg-puc-gray { background-color: #666666; }
+    .text-puc-gray { color: #666666; }
+    .border-puc-gray { border-color: #666666; }
+    
+    .bg-puc-light-gray { background-color: #F5F5F5; }
+    .text-puc-light-gray { color: #F5F5F5; }
+    .border-puc-light-gray { border-color: #F5F5F5; }
+    
+    .font-puc { font-family: Arial, sans-serif; }
+    
+    /* Hover states */
+    .hover\:text-puc-gold:hover { color: #FFD700; }
+    .hover\:text-puc-light-blue:hover { color: #0066CC; }
+    .hover\:text-puc-blue:hover { color: #42929d; }
+    .hover\:bg-puc-light-gray:hover { background-color: #F5F5F5; }
+
     /* Grid de Matérias */
     #materias-container {
       display: grid;
@@ -199,7 +377,6 @@
             <a href="https://www.dbd.puc-rio.br/sitenovo/index.php#aviso" class="hover:text-puc-gold transition-colors">Biblioteca</a>
             <a href="https://www.puc-rio.br/puconline/" class="hover:text-puc-gold transition-colors">PUC Online</a>
             <a href="https://www.puc-rio.br/vestibular/" class="hover:text-puc-gold transition-colors">Vestibular</a>
-
           </div>
           <div class="flex items-center space-x-2">
             <span class="text-xs">Siga-nos:</span>
@@ -228,9 +405,9 @@
           <div class="flex items-center space-x-6">
             <a href="https://www.puc-rio.br" class="flex items-center space-x-3">
               <!-- Brasão PUC-Rio SVG -->
-               <div class="w-20 h-20">
-            <img src="https://www.puc-rio.br/imagens/brasao_preto_vertical.svg" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-        </div>
+              <div class="w-20 h-20">
+                <img src="https://www.puc-rio.br/imagens/brasao_preto_vertical.svg" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
+              </div>
             </a>
 
             <!-- Separador -->
@@ -239,8 +416,8 @@
             <!-- Identificação do Instituto -->
             <div class="text-puc-black">
               <div class="w-16 h-16">
-           <img src="https://www.iepuc.puc-rio.br/imagens/LogoIEPUC-PB.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
-       </div>
+                <img src="https://www.iepuc.puc-rio.br/imagens/LogoIEPUC-PB.png" alt="Brasão PUC-Rio" class="w-full h-full object-contain">
+              </div>
               <h3 class="text-xl font-bold">Instituto de Energia</h3>
             </div>
           </div>
@@ -257,23 +434,13 @@
               <li><a href="/institucional.html" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Institucional</a></li>
               <li class="relative group">
                 <a href="#pesquisa" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                    Pesquisa <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
+                  Pesquisa <i class="fas fa-chevron-down ml-1 text-xs"></i></a>
                 <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
                   <a href="/pesquisa/equipe.html" class="block px-4 py-2 hover:bg-puc-light-gray">Equipe</a>
                   <a href="/pesquisa/projetos.html" class="block px-4 py-2 hover:bg-puc-light-gray">Projetos</a>
                 </div>
               </li>
               <li><a href="/index.html#nossosCursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Cursos</a></li>
-
-              <!-- <li class="relative group">
-                <a href="#cursos" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium flex items-center">
-                  Cursos <i class="fas fa-chevron-down ml-1 text-xs"></i>
-                </a>
-                <div class="absolute z-50 top-full left-0 bg-white text-puc-blue shadow-lg rounded-lg py-2 w-64 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 border">
-                  <a href="/ensino/pos_graduacao.html" class="block px-4 py-2 hover:bg-puc-light-gray">Pós Graduação</a>
-                  <a href="/ensino/outros_cursos.html" class="block px-4 py-2 hover:bg-puc-light-gray">Outros cursos</a>
-                </div>
-              </li> -->
               <li><a href="/iepucnamidia/iepucnamidia.html" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">IEPUC na Mídia</a></li>
               <li><a href="/index.html#seminarios" class="nav-link text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Seminários</a></li>
             </ul>
@@ -303,28 +470,14 @@
             </div>
           </li>
           
-          <!-- Item Cursos com Submenu -->
-          <!-- <li class="mobile-menu-item">
-            <button class="w-full flex items-center justify-between text-puc-blue hover:text-puc-light-blue transition-colors font-medium mobile-menu-toggle" data-target="cursos-submenu">
-              Cursos
-              <i class="fas fa-chevron-down text-xs mobile-menu-chevron"></i>
-            </button>
-            <div id="cursos-submenu" class="mobile-submenu">
-              <div class="ml-4 mt-2 space-y-2">
-                <a href="/ensino/pos_graduacao.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Pós Graduação</a>
-                <a href="/ensino/outros_cursos.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Outros cursos</a>
-              </div>
-            </div>
-          </li> -->
           <li><a href="#nossosCursos" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Cursos</a></li>
-
           <li><a href="/iepucnamidia/iepucnamidia.html" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">IEPUC na Mídia</a></li>
           <li><a href="#seminarios" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Seminários</a></li>
         </ul>
       </nav>
     </div>
   </header>
-  <div class="gtranslate_wrapper"></div>
-<script>window.gtranslateSettings = {"default_language":"pt","native_language_names":true,"detect_browser_language":true,"languages":["pt","en"],"wrapper_selector":".gtranslate_wrapper","flag_size":24,"horizontal_position":"right","vertical_position":"top","alt_flags":{"en":"usa","pt":"brazil"}}</script>
-<script src="https://cdn.gtranslate.net/widgets/latest/flags.js" defer></script>
+  
+
+  
   <main>

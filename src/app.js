@@ -44,6 +44,14 @@ $(document).ready(function() {
       buttonText: "Ouça o podcast",
       slideUrl: "https://www.youtube.com/watch?v=PkRwGQOkOlY"
     },
+{
+      image: "imagens/slider/11.jpg",
+      title: "ENERCITY 2025",
+      description: "Transição Energética em Cidades",
+      buttonText: "Assista",
+      slideUrl: "https://www.youtube.com/watch?v=cDtvgAsspdc"
+    },
+
     {
       image: "imagens/slider/9.jpg",
       title: "Ensaio Energético",
