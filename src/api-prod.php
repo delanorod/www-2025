@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // ============================================================================
 
 define('DB_HOST', 'localhost');           // Host do banco de dados
-define('DB_NAME', 'iepuc_na_midia_cp');  // Nome do banco de dados
-define('DB_USER', 'seu_usuario');         // ALTERE: Seu usuário MySQL
-define('DB_PASS', 'sua_senha');           // ALTERE: Sua senha MySQL
-define('DB_CHARSET', 'utf8mb4');
+define('DB_NAME', 'db_iepuc);  // Nome do banco de dados
+define('DB_USER', 'iepuc_01');         // ALTERE: Seu usuário MySQL
+define('DB_PASS', 'mcT6LtTLArk1CrMU');           // ALTERE: Sua senha MySQL
+define('DB_CHARSET', 'utf8');
 
 // ============================================================================
 // CLASSE DE CONEXÃO COM O BANCO
