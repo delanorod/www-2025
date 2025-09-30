@@ -18,7 +18,7 @@ class MySQLLoader {
      * Construtor da classe
      * @param {string} apiUrl - URL da API PHP
      */
-    constructor(apiUrl = './src/api.php') {
+    constructor(apiUrl = 'api.php') {
         // Configurações básicas
         this.apiUrl = apiUrl;
         this.postsPerPage = 6;  // Quantas matérias mostrar por vez
@@ -416,7 +416,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('📄 Página carregada, iniciando script...');
 
     // IMPORTANTE: Altere para o caminho correto da sua API
-    const apiUrl = '.src/api.php'; // ou 'http://seusite.com/api.php'
+    const apiUrl = './src/api.php'; // API está na pasta src/
 
     // Cria uma instância do carregador
     const loader = new MySQLLoader(apiUrl);
@@ -445,7 +445,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Use no console do navegador: testAPI()
  */
 async function testAPI() {
-    const apiUrl = '.src/api.php';
+    const apiUrl = 'api.php';
     
     console.log('🔍 Testando conexão com a API...');
     console.log('API URL:', apiUrl);
