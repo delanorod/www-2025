@@ -24,6 +24,13 @@ $(document).ready(function() {
   // Dados dos slides
   const slides = [
     {
+      image: "imagens/slider/12.jpg",
+      title: "Clécio e comitiva visitam Porto de Niterói e PUC Rio",
+      description: "O governador do Amapá foi recepcionado pelo reitor da PUC-RJ, Padre Anderson Pedroso, pelo professor Eloi Fernández, diretor do Iepuc e pela equipe técnica do instituto.",
+      buttonText: "Leia aqui",
+      slideUrl: "https://www.diariodoamapa.com.br/cadernos/politica/clecio-e-comitiva-visitam-porto-de-niteroi-e-puc-rio/"
+    },
+    {
       image: "imagens/slider/10.jpg",
       title: "O BRASIL DO GÁS: PROMESSAS, PARADOXOS E POTENCIAL",
       description: "Podcast Iluministas com Edmar Almeida, economista, doutor pela Universidade de Grenoble (França), e professor do Instituto de Energia da PUC-Rio",

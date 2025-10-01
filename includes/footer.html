@@ -74,7 +74,39 @@
   </div>
 
 </footer>
-<iframe src="http://www.puc-rio.br/includes/puc_rodape.html" scrolling="no" name="rodape" class="puc-oficial"
+<iframe src="https://www.puc-rio.br/includes/puc_rodape.html" scrolling="no" name="rodape" class="puc-oficial"
 title="Rodapé PUC-Rio - endereço e copyright"></iframe>
 
-    
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const mobileMenuButton = document.getElementById("mobile-menu-button");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const toggles = document.querySelectorAll(".mobile-menu-toggle");
+
+  // abre/fecha menu principal
+  if (mobileMenuButton) {
+    mobileMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+
+  // abre/fecha submenus
+  toggles.forEach((toggle) => {
+    toggle.addEventListener("click", () => {
+      const targetId = toggle.getAttribute("data-target");
+      const submenu = document.getElementById(targetId);
+      const chevron = toggle.querySelector(".mobile-menu-chevron");
+
+      if (submenu) {
+        submenu.classList.toggle("expanded");
+      }
+      if (chevron) {
+        chevron.classList.toggle("rotated");
+      }
+    });
+  });
+});
+</script>
+
+ </body>
+ </html>
