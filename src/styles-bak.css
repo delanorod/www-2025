@@ -43,14 +43,13 @@ div {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background-color: rgba(156, 163, 175, 0.7);
+    background-color: rgba(66, 146, 157, 0.4); /* #42929d com transparência */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .slider-indicator.active {
-    background-color: rgba(42, 69, 224, 0.74) !important;
-    /**background-color: rgba(107, 33, 168, 0.9); */
+    background-color: #D2AB00 !important; /* Dourado para indicador ativo */
 }
 
 .slider-control {
@@ -78,7 +77,6 @@ div {
     right: 15px;
 }
 
-
 /* footer puc-rio */
 .puc-oficial {
   width: 100%;
@@ -86,7 +84,6 @@ div {
       overflow: hidden;
     border: none;
     flex-grow: 1; /* Ocupa o espaço restante */
-
 }
 
 /* textos de artigos */
@@ -95,7 +92,7 @@ div {
   line-height: 1.75;          /* leading-loose */
   letter-spacing: 0.025em;    /* tracking-wide */
   margin: 0 auto;
-  color: #334155;
+  color: #2c3e50;            /* Tom mais escuro harmonizado */
   max-width: 48rem;
   font-size: 1rem;
   font-weight: 400;
@@ -114,12 +111,13 @@ div {
 h2.titulo-destaque {
   font-weight: 700;
   line-height: 1.3;
-  color: #1e293b;
+  color: #42929d;            /* Azul-petróleo principal */
   margin: 1.5rem auto 1rem;
   width: 100%;
   font-size: 1.1rem;
-  /* font-size: 1.5rem; */
   max-width: 48rem;
+  border-bottom: 2px solid #D2AB00; /* Linha dourada de destaque */
+  padding-bottom: 0.5rem;
 }
 
 @media (min-width: 1024px) {
@@ -133,13 +131,13 @@ h2.titulo-destaque {
 h5.cargo-destaque {
   font-weight: 600;
   line-height: 1.4;
-  color: #1e293b;
+  color: #2c3e50;            /* Tom escuro harmonizado */
   margin: 1.5rem 0 1rem;
   width: 100%;
   font-size: 1.1rem;
   text-align: left;
   max-width: 24rem;
-  /* border-left: 3px solid #cbd5e1; */
+  border-left: 3px solid #D2AB00; /* Borda dourada */
   padding-left: 1rem;
 }
 
@@ -150,38 +148,37 @@ h5.cargo-destaque {
   }
 }
 
-Estilo harmonizado para h3 */
-       h3.destaque {
-            font-weight: 700;
-            line-height: 1.4;
-            color: #0f172a;
-            margin: 2rem 0 1rem;
-            width: 100%;
-            font-size: 1.5rem;
-            text-align: left;
-            /* border-bottom: 2px solid #cbd5e1; */
-         padding-bottom: 0.5rem;
-        }
+/* Estilo harmonizado para h3 */
+h3.destaque {
+    font-weight: 700;
+    line-height: 1.4;
+    color: #42929d;            /* Azul-petróleo */
+    margin: 2rem 0 1rem;
+    width: 100%;
+    font-size: 1.5rem;
+    text-align: left;
+    border-bottom: 2px solid rgba(210, 171, 0, 0.3); /* Dourado sutil */
+    padding-bottom: 0.5rem;
+}
 
-        /* Estilo harmonizado para h4 */
-         h4.destaque {
-            font-weight: 650;
-            line-height: 1.4;
-            color: #1e293b;
-            margin: 1.75rem 0 0.75rem;
-            width: 100%;
-            font-size: 1.25rem;
-            text-align: left;
-          /* border-left: 2px solid #e2e8f0; */
-            padding-left: 0.75rem;
-        }
+/* Estilo harmonizado para h4 */
+h4.destaque {
+    font-weight: 650;
+    line-height: 1.4;
+    color: #2c3e50;            /* Tom escuro harmonizado */
+    margin: 1.75rem 0 0.75rem;
+    width: 100%;
+    font-size: 1.25rem;
+    text-align: left;
+    border-left: 3px solid rgba(66, 146, 157, 0.5); /* Azul-petróleo sutil */
+    padding-left: 0.75rem;
+}
 
 /* Melhora a quebra de palavras em textos justificados */
 #artigos p {
   word-spacing: -0.05em;
   hyphens: auto;
 }
-
 
 /* cards */
 .card {
@@ -190,13 +187,24 @@ Estilo harmonizado para h3 */
   gap: 20px;             /* espaço entre imagem e texto */
   max-width: 800px;
   margin: 0 auto;        /* centraliza o bloco na página */
+  padding: 1.5rem;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(66, 146, 157, 0.05) 0%, rgba(210, 171, 0, 0.05) 100%);
+  border: 1px solid rgba(66, 146, 157, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(66, 146, 157, 0.15);
 }
 
 .card img {
   width: 200px;
   height: auto;
-  border-radius: 10px;   /* cantos arredondados (opcional) */
+  border-radius: 10px;   /* cantos arredondados */
   object-fit: cover;
+  border: 2px solid rgba(210, 171, 0, 0.2); /* Borda dourada sutil */
 }
 
 .texto {
@@ -218,8 +226,84 @@ Estilo harmonizado para h3 */
 
 /* Estatísticas */
 .stat-number {
-            font-family: 'Arial', sans-serif;
-        }
-        .animate-count {
-            transition: all 0.5s ease-out;
-        }
+    font-family: 'Arial', sans-serif;
+    color: #42929d;        /* Azul-petróleo para números */
+    font-weight: 700;
+}
+
+.animate-count {
+    transition: all 0.5s ease-out;
+}
+
+/* Classes utilitárias adicionais para a nova paleta */
+.text-primary {
+    color: #42929d;
+}
+
+.text-accent {
+    color: #D2AB00;
+}
+
+.bg-primary {
+    background-color: #42929d;
+}
+
+.bg-accent {
+    background-color: #D2AB00;
+}
+
+.border-primary {
+    border-color: #42929d;
+}
+
+.border-accent {
+    border-color: #D2AB00;
+}
+
+/* Variações de tons para maior flexibilidade */
+.text-primary-light {
+    color: rgba(66, 146, 157, 0.7);
+}
+
+.text-accent-light {
+    color: rgba(210, 171, 0, 0.8);
+}
+
+.bg-primary-light {
+    background-color: rgba(66, 146, 157, 0.1);
+}
+
+.bg-accent-light {
+    background-color: rgba(210, 171, 0, 0.1);
+}
+
+/*Terra dos modais */
+ /* Custom gradients for the background effects */
+.bg-primary-gradient {
+    background: linear-gradient(135deg, #42929d 0%, #5ba3b2 100%);
+}
+.bg-highlight-gradient {
+    background: linear-gradient(135deg, rgba(66, 146, 157, 0.1) 0%, rgba(91, 163, 178, 0.1) 100%);
+}
+/* Modal overlay backdrop blur effect */
+.modal-backdrop {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+/* Smooth transitions for modal states */
+.modal-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.modal-visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+/* Animation delays for staggered content */
+.animate-delay-100 { animation-delay: 0.1s; }
+.animate-delay-200 { animation-delay: 0.2s; }
+.animate-delay-300 { animation-delay: 0.3s; }
+
+/*Seção EQUIPE */
