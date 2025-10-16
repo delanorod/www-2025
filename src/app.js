@@ -51,13 +51,6 @@ $(document).ready(function() {
       buttonText: "Ouça o podcast",
       slideUrl: "https://www.youtube.com/watch?v=PkRwGQOkOlY"
     },
-{
-      image: "imagens/slider/11.jpg",
-      title: "ENERCITY 2025",
-      description: "Transição Energética em Cidades",
-      buttonText: "Assista",
-      slideUrl: "https://www.youtube.com/watch?v=cDtvgAsspdc"
-    },
 
     {
       image: "imagens/slider/9.jpg",
@@ -66,13 +59,6 @@ $(document).ready(function() {
       buttonText: "Descubra",
       slideUrl: "https://ensaioenergetico.com.br/"
     },
-    {
-      image: "imagens/slider/5.jpg",
-      title: "9th ELAEE",
-      description: "Energy Transition, Latin American Energy Markets and Development Paths",
-      buttonText: "Assista",
-      slideUrl: "https://www.youtube.com/playlist?list=PLmCee3fhT3CL1QuZH2vLP7e33Lybp0tqJ"
-    }
     
   ];
 
