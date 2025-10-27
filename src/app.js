@@ -23,12 +23,19 @@ $(document).ready(function() {
 
   // Dados dos slides
   const slides = [
-     {
+    {
       image: "imagens/slider/13.jpg",
       title: "Josiel Alcolumbre recebe especialista da PUC-Rio no Sebrae Amapá",
       description: "Professor Eloi Fernández, referência em petróleo e gás, discutiu capacitações e entregou obra técnica ao presidente.",
       buttonText: "Leia aqui",
       slideUrl: "https://www.debubuia.com.br/noticia/josiel-alcolumbre-recebe-especialista-da-puc-rio-no-sebrae-amapa"
+    },
+    {
+      image: "imagens/slider/14.jpg",
+      title: "Gás Natural no Amazonas",
+      description: "Estudo Socioeconômico e Ambiental",
+      buttonText: "Baixe aqui",
+      slideUrl: "http://iepuc.puc-rio.br/arquivos/GN-Amazonas-EstudoSocioeconomico-Ambiental.pdf"
     },
     {
       image: "imagens/slider/12.jpg",
