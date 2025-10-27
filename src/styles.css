@@ -306,4 +306,21 @@ h4.destaque {
 .animate-delay-200 { animation-delay: 0.2s; }
 .animate-delay-300 { animation-delay: 0.3s; }
 
-/*Seção EQUIPE */
+/*Seção MENU MOBILE*/
+.mobile-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-submenu.expanded {
+  max-height: 200px; /* ou altura suficiente para o conteúdo */
+}
+
+.mobile-menu-chevron {
+  transition: transform 0.3s ease;
+}
+
+.mobile-menu-chevron.rotated {
+  transform: rotate(180deg);
+}

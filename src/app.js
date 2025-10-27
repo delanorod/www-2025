@@ -23,6 +23,13 @@ $(document).ready(function() {
 
   // Dados dos slides
   const slides = [
+     {
+      image: "imagens/slider/13.jpg",
+      title: "Josiel Alcolumbre recebe especialista da PUC-Rio no Sebrae Amapá",
+      description: "Professor Eloi Fernández, referência em petróleo e gás, discutiu capacitações e entregou obra técnica ao presidente.",
+      buttonText: "Leia aqui",
+      slideUrl: "https://www.debubuia.com.br/noticia/josiel-alcolumbre-recebe-especialista-da-puc-rio-no-sebrae-amapa"
+    },
     {
       image: "imagens/slider/12.jpg",
       title: "Clécio e comitiva visitam Porto de Niterói e PUC Rio",
@@ -152,75 +159,42 @@ $(document).ready(function() {
   initSlider();
 
   // ==========================================
-  // CÓDIGO DO MENU MOBILE
-  // ==========================================
+// CÓDIGO DO MENU MOBILE - VERSÃO CORRIGIDA
+// ==========================================
 
-  $('#mobile-menu-button').on('click', function() {
-    $('#mobile-menu').toggleClass('hidden');
-  });
+$('#mobile-menu-button').on('click', function(e) {
+  e.stopPropagation(); // Impede propagação
+  $('#mobile-menu').toggleClass('hidden');
+});
 
-  // Toggle dos submenus mobile
-  $('.mobile-menu-toggle').on('click', function() {
-    const targetId = $(this).attr('data-target');
-    const submenu = $('#' + targetId);
-    const chevron = $(this).find('.mobile-menu-chevron');
-    
-    // Toggle do submenu
-    submenu.toggleClass('expanded');
-    
-    // Rotação do chevron
-    chevron.toggleClass('rotated');
-  });
+// Toggle dos submenus mobile - VERSÃO CORRIGIDA
+$('.mobile-menu-toggle').on('click', function(e) {
+  e.stopPropagation(); // 🔥 IMPORTANTE: impede que o evento feche o menu
+  e.preventDefault();  // 🔥 Evita comportamentos padrão indesejados
+  
+  const targetId = $(this).attr('data-target');
+  const submenu = $('#' + targetId);
+  const chevron = $(this).find('.mobile-menu-chevron');
+  
+  // Fecha outros submenus abertos (opcional)
+  $('.mobile-submenu').not(submenu).removeClass('expanded');
+  $('.mobile-menu-chevron').not(chevron).removeClass('rotated');
+  
+  // Toggle do submenu atual
+  submenu.toggleClass('expanded');
+  chevron.toggleClass('rotated');
+});
 
-  // Fechar menu ao clicar fora
-  $(document).on('click', function(event) {
-    if (!$(event.target).closest('#mobile-menu').length && !$(event.target).closest('#mobile-menu-button').length) {
-      $('#mobile-menu').addClass('hidden');
-    }
-  });
-
-  // ==========================================
-  // CÓDIGO DE NAVEGAÇÃO SUAVE
-  // ==========================================
-
-  $('a[href^="#"]').on('click', function(e) {
-    const target = $(this.getAttribute('href'));
-    if (target.length) {
-      e.preventDefault();
-      $('html, body').stop().animate({
-        scrollTop: target.offset().top - 100
-      }, 1000);
-    }
-  });
-
-
-
-  // ==========================================
-  // CÓDIGO DE NAVEGAÇÃO ATIVA
-  // ==========================================
-
-  function updateActiveNav() {
-    const sections = $('section[id]');
-    const navLinks = $('.nav-link');
-
-    let currentSection = '';
-
-    sections.each(function() {
-      const sectionTop = $(this).offset().top - 150;
-      const sectionHeight = $(this).height();
-      const scrollTop = $(window).scrollTop();
-
-      if (scrollTop >= sectionTop && scrollTop < sectionTop + sectionHeight) {
-        currentSection = $(this).attr('id');
-      }
-    });
-
-    navLinks.removeClass('text-puc-gold active');
-    navLinks.filter(`[href="#${currentSection}"]`).addClass('text-puc-gold active');
+// Fechar menu ao clicar fora - VERSÃO CORRIGIDA
+$(document).on('click', function(event) {
+  if (!$(event.target).closest('#mobile-menu').length && 
+      !$(event.target).closest('#mobile-menu-button').length) {
+    $('#mobile-menu').addClass('hidden');
+    // Opcional: fecha todos os submenus ao fechar o menu
+    $('.mobile-submenu').removeClass('expanded');
+    $('.mobile-menu-chevron').removeClass('rotated');
   }
-
-  $(window).on('scroll', updateActiveNav);
-  updateActiveNav();
+});
 
   // ==========================================
   // ANIMAÇÕES E EFEITOS
