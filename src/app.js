@@ -32,8 +32,8 @@ $(document).ready(function() {
     },
     {
       image: "imagens/slider/14.jpg",
-      title: "Gás Natural no Amazonas",
-      description: "Estudo Socioeconômico e Ambiental",
+      title: "Gás Natural no Amazonas: Estudo Socioeconômico e Ambiental",
+      description: "Avaliação aponta redução de 37% nas emissões da geração elétrica e economia de R$ 7,7 bilhões em 2023, além de ganhos sociais com emprego e renda.",
       buttonText: "Baixe aqui",
       slideUrl: "http://iepuc.puc-rio.br/arquivos/GN-Amazonas-EstudoSocioeconomico-Ambiental.pdf"
     },
@@ -96,7 +96,7 @@ $(document).ready(function() {
           <div class="bg-cover bg-center h-full text-white flex items-center" style="background-image: url(${slide.image})">
             <div class="absolute inset-0 bg-black opacity-40"></div>
             <div class="container mx-auto px-10 relative z-10">
-              <div class="md:w-1/2">
+              <div class="md:w-1/2"> 
                 <p class="font-bold text-sm uppercase text-yellow-400 mb-2">IEPUC</p>
                 <h3 class="text-4xl font-bold mb-4">${slide.title}</h3>
                 <p class="text-xl mb-8 leading-relaxed">${slide.description}</p>
