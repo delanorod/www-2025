@@ -51,30 +51,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggles = document.querySelectorAll(".mobile-menu-toggle");
   
   toggles.forEach((toggle) => {
-  toggle.addEventListener("click", (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    toggle.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      const targetId = toggle.getAttribute("data-target");
+      const submenu = document.getElementById(targetId);
+      const chevron = toggle.querySelector(".mobile-menu-chevron");
 
-    const targetId = toggle.getAttribute("data-target");
-    const submenu = document.getElementById(targetId);
-    const chevron = toggle.querySelector(".mobile-menu-chevron");
-
-    // fecha outros submenus antes de abrir o atual
-    document.querySelectorAll(".mobile-submenu").forEach((el) => {
-      if (el.id !== targetId) el.classList.remove("expanded");
+      if (submenu) {
+        submenu.classList.toggle("expanded");
+      }
+      if (chevron) {
+        chevron.classList.toggle("rotated");
+      }
     });
-
-    document.querySelectorAll(".mobile-menu-chevron").forEach((icon) => {
-      if (icon !== chevron) icon.classList.remove("rotated");
-    });
-
-    submenu?.classList.toggle("expanded");
-    chevron?.classList.toggle("rotated");
   });
 });
-    });
- 
-
 </script>
 
   <style>
@@ -184,19 +177,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     /* Mobile Menu Styles */
-   .mobile-submenu {
-  max-height: 0;
-  overflow: hidden;
-  background-color: #f9fafb; /* visibilidade */
-  transition: max-height 0.4s ease-out;
-}
+    .mobile-submenu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-out;
+    }
 
-.mobile-submenu.expanded {
-  max-height: 200px; /* altura suficiente p/ 2 itens */
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
+    .mobile-submenu.expanded {
+      max-height: 500px;
+    }
 
+    .mobile-menu-item {
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu-chevron {
+      transition: transform 0.3s ease;
+    }
+
+    .mobile-menu-chevron.rotated {
+      transform: rotate(180deg);
+    }
 
     /* Responsividade */
     @media (max-width: 768px) {
@@ -315,17 +316,17 @@ document.addEventListener("DOMContentLoaded", () => {
           
           <!-- Item Pesquisa com Submenu -->
           <li class="mobile-menu-item">
-  <button type="button" class="w-full flex items-center justify-between text-puc-blue hover:text-puc-light-blue transition-colors font-medium mobile-menu-toggle" data-target="pesquisa-submenu">
-    Pesquisa
-    <i class="fas fa-chevron-down text-xs mobile-menu-chevron"></i>
-  </button>
-  <div id="pesquisa-submenu" class="mobile-submenu">
-    <div class="ml-4 mt-2 space-y-2">
-      <a href="/pesquisa/equipe.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Equipe</a>
-      <a href="/pesquisa/projetos.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Projetos</a>
-    </div>
-  </div>
-</li>
+            <button class="w-full flex items-center justify-between text-puc-blue hover:text-puc-light-blue transition-colors font-medium mobile-menu-toggle" data-target="pesquisa-submenu">
+              Pesquisa
+              <i class="fas fa-chevron-down text-xs mobile-menu-chevron"></i>
+            </button>
+            <div id="pesquisa-submenu" class="mobile-submenu">
+              <div class="ml-4 mt-2 space-y-2">
+                <a href="/pesquisa/equipe.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Equipe</a>
+                <a href="/pesquisa/projetos.html" class="block text-puc-gray hover:text-puc-blue transition-colors py-2">Projetos</a>
+              </div>
+            </div>
+          </li>
 
                     
           <li><a href="/index.html#nossosCursos" class="block text-puc-blue hover:text-puc-light-blue transition-colors font-medium">Cursos</a></li>
