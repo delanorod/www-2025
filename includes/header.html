@@ -409,5 +409,20 @@
       });
     });
   </script>
+  
+<!-- Ferramenta de acessbilidade -->
+  <script src="src/acctoolbar.min.js"></script>
+<script>
+// optional init
+  window.onload = function() {
+    window.micAccessTool = new MicAccessTool({
+      link: 'http://www.iepuc.puc-rio.br',
+      contact: 'mailto:iepuc@puc-rio.br',
+      buttonPosition: 'right', // default is 'left'
+      //forceLang: 'pt-BR' // default is 'en' may be 'he-IL', 'ru-RU', or 'fr_FR'
+    });
+  }
+</script>
+
 
   <main>

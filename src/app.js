@@ -24,6 +24,13 @@ $(document).ready(function() {
   // Dados dos slides
   const slides = [
     {
+      image: "imagens/slider/15.jpg",
+      title: "Inconsistências na Intensidade de Carbono do Gás Natural e seus impactos sobre a meta volumétrica de aquisição de biometano",
+      description: "Artigo de autoria de Felipe Freitas, Edmar de Almeida e Gustavo Soares, publicado no Ensaio Energético",
+      buttonText: "Leia aqui",
+      slideUrl: "https://ensaioenergetico.com.br/inconsistencias-na-intensidade-de-carbono-do-gas-natural-e-seus-impactos-sobre-a-meta-volumetrica-de-aquisicao-de-biometano/"
+    },
+    {
       image: "imagens/slider/13.jpg",
       title: "Josiel Alcolumbre recebe especialista da PUC-Rio no Sebrae Amapá",
       description: "Professor Eloi Fernández, referência em petróleo e gás, discutiu capacitações e entregou obra técnica ao presidente.",
